@@ -73,6 +73,64 @@ Manuel Flückiger 22-112-502}
         \left(\begin{array}{cc}0&0\\0&1\end{array}\right)\right>$
 
         \item[e)]
+        Span$\{1+x, x+x^2, x^2+x^3,1+x^2,x+x^3\}\subseteq$ Pol$\mathbb{R}$
+        \newline
+        U=Span$\left(
+            \left(\begin{array}{c}1\\1\\0\\0\end{array}\right)
+            \left(\begin{array}{c}0\\1\\1\\0\end{array}\right)
+            \left(\begin{array}{c}0\\0\\1\\1\end{array}\right)
+            \left(\begin{array}{c}1\\0\\1\\0\end{array}\right)
+            \left(\begin{array}{c}0\\1\\0\\1\end{array}\right)
+        \right)
+        \newline
+        \left( \begin{array}{ccccccc}
+            1&0&0&1&0&|&0\\
+            1&1&0&0&1&|&0\\
+            0&1&1&1&0&|&0\\
+            0&0&1&0&1&|&0\\
+        \end{array}\right)
+        \rightarrow
+        \left( \begin{array}{ccccccc}
+            1&0&0&1&0&|&0\\
+            0&1&0&-1&1&|&0\\
+            0&1&1&1&0&|&0\\
+            0&0&1&0&1&|&0\\
+        \end{array}\right)
+        \rightarrow
+        \left( \begin{array}{ccccccc}
+            1&0&0&1&0&|&0\\
+            0&1&0&-1&1&|&0\\
+            0&0&1&2&-1&|&0\\
+            0&0&1&0&1&|&0\\
+        \end{array}\right)
+        \rightarrow
+        \left( \begin{array}{ccccccc}
+            1&0&0&1&0&|&0\\
+            0&1&0&-1&1&|&0\\
+            0&0&1&2&-1&|&0\\
+            0&0&0&-2&0&|&0\\
+        \end{array}\right)
+        \rightarrow
+        \left( \begin{array}{ccccccc}
+            1&0&0&0&1&|&0\\
+            0&1&0&0&1&|&0\\
+            0&0&1&0&-1&|&0\\
+            0&0&0&-2&0&|&0\\
+        \end{array}\right)$
+        \newline
+        dim = 4, da vier Pivot-Vektoren existieren und eine 
+        Basis ist: basis<($1$),($x$),($x^2$),($-2x^3$),(die Pivot-Vektoren)
 
+        \item[f)]
+        $\{p(x)\in $Pol$_s \mathbb{R}: p(1)=0\}$
+        \newline
+        $p(x)=a_0+a_1x+a_2x^2+a_3x^3$
+        \newline
+        $p(1)=0\Rightarrow a_0=-a_1-a_2-a_3 (a_0+a_11+a_21^2+a_31^3=0)$
+        \Rightarrow Basis ist $\{(-1+x),(-x^2),(-1+x^3)\}:$ 3 Komponenten $\Rightarrow$ dim = 3
+
+        \item[g)]
+        fuck
     \end{enumerate}
+    \section{}
 \end{document}
