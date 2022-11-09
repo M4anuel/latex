@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.11.2)  9 NOV 2022 15:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.11.1)  9 NOV 2022 18:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./LinAlgSerie6.tex
 (LinAlgSerie6.tex
 LaTeX2e <2022-06-01> patch level 5
-L3 programming layer <2022-10-26>
+L3 programming layer <2022-09-28>
 (C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
@@ -113,36 +113,88 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.st
+y
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks27
+)
+(C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+\stockwidth=\dimen148
+\stockheight=\dimen149
 ))
+\Gin@req@height=\dimen150
+\Gin@req@width=\dimen151
+)
 (C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
-File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2022-09-28 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count271
 \l__pdf_internal_box=\box53
 ) (LinAlgSerie6.aux)
 \openout1 = `LinAlgSerie6.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
 
+(C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count272
+\scratchdimen=\dimen152
+\scratchbox=\box54
+\nofMPsegments=\count273
+\nofMParguments=\count274
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count275
+\MPscratchDim=\dimen153
+\MPnumerator=\count276
+\makeMPintoPDFobject=\count277
+\everyMPtoPDFconversion=\toks29
+)
+(C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
 
-(C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+(C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+LaTeX Font Info:    Trying to load font information for U+msa on input line 17.
+
+ (C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 15.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 17.
 
 
 (C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -151,97 +203,442 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ! Extra alignment tab has been changed to \cr.
 <recently read> \endtemplate 
                              
-l.15 \maketitle
+l.17 \maketitle
                
 ? r
 OK, entering \nonstopmode...
 ! Extra alignment tab has been changed to \cr.
 <recently read> \endtemplate 
                              
-l.15 \maketitle
+l.17 \maketitle
                
 You have given more \span or & marks than there were
 in the preamble to the \halign or \valign now in progress.
 So I'll assume that you meant to type \cr instead.
 
 
-Overfull \hbox (36.32634pt too wide) in paragraph at lines 16--16
-[]\OT1/cmr/bx/n/14.4 Basis und Di-men-sio-nen ver-schiedener Vek-torr^^?aume
+Overfull \hbox (1.42464pt too wide) in paragraph at lines 19--19
+[]\OT1/cmr/bx/n/14.4 Finden Sie fur die fol-gen-den Vek-torr^^?aume jew-
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 30--45
+Overfull \hbox (67.16963pt too wide) in paragraph at lines 19--19
+\OT1/cmr/bx/n/14.4 sion des Vek-tor-raums (Begr^^?unden Sie Ihre Antworten!): 
+ []
+
+
+! LaTeX Error: Unicode character ∈ (U+2208)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 ...    \item[a)] \[\{(x_1, x_2, x_3, x_4) ∈
+                                                   \mathbb{R}^4   : x_1 = 2x...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character ∈ (U+2208)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31         \item[b)]\[\{(x_1, x_2, x_3, x_4) ∈
+                                                   \mathbb{R}^4   : x_1+3x_2...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 39--47
 [] 
- []
-
-
-Overfull \hbox (49.55557pt too wide) in paragraph at lines 47--58
-\OT1/cmr/m/n/10 basis$\OML/cmm/m/it/10 < []$ 
  []
 
 [1
 
 {C:/Users/manue/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Overfull \hbox (108.05576pt too wide) in paragraph at lines 76--123
-[] \OMS/cmsy/m/n/10 ! [] ! [] !
+Overfull \hbox (41.8421pt too wide) detected at line 59
+\OML/cmm/m/it/10 basis []
  []
 
 
-Overfull \hbox (69.81325pt too wide) in paragraph at lines 76--123
-\OT1/cmr/m/n/10 dim = 4, da vier Pivot-Vektoren ex-istieren und eine Ba-sis ist
-: basis<($1$),($\OML/cmm/m/it/10 x$\OT1/cmr/m/n/10 ),($\OML/cmm/m/it/10 x[]$\OT
-1/cmr/m/n/10 ),($\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 2\OML/cmm/m/it/10 x[]$\OT1
-/cmr/m/n/10 ),(die
+Underfull \hbox (badness 10000) in paragraph at lines 62--66
+
  []
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.130         \Rightarrow
-                          Basis ist $\{(-1+x),(-x^2),(-1+x^3)\}: 3 Komponent...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
+[2]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-30.
-(C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
+44.
+ (C:\Users\manue\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 130.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 144.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.130         \Rightarrow Basis ist $\{(-1+x),(-x^
-                                                  2),(-1+x^3)\}: 3 Komponent...
+l.158 ... \in B$ hat endlich viele Inputwerte \neq
+                                                   0.
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-[2] (LinAlgSerie6.aux) ) 
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.159         \[
+                \Rightarrow\ Span\ B\ hat\ endlich\ viele\ Inputwerte\ \neq 0\]
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.159 ...hat\ endlich\ viele\ Inputwerte\ \neq 0\]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+! LaTeX Error: \begin{enumerate} on input line 20 ended by \end{equation*}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.159 ...hat\ endlich\ viele\ Inputwerte\ \neq 0\]
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.159 ...hat\ endlich\ viele\ Inputwerte\ \neq 0\]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+! LaTeX Error: \begin{document} ended by \end{enumerate}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.161     \end{enumerate}
+                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.161     \end{enumerate}
+                         
+Things are pretty mixed up, but I think the worst is over.
+
+[3]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.172             \Rightarrow
+                             \ widerspruch,\ da\ $v_1,\dots,v_n$\ linear\ un...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.172 ...       \Rightarrow\ widerspruch,\ da\ $v_
+                                                  1,\dots,v_n$\ linear\ unab...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.176             \Rightarrow
+                             \ widerspruch\ zu\ $v_{n+1} \notin Span\{v_1,\d...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.176 ...        \Rightarrow\ widerspruch\ zu\ $v_
+                                                  {n+1} \notin Span\{v_1,\do...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.185         "(ii)\Rightarrow
+                               (i)"
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.187         \[
+                f(v)+f(u)=f_1(v)b_1+\dots+f_n(v)b_n+f_1(u)b_1+\dots+f_n(u)b_n\]
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.187 ...ots+f_n(v)b_n+f_1(u)b_1+\dots+f_n(u)b_n\]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+! LaTeX Error: \begin{enumerate} on input line 164 ended by \end{equation*}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.187 ...ots+f_n(v)b_n+f_1(u)b_1+\dots+f_n(u)b_n\]
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.187 ...ots+f_n(v)b_n+f_1(u)b_1+\dots+f_n(u)b_n\]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+! LaTeX Error: \begin{document} ended by \end{enumerate}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.190     \end{enumerate}
+                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.190     \end{enumerate}
+                         
+Things are pretty mixed up, but I think the worst is over.
+
+[4]
+<LinAlg06 Aufg4.pdf, id=27, 456.74641pt x 590.65768pt>
+File: LinAlg06 Aufg4.pdf Graphic file (type pdf)
+<use LinAlg06 Aufg4.pdf>
+Package pdftex.def Info: LinAlg06 Aufg4.pdf  used on input line 225.
+(pdftex.def)             Requested size: 456.7453pt x 590.65623pt.
+
+Overfull \hbox (136.74533pt too wide) in paragraph at lines 224--226
+[] 
+ []
+
+[5]
+Overfull \vbox (40.65623pt too high) has occurred while \output is active []
+
+
+[6 <./LinAlg06 Aufg4.pdf>]
+Overfull \hbox (35.98485pt too wide) in paragraph at lines 231--231
+\OML/cmm/m/it/14.4 A \OT1/cmr/m/n/14.4 = [] \OMS/cmsy/m/n/14.4 2 \OML/cmm/m/it/
+14.4 Mat\OT1/cmr/m/n/14.4 (3\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 4; \U/msb/m/
+n/14.4 R\OT1/cmr/m/n/14.4 )$ $\OML/cmm/m/it/14.4 b \OT1/cmr/m/n/14.4 = [] \OMS/
+cmsy/m/n/14.4 2
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.234         \left
+                   (\begin{array}{cccccc}1&-1&0&1&|&0\\-1&2&1&-1&|&0\\0&-2&-...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.235         $\rightarrow
+                          $\left(\begin{array}{cccccc}1&-1&0&1&|&0\\0&1&1&0&...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.235         $\rightarrow$\left
+                                (\begin{array}{cccccc}1&-1&0&1&|&0\\0&1&1&0&...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.236         $\rightarrow
+                          $\left(\begin{array}{cccccc}1&0&0&2&|&0\\0&1&0&1&|...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.236         $\rightarrow$\left
+                                (\begin{array}{cccccc}1&0&0&2&|&0\\0&1&0&1&|...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.237         $-x_
+                  1 = 2x_4, x_2 = x_4, x_3 = 3_4$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (73.61168pt too wide) in paragraph at lines 234--239
+[]$[]$$\OMS/cmsy/m/n/10 !$$[]$$!$$[]$\OT1/cmr/m/n/10 -
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.240         \left
+                   (\begin{array}{cccccc}1&-1&0&1&|&-1\\-1&2&1&-1&|&2\\0&-2&...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.241         $\rightarrow
+                          $\left(\begin{array}{cccccc}1&-1&0&1&|&-1\\0&1&1&0...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.241         $\rightarrow$\left
+                                (\begin{array}{cccccc}1&-1&0&1&|&-1\\0&1&1&0...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.242         $\rightarrow
+                          $\left(\begin{array}{cccccc}1&0&1&1&|&0\\0&1&1&0&|...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.242         $\rightarrow$\left
+                                (\begin{array}{cccccc}1&0&1&1&|&0\\0&1&1&0&|...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.244         $\rightarrow
+                          $\left(\begin{array}{cccccc}1&0&0&2&|&0\\0&1&0&1&|...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.244         $\rightarrow$\left
+                                (\begin{array}{cccccc}1&0&0&2&|&0\\0&1&0&1&|...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.246         $-x_
+                  1 = 2x_4, 1-x_2 = x_4, x_3 = 3_4 \Rightarrow(-2,0,1,1)\in L$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (87.50058pt too wide) in paragraph at lines 240--247
+[]$[]$$\OMS/cmsy/m/n/10 !$$[]$$!$$[] [] 
+ []
+
+[7] (LinAlgSerie6.aux) ) 
 Here is how much of TeX's memory you used:
- 1821 strings out of 475380
- 26757 string characters out of 2776772
- 388508 words of memory out of 3000000
- 23234 multiletter control sequences out of 15000+600000
- 476507 words of font info for 57 fonts, out of 8000000 for 9000
+ 2682 strings out of 475385
+ 40441 string characters out of 2776907
+ 406073 words of memory out of 3000000
+ 24054 multiletter control sequences out of 15000+600000
+ 478100 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 54i,9n,62p,246b,217s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 55i,8n,62p,343b,306s stack positions out of 10000i,1000n,20000p,200000b,80000s
 <C:/Users/manue/AppData/Local/Programs/MiKTeX/fonts/typ
 e1/public/amsfonts/cm/cmbx12.pfb><C:/Users/manue/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/manue/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/manue/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/manue/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ma
-nue/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
-Users/manue/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.
-pfb><C:/Users/manue/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmr7.pfb><C:/Users/manue/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb><C:/Users/manue/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/symbols/msbm10.pfb>
-Output written on LinAlgSerie6.pdf (2 pages, 121422 bytes).
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/manue/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/m
+anue/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:
+/Users/manue/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12
+.pfb><C:/Users/manue/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmr17.pfb><C:/Users/manue/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmr7.pfb><C:/Users/manue/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb><C:/Users/manue/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/manue/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/manue/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on LinAlgSerie6.pdf (7 pages, 1845489 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
+ 186 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
