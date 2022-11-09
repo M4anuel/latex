@@ -1,0 +1,78 @@
+\documentclass{article}
+% common packages used in maths
+\usepackage{amsmath}
+\usepackage{amsthm}%possible problem
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\author{
+Pascal Zürcher 22-111-314 & 
+Leandro Lüthi 22-105-035 & 
+Manuel Flückiger 22-112-502}
+\title{Lineare Algebra Serie 6 Übungsaufgaben}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Basis und Dimensionen verschiedener Vektorräume bestimmen.}
+    \begin{enumerate}
+
+        \item[a)]
+        Da $x_1 = 2x_2$ sind $x_1$ und $x_2$ linear 
+        unabhängig. da $x_1 + x_4 = x_3$ gilt, ist $x_3$ von $x_1$ und $x_4$ 
+        abhängig. Somit sind nur $x_1 und x_4$ linear unabhängig.
+        Damit ist $dim = 2$ und eine mögliche Basis ist 
+        \newline
+        $<x_1, x_4>$ ,
+        $<\left(\begin{array}{c}2\\1\\2\\0\end{array}\right)$,
+        $\left(\begin{array}{c}2\\1\\3\\1\end{array}\right)>$
+
+        \item[b)]
+        $\alpha x_1 + \beta x_2 + \gamma x_3 + \delta x_4 = 0$ wenn $\alpha = \beta=\delta=0$
+        gelten müsste, um diese Gleichung zu erfüllen, wären $x_1,x_2,x_3,x_4$ linear unabhängig.
+        Daraus folgt, dass nicht alle linear unabhängig sind. $x_1+3x_2+x_3+2x_4 = 0$ Da es zur 
+        Darstellung einer der Vektoren immer alle drei Anderen benötigt (siehe (*)), sind 
+        drei Vektoren linear unabhängig. Somit ist dim = 3 und eine mögliche Basis 
+        ist basis $<x_1,x_3,x_4>$
+        \newline
+        \fbox{\parbox{\linewidth}{
+        \begin{itemize}
+            \item[]*
+            \item[] $x_1 = -3x_2-x_3-2x_4$
+            \item[] $x_2 = -\frac{1}{5}x_1-x_3-\frac{2}{3}x_4$
+            \item[] $x_3 = -x_1-3x_2-2x_4$
+            \item[] $x_4 = -\frac{1}{2}x_1-\frac{3}{2}x_2-\frac{1}{2}x_3$
+        \end{itemize}}}
+
+        \item[c)]
+        $Mat(2,3,\mathbb{R})$ ist isomorph zu $\mathbb{R}^6$, da jedes 
+        Elemente der Matrix irgend ein Element aus $\mathbb{R}$ ist.
+        Somit ist dim = 6 und eine Basis zum Beispiel:
+        \newline
+        basis$<\left<
+        \left(\begin{array}{cc}1&0\\0&0\\0&0\end{array}\right),
+        \left(\begin{array}{cc}0&0\\1&0\\0&0\end{array}\right),
+        \left(\begin{array}{cc}0&0\\0&0\\1&0\end{array}\right),
+        \left(\begin{array}{cc}0&1\\0&0\\0&0\end{array}\right),
+        \left(\begin{array}{cc}0&0\\0&1\\0&0\end{array}\right),
+        \left(\begin{array}{cc}0&0\\0&0\\0&1\end{array}\right),\right>$
+
+        \item[d)]
+        $\left\{\left(\begin{array}{cc}\alpha&\beta\\\beta&\gamma\end{array}\right)
+        :\alpha,\beta,\gamma\in\mathbb{R}\right\}\subseteq Mat(2,2,\mathbb{R})$
+        \newline
+        $a_{12}$ und $a_{21}$ müssen den gleichen Wert haben, also:
+        \newline
+        $\alpha\left(\begin{array}{cc}1&0\\0&0\end{array}\right)+
+        \beta\left(\begin{array}{cc}0&1\\1&0\end{array}\right)+
+        \gamma\left(\begin{array}{cc}0&0\\0&1\end{array}\right)$
+        \newline
+        Die drei Matrizen bilden die Basis mit drei Variablen $\Rightarrow$ dim = 3. 
+        \newline
+        Basis: basis$\left<\left(\begin{array}{cc}1&0\\0&0\end{array}\right),
+        \left(\begin{array}{cc}0&1\\1&0\end{array}\right),
+        \left(\begin{array}{cc}0&0\\0&1\end{array}\right)\right>$
+
+        \item[e)]
+
+    \end{enumerate}
+\end{document}

@@ -1,0 +1,5 @@
+\babel@toc {german}{}\relax 
+\contentsline {chapter}{\numberline {I}Abbildungen?}{3}{}%
+\contentsline {section}{\numberline {1}Erinnerung}{3}{}%
+\contentsline {chapter}{\numberline {II}Konstruktion der Reellen Zahlen}{6}{}%
+\contentsline {section}{\numberline {1}Historische Motivation}{6}{}%
