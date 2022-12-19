@@ -6,6 +6,16 @@
 
 \begin{document}
 \maketitle
+Let $\epsilon>0$ be given. Since $f$ is monotonically increasing, for each $i=1,2,...,n$, there exists a point $x_i \in [x_{i-1},x_i]$ such that
+\begin{align*}
+    f(x_i)-f(x_{i-1}) \geq \frac{\epsilon}{n}.
+\end{align*}
+Let $P$ be the partition of $[0,1]$ given by $P= \{x_0,x_1,...,x_n\}$, where $x_0=0$ and $x_n=1$. Then,
+\begin{align*}
+    U(f,P) &= \sum_{i=1}^{n} \left ( f(x_i)-f(x_{i-1}) \right ) \Delta x_i \\
+    &\geq \sum_{i=1}^{n} \frac{\epsilon}{n} \Delta x_i \\
+    &= \frac{\epsilon}{n} \sum
+\end{align*}
 \section {first examples}
 Hello world.
 "Paul Erd\"os" \newline

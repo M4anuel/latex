@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage{lisitings}
+\usepackage{enumitem}
+
+\documentclass[a4paper,12pt]{article}
+% -- Loading the code block package:
+\usepackage{listings}
+% -- Basic formatting
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{times}
+\setlength{\parindent}{8pt}
+\usepackage{indentfirst}
+% -- Defining colors:
+\usepackage[dvipsnames]{xcolor}
+\definecolor{codegreen}{rgb}{0.706, 0.824, 0.451}
+\definecolor{codegray}{rgb}{0.475, 0.475, 0.475}
+\definecolor{codepurple}{rgb}{0.62, 0.525, 0.784}
+\definecolor{backcolour}{rgb}{0.18, 0.18, 0.18}
+\definecolor{pink}{rgb}{0.69, 0.322, 0.475}
+\definecolor{white}{rgb}{0.839, 0.839, 0.839}
+% Definig a custom style:
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backgroundcolor},   
+    commentstyle=\color{codegray}, 
+    keywordstyle=\color{pink},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codegreen},
+    basicstyle=\ttfamily\footnotesize\bfseries\color{white},
+    breakatwhitespace=false,         
+    breaklines=false,                 
+    captionpos=t,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+% -- Setting up the custom style:
+\lstset{style=mystyle}
+
+
+\author{Abdihakin Sahal Omar 20-947-107 & Manuel Flückiger 22-11-502}
+\title{P1 Serie 7}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\textbf{Excercise 1}
+\begin{enumerate}[label=\alph*]
+    \item True
+    \item False
+    \item False
+    \item True
+    \item True
+    \item False
+\end{enumerate}
+
+\textbf{Excercise 2}
+\begin{verbatim}
+for i = 1 to 100 
+    if (i is divisible by 3 AND i is divisible by 5) 
+        output "BizzBuzz" 
+    else if (i is divisible by 3) 
+        output "Bizz" 
+    else if (i is divisible by 5) 
+        output "Buzz" 
+    else output i 
+    end if 
+end for
+\end{verbatim}
+
+\textbf{Excercise 3}
+\begin{verbatim}
+Input: Arrays A and B of length n 
+Output: Array C of length n + 1 
+Function BinarySum (A, B, n) 
+    Let carry = 0 
+    Let C[n+1] // Initialize output array 
+    For i = 0 to n-1 
+        C[i] = (A[i] + B[i] + carry) % 2 // Calculate sum of current bit 
+        carry = (A[i] + B[i] + carry) / 2 // Calculate carry for next iteration 
+    End For 
+    C[n] = carry // Store carry in the n-th bit of C 
+    Return C 
+End Function
+\end{verbatim}
+
+\textbf{Excercise 4}
+\begin{lstlisting}[language=Java]
+public static <T> void shuffle(List<T> list) {
+    int n = list.size() - 1;
+    Random rand = new Random();
+    for(int i = n; i > 0; --i) {
+        int r = rand.nextInt(i+1);
+        List<T> copy = new LinkedList<>(list);
+        list.set(i, copy.get(r));
+        list.set(r, copy.get(i));
+    }
+}         
+public static void swap(List<Integer> list, int i, int r) {
+    int temp = list.get(i); 
+    list.set(i, list.get(r)); 
+    list.set(r, temp); 
+}
+\end{lstlisting}
+\textbf{Excercise 5}
+\begin{verbatim}
+    Java 1.0
+    Python 1.1
+    12345
+\end{verbatim}
+\textbf{Excercise 6} \newline
+The stack s will look like this: s = [5, 72, 37]\newline
+\textbf{Excercise 7}\newline
+The stack s will look like this: s = [72, 37, 15]\newline
+\textbf{Excercise 8}
+\begin{lstlisting}[language=Java]
+    public boolean set(int index, Object object) {
+        if(index > size - 1)
+            return false;
+        else {
+            listElements[index] = object;
+            return true;
+    }
+}
+
+\end{lstlisting}
+\textbf{Excercise 9}
+\begin{lstlisting}[language=Java]
+    public int size() {
+		if (this.startNode == null)
+			return 0;
+		else {
+			int count = 1;
+			Node<E> temp = this.startNode;
+			while(temp.getNext() != null) {
+				temp = temp.getNext();
+				count++;
+			}
+			return count;
+		}
+    }
+	
+\end{lstlisting}
+\textbf{Excercise 10}\newline
+Die Java-collection ist ein abstrakter Typ, der die gemeinsamen Verhaltensweisen und Merkmale verschiedener Sammlungen definiert. 
+Die Get- und Set-Methoden sind spezifisch für die Implementierung der Sammlung und werden daher nicht in der Schnittstelle angegeben. 
+Jede Implementierung der Schnittstelle kann die get- und set-Methoden anders implementieren, so dass es dem Benutzer der Sammlung obliegt, 
+die Implementierung der von ihm verwendeten Sammlung zu kennen und zu wissen, wie die get- und set-Methoden richtig zu verwenden sind.
+Eine Liste hat eine bestimmte Reihenfolge. Ein Set hat keine, also ist set.get(i) kein sinnvolles Konzept.
+Es wäre sinnvoll, eine get(i)-Operation für SortedSet und TreeSet zu haben, aber es gibt sie nicht.
+
+\end{document}
