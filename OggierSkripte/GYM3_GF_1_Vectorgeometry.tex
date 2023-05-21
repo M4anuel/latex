@@ -1,0 +1,2340 @@
+\documentclass[12pt,eng]{skript_ogg}
+
+\stufe{3}
+
+\thema{Vector Geometry}
+
+%---------------------------------------------------------------
+
+%------------------HAUPTDOKUMENT--------------------------------
+
+%---------------------------------------------------------------
+
+\begin{document}
+%---------------------------------------------------------------
+%Titelseite
+%---------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+
+\begin{center}
+
+\vspace*{0cm} {\setlength{\baselineskip}{8ex}
+
+{\Huge\textbf{GYM3}\\[2.5cm]}
+
+{\Large\textbf{1\\Vector Geometry}}}
+
+\vspace{5mm}
+
+\includegraphics[width=14cm]{Titelblatt.jpg}
+\end{center}
+
+\vfill
+
+{\large Name:\\
+Class:}\\
+\rule{\textwidth}{0.5pt}
+
+\begin{flushright}
+Theo Oggier\\
+Gymnasium Burgdorf\\
+\vspace{5mm} \copyright\,\,August 2020
+\end{flushright}
+
+\end{titlepage}
+
+\tableofcontents        % Inhaltsverzeichnis
+\newpage
+
+\clearpage
+
+\section{Historical Background}
+The knowledge of geometry goes back to the ancient cultures of the Egyptians and Babylonians. But this knowledge was based on experience and was hardly logically structured. Geometry became a real science only in ancient Greece. The knowledge of this epoch was passed on through the books of \textsc{Euclid}, \textsc{Thales}, \textsc{Pythagoras}, \textsc{Archimedes}, \textsc{Apollonius} and others. In the period after Christ, the Indians (4\textsuperscript{th} century) and later the Arabs (9\textsuperscript{th} to 13\textsuperscript{th} centuries) further developed geometrical knowledge, especially in the field of trigonometry.
+
+Many centuries later, after the beginning of the modern era, geometry received a new, decisive impulse through the beginning of modern science and technology. At that time \textsc{Pierre Fermat} (1607 -- 1665) developed the first steps of an analytical geometry, trying to take up again the ideas of the Greek mathematicians. For example, \textsc{Fermat} described for the first time straight lines by equations of the first degree. An even greater influence came from the work of \textsc{Ren\'e Descartes} (1596 -- 1650). He introduced coordinates, which enabled him to describe curves and surfaces algebraically and to apply methods of differential calculus in geometry. The \emph{Cartesian coordinate system}, named after \textsc{Descartes}, offered new possibilities for establishing a connection between geometry and algebra.
+
+Modern algebraic geometry, often called \emph{analytic geometry}, is based on vectors. For this reason, the term \emph{vector geometry} is commonly used. The goal of vector geometry is an algebraic description of geometric situations that requires a coordinate system. When performing algebraic calculations, it can be very helpful to interpret the situations geometrically (for example, using a sketch). However, as you will see, it is not necessary to have a picture in your head for each step of the calculation.
+
+Vector geometry introduces new aspects of geometry, namely the concepts of \emph{position} and \emph{location}. Previously, geometric properties such as the length of a segment, the angle in a triangle, the area of a circle, or the volume of a pyramid were analyzed. This often required the use of the Pythagorean theorem or the laws of sine and cosine. However, all these calculations were independent of where, for example, the triangle was located and how it was positioned in the plane. Vector geometry now takes these aspects into account. Typical questions will be:
+\begin{itemize}
+	\item Where exactly in the coordinate system is the point $P$ of a triangle?
+	\item How far is the point $Q$ from the point $P$?
+	\item What is the distance from the point $P$ to the straight line $g$?
+	\item In which direction does the straight line $g$ extend?
+	\item Do the straight lines $g_1$ and $g_2$ intersect? If so, at which point do they intersect and what is their angle of intersection?
+	\item Is the point $P$ in the plane $E$? If not, how far is it from the plane?
+\end{itemize}
+
+\section{Systems of linear equations}
+The purpose of this chapter is to illustrate a practical method for solving systems of linear equations commonly encountered in vector geometry.
+
+\begin{defn}[System of Linear Equations]
+A \emph{system of linear equations} is a set of several linear equations. 
+\[\text{Example: }\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}l}
+2x & + & y  & = & 9\\
+x  & - & 3y & = & 1
+\end{array}\]
+Normally, the number of equations and the number of variables are explicitly specified. So the above system is a $(2\times2)-$system. The number of equations and variables do not have to be equal!
+
+A solution of such a system is a tuple of numbers (here a pair $(x,y)$) that satisfies all equations simultaneously. A solution of the above system is the pair $(4;1)$. A system can also have no or infinitely many solutions.
+\end{defn}
+
+\vspace{-7mm}
+
+\subsection{Gaussian Elimination}
+The most concise method for solving systems of linear equations is \emph{Gaussian elimination}. It is essentially a generalization of the already known addition method for solving $(2\times2)-$systems and is based on the following two important properties of linear equations.
+
+\begin{wichtig}
+\textbf{1. A solution of a linear equation is also a solution of a multiple of that equation}. If $(x,y,z)$ is a solution of the equation $ax+by+cz=d$, then it is also a solution of the equation $(ma)x+(mb)y+(mc)z=md$.
+
+\textbf{2. A solution of two separate linear equations is also a solution of the sum (or difference) of these two equations}. If $(x,y,z)$ is a solution of the equations $a_1x+b_1y+c_1z=d_1$ and $a_2x+b_2y+c_2z=d_2$, it is also a solution of the equation $(a_1+a_2)x+(b_1+b_2)y+(c_1+c_2)z=d_1+d_2$.
+\end{wichtig}
+
+\vspace{-2mm}
+
+\begin{beispiel}
+$(2,-1,3)$ is a solution of the equations
+$-3x+2y-z=-11$ and $7x+3y-5z=-4$.\\ When these equations are multiplied by a number, added or subtracted, $(2,-1,3)$ remains a solution.
+
+\vspace{-10mm}
+
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+-3x & + & 2y & - & z & = & -11\quad|\,\cdot(-3)\\ \hline
+9x  & - & 6y & + & 3z & = & 33
+\end{array}\quad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+-3x & + & 2y & - & z  & = & -11 \\
+7x  & + & 3y & - & 5z & = & -4\quad|\,+\\ \hline
+4x  & + & 5y & - & 6z & = & -15
+\end{array}\quad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+-3x & + & 2y & - & z & = & -11 \\
+7x  & + & 3y & - & 5z & = & -4\quad|\,-\\ \hline
+-10x & - & y & + & 4z & = & -7
+\end{array}\]
+\[9(2)-6(-1)+3(3)=33\quad4(2)+5(-1)-6(3)=-15\quad-10(2)-(-1)+4(3)=-7\]
+\end{beispiel}
+
+The goal of Gaussian elimination is to eliminate one unknown at a time by skillfully multiplying and adding or subtracting equations until the system has what is called \emph{echelon form}. It is important to note that we do not eliminate equations, but replace them with the sum of a multiple of themselves and the multiple of another equation, so that the result contains one less unknown. In the end, we have a system that is easily solvable. This is best illustrated by an example.
+
+\begin{beispiel}
+Find the solution of the following system.
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+5x & + & 4y & + & 3z & = & 4\\
+2x & + & y  & - & 2z & = & 10\\
+3x & + & 2y & + & 2z & = & 1
+\end{array}\]
+First, we eliminate the unknown $x$ in two of the equations. To do this, we multiply the equations by appropriate numbers so that the coefficients of $x$ are the same in all equations. In the second step, the second and third equations are replaced by the difference of the second and first and the third and first equations, respectively.
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+5x & + & 4y & + & 3z & = & 4 & \cdot 6\\
+2x & + & y  & - & 2z & = & 10 & \cdot 15\\
+3x & + & 2y & + & 2z & = & 1 & \cdot 10
+\end{array}\quad\quad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+30x & + & 24y & + & 18z & = & 24 &  \\
+30x & + & 15y & - & 30z & = & 150 & -\mbox{I}\\
+30x & + & 20y & + & 20z & = & 10 & -\mbox{I}
+\end{array}\quad\quad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+30x & + & 24y & + & 18z & = & 24 \\
+    &   & -9y & - & 48z & = & 126 \\
+    &   & -4y & + & 2z  & = & -14 
+		\end{array}\]
+Even though the system no longer looks the same, it is important to see that the solution set has not changed. 
+
+In the next step we will eliminate $y$. To do this, first multiply the second and third equations by appropriate numbers so that the coefficients of $y$ are the same in both. Then the third equation is replaced by the difference of the third and second equations.		
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+30x & + & 24y & + & 18z & = & 24 &\\
+    &   & -9y & - & 48z & = & 126 & \cdot 4\\
+    &   & -4y & + & 2z  & = & -14 & \cdot 9
+\end{array}\quad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+30x & + & 24y & + & 18z & = & 24 &\\
+    & - & 36y & - & 192z & = & 504 &\\
+    & - & 36y & + & 18z & = & -126 &-\mbox{II}
+\end{array}\quad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+30x & + & 24y & + & 18z & = & 24 \\
+    & - & 36y & - & 192z & = & 504 \\
+    &   &      &   & 210z & = & -630
+\end{array}\]
+This system (which still has the same solution set as the original system) is now in echelon form and can be solved much more easily:
+
+From the third equation we get $z=-3$ directly. Substituting this into the second equation, we get:
+\[-36y-192(-3)=504\qquad -36y+576=504\qquad -36y=-72\qquad y=2\]
+Finally, the solutions for $y$ and $z$ are substituted into the first equation, which results in:
+\[30x+24(2)+18(-3)=24\qquad 30x+48-54=24\qquad 30x=30\qquad x=1\]
+So the solution of the system is $\mathbb{L}=\{(1,2,-3)\}$.
+\end{beispiel}
+
+With some experience in solving systems of linear equations, we can also write the algorithm in a more compact form.
+\begin{beispiel}
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+2x  & - & y  & + & 3z & = & 10 & \\
+-4x & + & 3y & - & 5z & = & -14 & +2\cdot\mbox{I}\\
+x   & + & 2y & + & 6z & = & 30 & 2\cdot\mbox{III}-\mbox{I}
+\end{array}\quad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+2x & - & y & + & 3z & = & 10 & \\
+ & & y & + & z & = & 6 & \\
+ & & 5y & + & 9z & = & 50 & -5\cdot\mbox{II}
+\end{array}\quad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+2x & - & y & + & 3z & = & 10 & \\
+ & & y & + & z & = & 6 & \\
+ & & & & 4z & = & 20 & \div4
+\end{array}\]
+\[z=5\qquad y+(5)=6\qquad y=1\qquad 2x-(1)+3(5)=10\qquad x=-2\]
+The solution is thus $\mathbb{L}=\{(-2,1,5)\}$.
+\end{beispiel}
+
+\begin{bemerkung}
+When solving a system, it may happen that two unknowns are eliminated in the same step, which is fortunately an advantage.
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+3x & - & 2y & + & z & = & 4 &\\
+2x & + & 3y & - & 5z & = & 4 & 3\cdot\mbox{II}-2\cdot\mbox{I}\\
+6x & - & 4y & + & z & = & 9 & -2\cdot\mbox{I}
+\end{array}\qquad\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+3x & - & 2y & + & z & = & 4 \\
+ & & 13y & - & 17z & = & 4 \\
+ & & & & -z & = & 1
+\end{array}\]
+In this example, the system reaches the echelon form after only one step. The solution is achieved by insertion.
+\[z=-1\qquad 13y-17(-1)=4\qquad y=-1\qquad 3x-2(-1)+(-1)=4\qquad x=1\]
+Solution: $\mathbb{L}=\{(1,-1,-1)\}$
+
+Sometimes it is better not to eliminate the unknowns in order, but to start with $y$ or $z$, for example.
+
+In the following example it is easier to eliminate $z$ first.
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+7x & - & 2y & + & z & = & 19 &\\
+3x & + & 3y & - & z & = & -1 & +\mbox{I}\\
+5x & + & y & + & z & = & 9 & -\mbox{I}
+\end{array}\qquad\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+7x & - & 2y & + & z & = & 19 \\
+10x & + & y & & & = & 18 \\
+-2x & + & 3y & & & = & -10
+\end{array}\]
+Now it does not matter whether $x$ or $y$ is eliminated next. The complexity is about the same. To eliminate $x$, we would have to multiply the third equation by $5$ and then add the second. For $y$, we would have to subtract three times the second from the third.
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+7x & - & 2y & + & z & = & 19 &\\
+10x & + & y & & & = & 18 &\\
+-2x & + & 3y & & & = & -10 & -3\cdot\mbox{II}
+\end{array}\qquad\qquad\qquad\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+7x & - & 2y & + & z & = & 19 \\
+10x & + & y & & & = & 18 \\
+-32x & & & & & = & -64
+\end{array}\]
+Solution: $\mathbb{L}=\{(2;-2;1)\}$
+\end{bemerkung}
+
+\subsection{Linear systems of equations with no or infinitely many solutions}
+So far, we have only considered systems where Gaussian elimination works without problems and yields a single solution.
+
+However, there are systems that have no or infinitely many solutions. If we apply Gaussian elimination to these, the procedure leads to a contradiction or trivial equation.
+
+\textbf{No solution:}
+
+This system has no solution. Observe what happens when Gaussian elimination is applied.
+
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+2x & - & y & + & 3z & = & 3 &\\
+-4x & + & 3y & - & 5z & = & 5 & +2\cdot\mbox{I}\\
+6x & - & 4y & + & 8z & = & 2 & -3\cdot\mbox{I}
+\end{array}\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+2x & - & y & + & 3z & = & 3 &\\
+ & & y & + & z & = & 11 &\\
+ & - & y & - & z & = & -7 &+\mbox{II}
+\end{array}\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+2x & - & y & + & 3z & = & 3 \\
+ & & y & + & z & = & 11 \\
+ & & & & 0 & = & 4
+\end{array}\]
+
+In the last step $y$ and $z$ both fall out of the equation and the algorithm ends in a contradiction. Because $0$ is not equal to $4$! So this system cannot have a solution because there are no numbers that could be used for $x$, $y$ and $z$ such that every equation, including $0=4$, is satisfied.
+
+It follows that $\mathbb{L}=\emptyset$.
+
+\textbf{Infinitely many solutions:}
+
+This system looks almost the same, but has infinitely many solutions. Observe again what happens when Gaussian elimination is applied.
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+2x & - & y & + & 3z & = & 3 &\\
+-4x & + & 3y & - & 5z & = & 5 & +2\cdot\mbox{I}\\
+6x & - & 4y & + & 8z & = & -2 & -3\cdot\mbox{I}
+\end{array}\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+2x & - & y & + & 3z & = & 3 &\\
+ & & y & + & z & = & 11 &\\
+ & - & y & - & z & = & -11 &+\mbox{II}
+\end{array}\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+2x & - & y & + & 3z & = & 3 \\
+ &  & y & + & z & = & 11 \\
+ & & & & 0 & = & 0
+\end{array}\]
+Again $y$ and $z$ fall out of the equation in the last step, but this time the algorithm ends with the trivial equation $0=0$. Trivial because it is obviously always true.
+
+The system now basically consists of only two equations, but still has three unknowns. Systems with more unknowns than equations are called \emph{under-determined}. Such a system has at least one so-called free variable. This means that the value of one variable can be chosen arbitrarily, and the others are then expressed using this variable.
+
+$z$ is chosen as the free variable
+\[y+z=11\quad\Rightarrow\quad y=11-z\qquad\qquad2x-(11-z)+3z=3\quad\Rightarrow\quad x=7-2z\]
+Finally, the solution set can be described as follows:
+
+$\mathbb{L}=\{(7-2z,11-z,z)|z\in\mathbb{R}\}$
+
+\section{Vectors}
+\subsection{Definition}
+Vectors can best be pictured as arrows. An arrow illustrates the two principal properties of a vector, namely \emph{length} and \emph{direction}. Vectors are, however, completely location-independent. That means that all arrows with the same direction and length are considered to be representatives of one vector.
+\begin{defn}[Vector]
+The set of arrows having the same length and the same direction is called a \emph{vector}. The individual arrows are said to be \emph{representatives} of the vector.
+
+Example: Three representatives of one vector. \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\draw[->,color=black] (0,0.5) -- (1,0);
+\draw[->,color=black] (2,0.5) -- (3,0);
+\draw[->,color=black] (4,0.5) -- (5,0);
+\end{tikzpicture}
+\end{defn}
+Upper case letters ($A,B,C,\ldots$) are used to denote points. If we want to denote
+the vector that connects point $A$ with point $B$, we write $\overrightarrow{AB}$. If we denote vectors without specifying the starting and end point we use lower case letters ($\vec{a},\vec{b},\vec{c},\ldots$).
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.7cm,y=0.7cm]
+\clip(0,0) rectangle (18,4);
+\draw [->] (0,4) -- (1,2.5);
+\draw [->] (1,0) -- (5,3.5);
+\draw [->] (7,0) -- (6,1.5);
+\draw [->] (13,1) -- (17,3);
+\draw [fill=black] (8.5,3) circle (1.0pt);
+\draw[color=black] (8.5,3) node[anchor=south] {$P$};
+\draw [fill=black] (10.5,0.5) circle (1.0pt);
+\draw[color=black] (10.5,0.5) node[anchor=south] {$Q$};
+\draw [fill=black] (13,1) circle (1.0pt);
+\draw[color=black] (13,1) node[anchor=north] {$A$};
+\draw [fill=black] (17,3) circle (1.0pt);
+\draw[color=black] (17,3) node[anchor=west] {$B$};
+\draw[color=black] (0.5,3.25) node[anchor=south west] {$\vec{a}$};
+\draw[color=black] (3,1.75) node[anchor=south east] {$\vec{b}$};
+\draw[color=black] (6.5,0.75) node[anchor=south west] {$\vec{c}$};
+\draw[color=black] (15,2) node[anchor=south] {$\overrightarrow{AB}$};
+\end{tikzpicture}
+\end{center}
+However, with arrows and points alone not much can be done. What is missing is frame of reference. Already known is the \emph{Cartesian coordinate system} of the plane. Two coordinate axes, the $x$-axis and the $y$-axis, intersect perpendicularly in the origin $O$. In such a coordinate system, a point $P$ can be described by a pair of numbers $(x;y)$ which tells us its location in the plane. The first number $x$ describes the location of the point with respect to the $x$-axis ($=x$-coordinate) and the second number describes its location with respect to the $y$-axis ($=y$-coordinate).
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.6cm,y=0.6cm]
+\draw[->,color=black] (-3.5,0) -- (12.5,0);
+\foreach \x in {-3,-2,-1,1,2,3,4,5,6,7,8,9,10,11,12}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-3.5) -- (0.,5.5);
+\foreach \y in {-3,-2,-1,1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $O$};
+\clip(-5,-3.5) rectangle (13,5.5);
+\draw [dash pattern=on 2pt off 2pt] (0,4)-- (10,4);
+\draw [dash pattern=on 2pt off 2pt] (10,4)-- (10,0);
+\draw [fill=black] (-2,2) circle (1.0pt);
+\draw[color=black] (-2,2) node[anchor=south east] {$R(-2;2)$};
+\draw [fill=black] (6,-2) circle (1.0pt);
+\draw[color=black] (6,-2) node[anchor=west] {$Q(6;-2)$};
+\draw [fill=black] (10,4) circle (1.0pt);
+\draw[color=black] (10,4) node[anchor=south west] {$P(10;4)$};
+\draw[color=black] (10,2) node[anchor=west] {$4$};
+\draw[color=black] (5,4) node[anchor=south] {$10$};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Vectors in a Two-Dimensional Coordinate System}
+Like points, vectors can also be described by pairs of numbers. In this case, the two numbers denote how far from the starting point of the vector (i.e. its tail) one has to go in the direction of the $x$-axis ($=x$-component) and the $y$-axis ($=y$-component) to reach its endpoint (i.e. its head). To avoid confusion with points on the plane, a different notation is used for vectors:
+\[\mbox{\textbf{Point: }}P(x;y)\mbox{ or
+}P(p_1;p_2)\qquad\quad\mbox{\textbf{Vector:} }\vec{a}=\begin{pmatrix} x\\y \end{pmatrix}\mbox{ or }\vec{a}=\begin{pmatrix} a_1\\a_2 \end{pmatrix}\]
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.6cm,y=0.6cm]
+\draw[->,color=black] (-3.5,0) -- (12.5,0);
+\foreach \x in {-3,-2,-1,1,2,3,4,5,6,7,8,9,10,11,12}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-3.5) -- (0.,5.5);
+\foreach \y in {-3,-2,-1,1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $O$};
+\clip(-5,-3.5) rectangle (13,5.5);
+\draw [->] (2,-2) -- (-2,4);
+\draw [->] (2,1) -- (10,5);
+\draw [->] (11,1) -- (9,-3);
+\draw [dash pattern=on 2pt off 2pt] (2,1)-- (10,1);
+\draw [dash pattern=on 2pt off 2pt] (10,1)-- (10,5);
+\draw[color=black] (-0.666,2) node[anchor=east] {$\vec{c}=\binom{-4}{6}$};
+\draw[color=black] (6,3) node[anchor=south east] {$\vec{a}={8\choose4}$};
+\draw[color=black] (9.6,-2) node[anchor=west] {$\vec{b}={-2\choose-4}$};
+\draw[color=black] (10,3) node[anchor=west] {$a_2=4$};
+\draw[color=black] (6,1) node[anchor=south] {$a_1=8$};
+\end{tikzpicture}
+\end{center}
+\begin{defn}[Position Vector]
+A special vector, the \emph{position vector}, is assigned to every point $P$ on the plane. It is the vector that connects the origin $O$ with the point $P$. It is denoted either by $\overrightarrow{OP}$ or by the corresponding lower case letter $\vec{p}$.
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.6cm,y=0.6cm]
+\draw[->,color=black] (-3.5,0) -- (12.5,0);
+\foreach \x in {-3,-2,-1,1,2,3,4,5,6,7,8,9,10,11,12}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-3.5) -- (0.,5.5);
+\foreach \y in {-3,-2,-1,1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $O$};
+\clip(-5,-4) rectangle (13,5.5);
+\draw [->] (0,0) -- (6,4);
+\draw [->] (0,0) -- (2,-3);
+\draw [fill=black] (6,4) circle (1.0pt);
+\draw[color=black] (6,4) node[anchor=south west] {$P(6;4)$};
+\draw[color=black] (3.2,2) node[anchor=west] {$\vec{p}=\overrightarrow{OP}={6\choose4}$};
+\draw [fill=black] (2,-3) circle (1.0pt);
+\draw[color=black] (2,-3) node[anchor=north west] {$Q(2;-3)$};
+\draw[color=black] (1.2,-1.5) node[anchor=west] {$\vec{q}=\overrightarrow{OQ}={2\choose-3}$};
+\end{tikzpicture}
+\end{center}
+\end{defn}
+
+\newpage
+
+\begin{uebung}
+\begin{enumerate}[\bfseries 1.]
+\setlength{\itemsep}{0ex}
+	\item Sketch the points $A(-4;1)$ and $B(4;-3)$.
+	\item Sketch the vector $\overrightarrow{CD}$ with the starting point $C(0;2)$ and end point $D(2;4)$.
+	\item Sketch the vector $\overrightarrow{EF}$ with the starting point $E(-2;-1)$ and end point $F(-5;-3)$.
+	\item Sketch three representatives of the vector $\vec{v}={2\choose1}$.
+	\item Sketch the position vectors $\vec{p}=\overrightarrow{OP}={4\choose2}$ and $\vec{q}=\overrightarrow{OQ}={3\choose-3}$.
+\end{enumerate}
+\begin{center}
+	\definecolor{cqcqcq}{rgb}{0.75,0.75,0.75}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.9cm,y=0.9cm]
+\draw [color=cqcqcq,dash pattern=on 2pt off 2pt, xstep=1,ystep=1] (-5.5,-4.5) grid (5.5,4.5);
+\draw[->,color=black] (-5.5,0) -- (5.5,0);
+\foreach \x in {-5,-4,-3,-2,-1,1,2,3,4,5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-4.5) -- (0.,4.5);
+\foreach \y in {-4,-3,-2,-1,1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\end{tikzpicture}
+\end{center}
+\end{uebung}
+
+\subsection{Vectors in a Three-Dimensional Coordinate System}
+A spatial 3-dimensional coordinate system includes a third axis, the $z$-axis, which is perpendicular to the $x$- and $y$-axis. The $x$- and $y$-axis now form the ``floor'' while the $z$-axis is the axis that goes up into ``space''. The three axes are arranged according to the right-hand rule: spread the 3 fingers of the right hand as follows: thumb $=x$-axis, forefinger $=y$-axis and middle finger $=z$-axis.
+\begin{center}
+	\includegraphics[width=5cm]{PIC_VEC_01.jpg}
+\end{center}
+
+
+\begin{defn}[Points and Vectors]
+Denoting points and vectors in the three-dimensional space works in the same way as in the twodimensional space. The only difference is that we use three coordinates to denote points and
+three components to denote vectors according to the three axes:
+\[\mbox{\textbf{Point: }}P(x;y;z)\mbox{ or
+}P(p_1;p_2;p_3)\qquad\quad\mbox{\textbf{Vector:}
+}\vec{a}=\begin{pmatrix} x\\y\\z
+\end{pmatrix}\mbox{ or }\vec{a}=\begin{pmatrix}
+a_1\\a_2\\a_3
+\end{pmatrix}\]
+\end{defn}
+
+\vspace{-4mm}
+
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (16*\xx,16*\xy);
+\foreach \x in {1,...,15}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[->,color=black] (-1*\yx,-1*\yy) -- (15*\yx,15*\yy);
+\foreach \x in {1,...,14}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[->,color=black] (0,-1*\zy) -- (0,10*\zy);
+\foreach \x in {1,...,9}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+
+\draw [dash pattern=on 2pt off 2pt] (3.064,-0.879)-- (3.064,6.638);
+\draw [dash pattern=on 2pt off 2pt] (3.857,1.572)-- (3.875,9.089);
+\draw [dash pattern=on 2pt off 2pt] (6.921,0.693)-- (6.921,8.210);
+\draw [dash pattern=on 2pt off 2pt] (3.064,-0.879)-- (6.921,0.692);
+\draw [dash pattern=on 2pt off 2pt] (0,7.517)-- (3.857,9.089);
+\draw [dash pattern=on 2pt off 2pt] (3.064,6.638)-- (6.921,8.210);
+\draw [dash pattern=on 2pt off 2pt] (3.857,1.572)-- (6.921,0.693);
+\draw [dash pattern=on 2pt off 2pt] (0,7.517)-- (3.064,6.638);
+\draw [dash pattern=on 2pt off 2pt] (3.857,9.089)-- (6.921,8.210);
+\draw [fill=black] (6.921,8.210) circle (1.0pt);
+\draw[color=black] (6.921,8.210) node[anchor=west] {$P(4;6;8)$};
+\draw[color=black] (3.064,-0.879) node[anchor=north] {$4$};
+\draw[color=black] (0,7.517) node[anchor=east] {$8$};
+\draw[color=black] (3.857,1.572) node[anchor=south east] {$6$};
+\end{tikzpicture}\qquad\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (16*\xx,16*\xy);
+\foreach \x in {1,...,15}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[->,color=black] (-1*\yx,-1*\yy) -- (15*\yx,15*\yy);
+\foreach \x in {1,...,14}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[->,color=black] (0,-1*\zy) -- (0,10*\zy);
+\foreach \x in {1,...,9}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+
+\draw [dash pattern=on 2pt off 2pt] (4.226,0.126)-- (4.226,5.765);
+\draw [dash pattern=on 2pt off 2pt] (10.355,-1.632)-- (10.355,4.006);
+\draw [dash pattern=on 2pt off 2pt] (6.798,1.174)-- (6.798,6.813);
+\draw [dash pattern=on 2pt off 2pt] (12.926,-0.584)-- (12.926,5.054);
+\draw [dash pattern=on 2pt off 2pt] (4.226,0.126)-- (6.798,1.174);
+\draw [dash pattern=on 2pt off 2pt] (10.355,-1.632)-- (12.926,-0.584);
+\draw [dash pattern=on 2pt off 2pt] (4.226,5.765)-- (6.798,6.813);
+\draw [dash pattern=on 2pt off 2pt] (10.355,4.006)-- (12.926,5.054);
+\draw [dash pattern=on 2pt off 2pt] (4.226,0.126)-- (10.355,-1.632);
+\draw [dash pattern=on 2pt off 2pt] (6.798,1.174)-- (12.926,-0.584);
+\draw [dash pattern=on 2pt off 2pt] (4.226,5.765)-- (10.355,4.006);
+\draw [dash pattern=on 2pt off 2pt] (6.798,6.813)-- (12.926,5.054);
+\draw[->,color=black] (4.226,0.126) -- (12.926,5.054);
+\draw[color=black] (10,8) node {$\vec{a}=\begin{pmatrix}8\\4\\6\end{pmatrix}$};
+\draw[color=black] (8.576,2.59) node[anchor=north west] {$\vec{a}$};
+\draw[color=black] (11.64,-1.108) node[anchor=north west] {$4$};
+\draw[color=black] (7.291,-0.753) node[anchor=north] {$8$};
+\draw[color=black] (12.926,2.235) node[anchor=west] {$6$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{-4mm}
+
+\begin{uebung}
+\begin{enumerate}[\bfseries 1.]
+\setlength{\itemsep}{0ex}
+	\item Sketch the points $A(4;-3;0)$ and $B(0;-5;2)$.
+	\item Sketch the vector $\overrightarrow{CD}$ with the starting point $C(-4;0;0)$ and the end point $D(0;6;0)$.
+	\item Sketch the position vectors $\vec{a}=\begin{pmatrix}0\\0\\-5\end{pmatrix}$ and $\vec{b}=\begin{pmatrix}5\\6\\3\end{pmatrix}$.
+\end{enumerate}
+
+\vspace{-7mm}
+
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-8*\xx,-8*\xy) -- (8*\xx,8*\xy);
+\foreach \x in {-7,...,7}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[->,color=black] (-8*\yx,-8*\yy) -- (8*\yx,8*\yy);
+\foreach \x in {-7,...,7}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[->,color=black] (0,-6*\zy) -- (0,6*\zy);
+\foreach \x in {-5,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+\end{tikzpicture}
+\end{center}
+\end{uebung}
+
+
+\section{Calculations with Vectors}
+Geometrical and algebraical calculations with vectors are quite simple. Vectors can be added, subtracted or multiplied by a scalar (i.e. number). In the following chapters, these procedures are described both geometrically as well as algebraically.
+
+\subsection{Addition $(\vec{a}+\vec{b})$}
+\begin{defn}[Addition]
+Geometrically, we add two vectors $\vec{a}$ and $\vec{b}$ by linking the tail of the second vector $\vec{b}$ with the head of the first vector $\vec{a}$. To sketch the vector $\vec{a}+\vec{b}$, we then connect the tail of the first vector $\vec{a}$ with the head of the second vector $\vec{b}$:
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.8cm,y=0.8cm]
+\draw [->] (0.,1.6) -- (5.,1.);
+\draw [->] (6.4,0.) -- (9.,1.8);
+\draw [->] (6.6,0.4) -- (5.6,1.2);
+\draw [->] (9.4,1.) -- (14.4,0.4);
+\draw [->] (5.,1.) -- (7.6,2.8);
+\draw [->] (8.4,1.6) -- (7.4,2.4);
+\draw [->] (9.4,1.) -- (12.,2.8);
+\draw [->] (12.,2.8) -- (17.,2.2);
+\draw [->] (14.4,0.4) -- (17.,2.2);
+\draw [->] (9.4,1.) -- (17.,2.2);
+\draw [->] (0.,1.6) -- (7.6,2.8);
+\draw[color=black] (2.5,1.3) node[anchor=north] {$\vec{a}$};
+\draw[color=black] (7.7,0.9) node[anchor=north west] {$\vec{b}$};
+\draw[color=black] (11.9,0.7) node[anchor=north] {$\vec{a}$};
+\draw[color=black] (6.3,1.9) node[anchor=north west] {$\vec{b}$};
+\draw[color=black] (10.7,1.9) node[anchor=south east] {$\vec{b}$};
+\draw[color=black] (14.5,2.5) node[anchor=south] {$\vec{a}$};
+\draw[color=black] (15.7,1.3) node[anchor=north west] {$\vec{b}$};
+\draw[color=black] (13.2,1.6) node[anchor=north] {$\vec{a}+\vec{b}$};
+\draw[color=black] (13.2,1.6) node[anchor=south] {$\vec{b}+\vec{a}$};
+\draw[color=black] (3.8,2.2) node[anchor=south] {$\vec{a}+\vec{b}$};
+\end{tikzpicture}
+\end{center}
+When the parallelogram that is defined by the two vectors $\vec{a}$ and $\vec{b}$ is drawn, it can easily be seen that the addition of vectors is commutative, i.e. that $\vec{a}+\vec{b}=\vec{b}+\vec{a}$:
+\end{defn}
+
+\begin{wichtig}
+Algebraically, the addition of vectors is even easier to remember. To add the two vectors $\vec{a}$ and $\vec{b}$, we add up their components:
+
+\parbox[T]{8cm}{
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.9cm,y=0.9cm]
+\draw [->] (0.,0.) -- (5.5,2.);
+\draw [->] (5.5,2.) -- (7.,4.);
+\draw [->] (0.,0.) -- (7.,4.);
+\draw [dash pattern=on 2pt off 2pt] (0.,0.)-- (7.,0.);
+\draw [dash pattern=on 2pt off 2pt] (7.,0.)-- (7.,4.);
+\draw [dash pattern=on 2pt off 2pt] (7.,2.)-- (5.5,2.);
+\draw [dash pattern=on 2pt off 2pt] (5.5,2.)-- (5.5,0.);
+\draw[color=black] (3,1.2) node[anchor=north west] {$\vec{a}$};
+\draw[color=black] (6.25,2.85) node[anchor=south east] {$\vec{b}$};
+\draw[color=black] (3.5,2) node[anchor=south east] {$\vec{a}+\vec{b}$};
+\draw[color=black] (3.5,0) node[anchor=north] {$a_1+b_1$};
+\draw[color=black] (7,2) node[anchor=west] {$a_2+b_2$};
+\draw[color=black] (6.25,2) node[anchor=south] {$b_1$};
+\draw[color=black] (7,3) node[anchor=east] {$b_2$};
+\draw[color=black] (2.75,0) node[anchor=south] {$a_1$};
+\draw[color=black] (5.5,1) node[anchor=east] {$a_2$};
+\end{tikzpicture}}\hfill\parbox[T]{8cm}{\[\vec{a}+\vec{b}=\begin{pmatrix} a_1\\a_2
+\end{pmatrix}+\begin{pmatrix}
+b_1\\b_2
+\end{pmatrix}=\begin{pmatrix}
+a_1+b_1\\a_2+b_2
+\end{pmatrix}\]
+\[\vec{a}+\vec{b}=\begin{pmatrix} a_1\\a_2\\a_3
+\end{pmatrix}+\begin{pmatrix}
+b_1\\b_2\\b_3
+\end{pmatrix}=\begin{pmatrix}
+a_1+b_1\\a_2+b_2\\a_3+b_3
+\end{pmatrix}\]}
+In order to simplify matters, 2-dimensional vectors are used to illustrate this, but of course the same holds in space.
+\end{wichtig}
+
+\begin{beispiel} 
+\[\vec{a}=\begin{pmatrix}4\\-2\end{pmatrix}\text{ and }\vec{b}=\begin{pmatrix}-1\\3\end{pmatrix}:\quad\vec{a}+\vec{b}=\begin{pmatrix}4\\-2\end{pmatrix}+\begin{pmatrix}-1\\3\end{pmatrix}=\begin{pmatrix}4+(-1)\\-2+3\end{pmatrix}=\begin{pmatrix}3\\1\end{pmatrix}\]
+\[\vec{a}=\begin{pmatrix}2\\3\\1\end{pmatrix}\text{ and }\vec{b}=\begin{pmatrix}0\\5\\2\end{pmatrix}:\quad\vec{a}+\vec{b}=\begin{pmatrix}2\\3\\1\end{pmatrix}+\begin{pmatrix}0\\5\\2\end{pmatrix}=\begin{pmatrix}2+0\\3+5\\1+2\end{pmatrix}=\begin{pmatrix}2\\8\\3\end{pmatrix}\]
+\end{beispiel}
+
+\begin{uebung}
+\begin{enumerate}[\bfseries 1.]
+\setlength{\itemsep}{1ex}
+	\item \parbox[t]{6cm}{Given are the following vectors:}\parbox[t]{9.5cm}{$\mbox{ }$\vspace{-5mm}
+	
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.9cm,y=0.9cm]
+\draw [->] (0,0) -- (3,2);
+\draw [->] (4,2) -- (6,0.5);
+\draw [->] (7,2) -- (7,0);
+\draw[color=black] (1.5,1) node[anchor=south] {$\vec{a}$};
+\draw[color=black] (5,1.25) node[anchor=south west] {$\vec{b}$};
+\draw[color=black] (7,1) node[anchor=west] {$\vec{c}$};
+\end{tikzpicture}}
+
+Sketch the vectors: $\vec{a}+\vec{b},\quad\vec{a}+\vec{c},\quad\vec{c}+\vec{b}+\vec{a}$.
+
+\vspace{5.5cm}
+
+\item Given is the position vector $\vec{a}=\overrightarrow{OA}=\begin{pmatrix}2\\3\end{pmatrix}$, vector $\vec{b}=\begin{pmatrix}3\\-4\end{pmatrix}$ and vector $\vec{c}=\begin{pmatrix}-3\\-2\end{pmatrix}$.
+\begin{enumerate}[(a)]
+\setlength{\itemsep}{-1ex}
+	\item Calculate the vector $\vec{d}=\vec{a}+\vec{b}+\vec{c}$ algebraically.
+	\item Sketch this vector addition in the coordinate system below (starting from the
+origin with position vector $\vec{a}$) and verify that the components you found for
+vector $\vec{d}$ in (a) are correct.
+\begin{center}
+	\definecolor{cqcqcq}{rgb}{0.75,0.75,0.75}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.9cm,y=0.9cm]
+\draw [color=cqcqcq,dash pattern=on 2pt off 2pt, xstep=1,ystep=1] (-1.5,-3.5) grid (6.5,3.5);
+\draw[->,color=black] (-1.5,0) -- (6.5,0);
+\foreach \x in {-1,1,2,3,4,5,6}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-3.5) -- (0.,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+\end{enumerate}
+\end{uebung}
+
+\subsection{Subtraction $(\vec{a}-\vec{b})$}
+\begin{defn}[Subtraction]
+Subtraction is actually also an addition, as we have: $\vec{a}-\vec{b}=\vec{a}+(-\vec{b})$.  The vector $-\vec{b}$ denotes the \emph{inverse vector} of $\vec{b}$. We get the inverse vector by reversing the direction of a vector.
+The length of the vector stays the same.
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.8cm,y=0.8cm]
+\draw [->] (2.6,3.4) -- (7.6,2.8);
+\draw [->] (6.4,0.) -- (9.,1.8);
+\draw [->] (6.6,0.4) -- (5.6,1.2);
+\draw [->] (9.4,1.) -- (14.4,0.4);
+\draw [->] (7.6,2.8) -- (5.,1.);
+\draw [->] (8.4,1.6) -- (7.4,2.4);
+\draw [->] (9.4,1.) -- (12.,2.8);
+\draw [->] (12.,2.8) -- (17.,2.2);
+\draw [->] (14.4,0.4) -- (17.,2.2);
+\draw [->] (12,2.8) -- (14.4,0.4);
+\draw [->] (2.6,3.4) -- (5,1);
+\draw[color=black] (5.1,3.1) node[anchor=north] {$\vec{a}$};
+\draw[color=black] (7.7,0.9) node[anchor=north west] {$\vec{b}$};
+\draw[color=black] (11.9,0.7) node[anchor=north] {$\vec{a}$};
+\draw[color=black] (6.3,1.9) node[anchor=north west] {$-\vec{b}$};
+\draw[color=black] (10.7,1.9) node[anchor=south east] {$\vec{b}$};
+\draw[color=black] (14.5,2.5) node[anchor=south] {$\vec{a}$};
+\draw[color=black] (15.7,1.3) node[anchor=north west] {$\vec{b}$};
+\draw[color=black] (13.2,1.6) node[anchor=west] {$\vec{a}-\vec{b}$};
+\draw[color=black] (3.8,2.2) node[anchor=north east] {$\vec{a}-\vec{b}$};
+\end{tikzpicture}
+\end{center}
+The difference $\vec{a}-\vec{b}$ can also be depicted in the parallelogram, it is the other diagonal connecting the two heads from $\vec{b}$ to $\vec{a}$.
+\end{defn}
+
+\begin{wichtig}
+Algebraically, we subtract the two vectors $\vec{a}$ and $\vec{b}$ by subtracting their components:
+\[\vec{a}-\vec{b}=\begin{pmatrix} a_1\\a_2
+\end{pmatrix}-\begin{pmatrix}
+b_1\\b_2
+\end{pmatrix}=\begin{pmatrix}
+a_1-b_1\\a_2-b_2
+\end{pmatrix}\qquad\qquad\vec{a}-\vec{b}=\begin{pmatrix} a_1\\a_2\\a_3
+\end{pmatrix}-\begin{pmatrix}
+b_1\\b_2\\b_3
+\end{pmatrix}=\begin{pmatrix}
+a_1-b_1\\a_2-b_2\\a_3-b_3
+\end{pmatrix}\]
+\end{wichtig}
+
+With the help of the vector difference the vector connecting two points $A$ and $B$ can now easily be calculated. If the coordinates of the points are given, the vector $\overrightarrow{AB}$ is found by forming the difference of the position vectors of the points.
+
+\parbox[T]{8cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.8cm,y=0.8cm]
+\draw[->,color=black] (-0.5,0.) -- (5.5,0.);
+\foreach \x in {1,2,3,4,5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-0.5) -- (0.,5.5);
+\foreach \y in {1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw [->] (0,0) -- (1.5,4.5);
+\draw [->] (0,0) -- (5,3);
+\draw [->] (1.5,4.5) -- (5,3);
+\draw [fill=black] (0,0) circle (1.0pt);
+\draw[color=black] (0,0) node[anchor=north east] {$O$};
+\draw [fill=black] (1.5,4.5) circle (1.0pt);
+\draw[color=black] (1.5,4.5) node[anchor=south] {$A$};
+\draw[color=black] (0.75,2.25) node[anchor=east] {$\vec{a}$};
+\draw [fill=black] (5,3) circle (1.0pt);
+\draw[color=black] (5,3) node[anchor=west] {$B$};
+\draw[color=black] (2.5,1.5) node[anchor=north] {$\vec{b}$};
+\draw[color=black] (3.25,3.75) node[anchor=south west] {$\overrightarrow{AB}=\vec{b}-\vec{a}$};
+\end{tikzpicture}}\parbox[T]{8cm}{\begin{flalign*}
+& A(a_1;a_2) \qquad B(b_1;b_2)\\
+& \\
+\overrightarrow{AB}= & \,\overrightarrow{OB}-\overrightarrow{OA}=\vec{b}-\vec{a}=\\
+&\\
+= & \,\begin{pmatrix} b_1\\b_2
+\end{pmatrix}-\begin{pmatrix}
+a_1\\a_2
+\end{pmatrix}=\begin{pmatrix}
+b_1-a_1\\b_2-a_2
+\end{pmatrix}
+\end{flalign*}}
+
+Again this also holds for 3-dimensional space.
+
+\begin{beispiel} 
+\[\vec{a}=\begin{pmatrix}4\\-2\end{pmatrix}\text{ and }\vec{b}=\begin{pmatrix}-1\\3\end{pmatrix}:\quad\vec{a}-\vec{b}=\begin{pmatrix}4\\-2\end{pmatrix}-\begin{pmatrix}-1\\3\end{pmatrix}=\begin{pmatrix}4-(-1)\\-2-3\end{pmatrix}=\begin{pmatrix}5\\-5\end{pmatrix}\]
+\[\vec{a}=\begin{pmatrix}2\\3\\1\end{pmatrix}\text{ and }\vec{b}=\begin{pmatrix}0\\5\\2\end{pmatrix}:\quad\vec{a}-\vec{b}=\begin{pmatrix}2\\3\\1\end{pmatrix}-\begin{pmatrix}0\\5\\2\end{pmatrix}=\begin{pmatrix}2-0\\3-5\\1-2\end{pmatrix}=\begin{pmatrix}2\\-2\\-1\end{pmatrix}\]
+\end{beispiel}
+
+\begin{uebung}
+\begin{enumerate}[\bfseries 1.]
+\setlength{\itemsep}{1ex}
+	\item \parbox[t]{6cm}{Given are the following vectors:}\parbox[t]{9.5cm}{$\mbox{ }$\vspace{-5mm}
+	
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.9cm,y=0.9cm]
+\draw [->] (0,0) -- (3,2);
+\draw [->] (4,2) -- (6,0.5);
+\draw [->] (7,2) -- (7,0);
+\draw[color=black] (1.5,1) node[anchor=south] {$\vec{a}$};
+\draw[color=black] (5,1.25) node[anchor=south west] {$\vec{b}$};
+\draw[color=black] (7,1) node[anchor=west] {$\vec{c}$};
+\end{tikzpicture}}
+
+Sketch the vectors: $\vec{a}-\vec{b},\quad\vec{a}-\vec{c},\quad\vec{c}-\vec{b}$.
+
+\vspace{5.5cm}
+
+\item Given is the position vector $\vec{a}=\overrightarrow{OA}=\begin{pmatrix}4\\-1\end{pmatrix}$ and the vector $\vec{b}=\begin{pmatrix}-2\\-2\end{pmatrix}$.
+\begin{enumerate}[(a)]
+\setlength{\itemsep}{-1ex}
+	\item Calculate the vector $\vec{c}=\vec{a}-\vec{b}$ algebraically.
+	\item Sketch this vector addition in the coordinate system below (starting from the
+origin with position vector $\vec{a}$) and verify that the components you found for
+vector $\vec{c}$ in (a) are correct.
+\begin{center}
+	\definecolor{cqcqcq}{rgb}{0.75,0.75,0.75}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.9cm,y=0.9cm]
+\draw [color=cqcqcq,dash pattern=on 2pt off 2pt, xstep=1,ystep=1] (-1.5,-3.5) grid (6.5,3.5);
+\draw[->,color=black] (-1.5,0) -- (6.5,0);
+\foreach \x in {-1,1,2,3,4,5,6}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-3.5) -- (0.,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+\end{enumerate}
+\end{uebung}
+
+
+
+\subsection{Scalar Multiplication $(k\cdot\vec{a})$}
+When we form the vector sum $\vec{a}+\vec{a}+\vec{a}$, it seems more reasonable to write $3\cdot\vec{a}$. The multiplication of a vector by an arbitrary number (i.e. a scalar) is defined as follows:
+
+\begin{defn}[S-multiplication]
+If a vector $\vec{a}$ is multiplied by a number $k>0$, we get a new vector whose direction is the same but which is $k$ times as long as $\vec{a}$. The vector $3\vec{a}$, for example, has the same direction as $\vec{a}$ and is three times as long. If a vector $\vec{a}$ is multiplied by a number $k<0$, we get a new vector whose direction is reversed and which is $|k|$ times as long as $\vec{a}$. The vector $-3\vec{a}$, for example, has the opposite direction of $\vec{a}$ and is three times as long.
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [dash pattern=on 3pt off 3pt] (0,0)-- (6,0);
+\draw [dash pattern=on 3pt off 3pt] (6,0)-- (6,3);
+\draw [dash pattern=on 3pt off 3pt] (4,0)-- (4,2);
+\draw [dash pattern=on 3pt off 3pt] (4,2)-- (6,2);
+\draw [dash pattern=on 3pt off 3pt] (2,0)-- (2,1);
+\draw [dash pattern=on 3pt off 3pt] (2,1)-- (6,1);
+\draw [->] (8,2.5) -- (10,1.5);
+\draw [->] (10,0.75) -- (11,0.25);
+\draw [->] (14.5,0.5) -- (10.5,2.5);
+\draw [->] (0,0) -- (2,1);
+\draw [->] (2,1) -- (4,2);
+\draw [->] (4,2) -- (6,3);
+\draw[color=black] (1,0.5) node[anchor=south east] {$\vec{a}$};
+\draw[color=black] (3,1.5) node[anchor=south east] {$\vec{a}$};
+\draw[color=black] (5,2.5) node[anchor=south east] {$\vec{a}$};
+\draw[color=black] (1,0) node[anchor=south] {$a_1$};
+\draw[color=black] (3,0) node[anchor=south] {$a_1$};
+\draw[color=black] (5,0) node[anchor=south] {$a_1$};
+\draw[color=black] (6,0.5) node[anchor=east] {$a_2$};
+\draw[color=black] (6,1.5) node[anchor=east] {$a_2$};
+\draw[color=black] (6,2.5) node[anchor=east] {$a_2$};
+\draw[color=black] (2.7,1.9) node[anchor=south east] {$3\vec{a}$};
+\draw[color=black] (3,0) node[anchor=north] {$3a_1$};
+\draw[color=black] (6,1.5) node[anchor=west] {$3a_2$};
+\draw[color=black] (9,2) node[anchor=south west] {$\vec{a}$};
+\draw[color=black] (10.5,0.5) node[anchor=south west] {$0.5\vec{a}$};
+\draw[color=black] (12.5,1.5) node[anchor=south west] {$-2\vec{a}$};
+\end{tikzpicture}
+\end{center}
+\end{defn}
+
+\begin{wichtig}
+Algebraically, we multiply a vector $\vec{a}$ by a scalar $k$ by multiplying all components of $\vec{a}$ by the scalar $k$:
+\[k\cdot\vec{a}=k\cdot
+\begin{pmatrix}
+a_1\\a_2
+\end{pmatrix}=\begin{pmatrix}
+k\cdot a_1\\k\cdot a_2
+\end{pmatrix}\qquad\qquad k\cdot\vec{a}=k\cdot
+\begin{pmatrix}
+a_1\\a_2\\a_3
+\end{pmatrix}=\begin{pmatrix}
+k\cdot a_1\\k\cdot a_2\\k\cdot a_3
+\end{pmatrix}\]
+\end{wichtig}
+
+\begin{bemerkung}
+The scalar multiplication is distributive and associative:
+\[k\cdot(\vec{a}+\vec{b})=k\cdot\vec{a}+k\cdot\vec{b}\qquad\qquad k\cdot(l\cdot\vec{a})=(k\cdot l)\cdot\vec{a}\]
+Distributivity: This means that we can expand and factor out scalars from sums the way we are used to.
+
+Associativity: Stretching a vector for example by 3 and then by 2 is the same as stretching it by $3\cdot2=6$.
+\end{bemerkung}
+
+\begin{beispiel} 
+\[\vec{a}=\begin{pmatrix}4\\-2\end{pmatrix}:\quad3\cdot\vec{a}=3\cdot\begin{pmatrix}4\\-2\end{pmatrix}=\begin{pmatrix}3\cdot4\\3\cdot(-2)\end{pmatrix}=\begin{pmatrix}12\\-6\end{pmatrix}\]
+\[\vec{a}=\begin{pmatrix}2\\3\\1\end{pmatrix}:\quad3\cdot\vec{a}=3\cdot\begin{pmatrix}2\\3\\1\end{pmatrix}=\begin{pmatrix}3\cdot2\\3\cdot3\\3\cdot1\end{pmatrix}=\begin{pmatrix}6\\9\\3\end{pmatrix}\]
+\end{beispiel}
+
+\begin{uebung}
+\begin{enumerate}[\bfseries 1.]
+\setlength{\itemsep}{1ex}
+	\item \parbox[t]{6cm}{Given is the following vector:}\parbox[t]{9.5cm}{$\mbox{ }$\vspace{-5mm}
+	
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.9cm,y=0.9cm]
+\draw [->] (4,2) -- (6,0.5);
+\draw[color=black] (5,1.25) node[anchor=south west] {$\vec{a}$};
+\end{tikzpicture}}
+
+Sketch the vectors: $3\cdot\vec{a},\quad-2\cdot\vec{a},\quad\frac{2}{3}\cdot\vec{a}$.
+
+\vspace{5.5cm}
+
+\item Given are the  vectors $\vec{a}=\overrightarrow{OA}=\begin{pmatrix}3\\1\end{pmatrix}$, $\vec{b}=\begin{pmatrix}1\\-1\end{pmatrix}$ and $\vec{c}=\begin{pmatrix}2\\3\end{pmatrix}$.
+\begin{enumerate}[(a)]
+\setlength{\itemsep}{-1ex}
+	\item Calculate the vector $\vec{d}=2\vec{a}-3\vec{b}-\vec{c}$ algebraically.
+	\item Sketch this vector addition in the coordinate system below (starting from the
+origin with position vector $\vec{a}$) and verify that the components you found for
+vector $\vec{d}$ in (a) are correct.
+\begin{center}
+	\definecolor{cqcqcq}{rgb}{0.75,0.75,0.75}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.9cm,y=0.9cm]
+\draw [color=cqcqcq,dash pattern=on 2pt off 2pt, xstep=1,ystep=1] (-1.5,-1.5) grid (6.5,5.5);
+\draw[->,color=black] (-1.5,0) -- (6.5,0);
+\foreach \x in {-1,1,2,3,4,5,6}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-1.5) -- (0.,5.5);
+\foreach \y in {-1,1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+\end{enumerate}
+\end{uebung}
+
+\subsection{Further Important Calculations}
+\subsubsection{The Vector Norm}
+The vector norm represents the \emph{magnitude or length} of a vector. The notation of the vector norm is $|\vec{a}|$ for the vector $\vec{a}$ respectively $|\overrightarrow{AB}|$ for the vector $\overrightarrow{AB}$.
+
+\begin{satz}[Vector Norm]
+The vector norm of the vector $\vec{a}$ is calculated as follows:
+\[|\vec{a}|=\left|\begin{pmatrix}a_1\\a_2\end{pmatrix}\right|=\sqrt{a_1^2+a_2^2}\qquad\qquad|\vec{a}|=\left|\begin{pmatrix}a_1\\a_2\\a_3\end{pmatrix}\right|=\sqrt{a_1^2+a_2^2+a_3^2}\]
+\end{satz}
+
+\begin{beweis}
+2 dimensions:
+
+\parbox[T]{8cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [shift={(3,0)},fill=black,fill opacity=0.1] (0,0) -- (90:0.6) arc (90:180:0.6) -- cycle;
+\draw [->] (0,0) -- (3,2);
+\draw [dash pattern=on 2pt off 2pt] (0,0)-- (3,0);
+\draw [dash pattern=on 2pt off 2pt] (3,0)-- (3,2);
+\fill[fill=black] (2.75,0.25) circle (0.05);
+\draw[color=black] (1.5,1) node[anchor=south east] {$\vec{a}$};
+\draw[color=black] (1.5,0) node[anchor=north] {$a_1$};
+\draw[color=black] (3,1) node[anchor=west] {$a_2$};
+\end{tikzpicture}}\parbox[T]{8cm}{Using the theorem of Pythagoras:
+\[|\vec{a}|=\sqrt{a_1^2+a_2^2}\]}
+
+\newpage
+
+3 dimensions:
+
+\parbox[T]{8cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\draw [shift={(10.355,-1.632)},fill=black,fill opacity=0.1] (0,0) -- (39:0.8 and 0.4) arc (39:150:0.8 and 0.4) -- cycle;
+\draw [shift={(12.926,-0.584)},fill=black,fill opacity=0.1] (0,0) -- (90:0.8) arc (90:175.334:0.8) -- cycle;
+\draw [dash pattern=on 2pt off 2pt] (4.226,0.126)-- (4.226,5.765);
+\draw [dash pattern=on 2pt off 2pt] (10.355,-1.632)-- (10.355,4.006);
+\draw [dash pattern=on 2pt off 2pt] (6.798,1.174)-- (6.798,6.813);
+\draw [dash pattern=on 2pt off 2pt] (12.926,-0.584)-- (12.926,5.054);
+\draw [dash pattern=on 2pt off 2pt] (4.226,0.126)-- (6.798,1.174);
+\draw [dash pattern=on 2pt off 2pt] (10.355,-1.632)-- (12.926,-0.584);
+\draw [dash pattern=on 2pt off 2pt] (4.226,5.765)-- (6.798,6.813);
+\draw [dash pattern=on 2pt off 2pt] (10.355,4.006)-- (12.926,5.054);
+\draw [dash pattern=on 2pt off 2pt] (4.226,0.126)-- (10.355,-1.632);
+\draw [dash pattern=on 2pt off 2pt] (6.798,1.174)-- (12.926,-0.584);
+\draw [dash pattern=on 2pt off 2pt] (4.226,5.765)-- (10.355,4.006);
+\draw [dash pattern=on 2pt off 2pt] (6.798,6.813)-- (12.926,5.054);
+\draw [dash pattern=on 2pt off 2pt] (4.226,0.126)-- (12.926,-0.584);
+\draw[->,color=black] (4.226,0.126) -- (12.926,5.054);
+\fill[fill=black] (12.576,-0.234) circle (0.05);
+\fill[fill=black] (10.255,-1.412) circle (0.05);
+\draw[color=black] (8.576,2.59) node[anchor=south east] {$\vec{a}$};
+\draw[color=black] (8.576,-0.229) node[anchor=south] {$x$};
+\draw[color=black] (11.64,-1.108) node[anchor=north west] {$a_2$};
+\draw[color=black] (7.291,-0.753) node[anchor=north] {$a_1$};
+\draw[color=black] (12.926,2.235) node[anchor=west] {$a_3$};
+\end{tikzpicture}}\parbox[T]{8cm}{Using the theorem of Pythagoras twice:
+\begin{flalign*}
+x= & \,\sqrt{a_1^2+a_2^2}\\
+|\vec{a}|= & \,\sqrt{x^2+a_3^2}\\
+= & \,\sqrt{\left(\sqrt{a_1^2+a_2^2}\right)^2+a_3^2}\\
+= & \,\sqrt{a_1^2+a_2^2+a_3^2}\\
+\end{flalign*}}
+\end{beweis}
+
+\begin{beispiel} 
+\[\vec{a}=\begin{pmatrix}4\\-2\end{pmatrix}:\quad|\vec{a}|=\left|\begin{pmatrix}4\\-2\end{pmatrix}\right|=\sqrt{4^2+(-2)^2}=\sqrt{16+4}=\sqrt{20}\approx4.472\]
+\[\vec{a}=\begin{pmatrix}2\\3\\1\end{pmatrix}:\quad|\vec{a}|=\left|\begin{pmatrix}2\\3\\1\end{pmatrix}\right|=\sqrt{2^2+3^2+1^2}=\sqrt{4+9+1}=\sqrt{14}\approx3.742\]
+\end{beispiel}
+
+\subsubsection{The Midpoint}
+In some situations you will have to find the midpoint $M$ of two points $A$ and $B$. This can easily be done with vector geometry.
+
+\begin{satz}[Midpoint]
+In general, if we are given the points $A$ and $B$ and thus their position vectors $\vec{a}$ and $\vec{b}$, the midpoint $M$ is calculated as follows:
+\[M=\left(\frac{a_1+b_1}{2};\frac{a_2+b_2}{2}\right)\qquad\qquad M=\left(\frac{a_1+b_1}{2};\frac{a_2+b_2}{2};\frac{a_3+b_3}{2}\right)\]
+\end{satz}
+
+\begin{beweis}
+We determine the position vector of the midpoint $M$ and transform that into the coordinate notation of a point:
+
+\parbox[T]{8cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [->] (0,0) -- (1,4);
+\draw [->] (0,0) -- (4,2);
+\draw [->] (1,4) -- (2.5,3);
+\draw [->] (0,0) -- (2.5,3);
+\draw (2.5,3)-- (4,2);
+\draw [fill=black] (0,0) circle (1.0pt);
+\draw[color=black] (0,0) node[anchor=north east] {$O$};
+\draw [fill=black] (1,4) circle (1.0pt);
+\draw[color=black] (1,4) node[anchor=south east] {$A$};
+\draw [fill=black] (4,2) circle (1.0pt);
+\draw[color=black] (4,2) node[anchor=west] {$B$};
+\draw [fill=black] (2.5,3) circle (1.0pt);
+\draw[color=black] (2.5,3) node[anchor=south west] {$M$};
+\draw[color=black] (0.5,2) node[anchor=east] {$\overrightarrow{OA}=\vec{a}$};
+\draw[color=black] (2,1) node[anchor=north west] {$\overrightarrow{OB}=\vec{b}$};
+\draw[color=black] (1.75,3.5) node[anchor=south west] {$\frac{1}{2}\overrightarrow{AB}$};
+\draw[color=black] (1.25,1.5) node[anchor=west] {$\overrightarrow{OM}=\vec{m}$};
+\end{tikzpicture}}\parbox[T]{8cm}{\begin{flalign*}
+\overrightarrow{OM}= & \,\overrightarrow{OA}+\frac{1}{2}\overrightarrow{AB}\\
+= & \,\overrightarrow{OA}+\frac{1}{2}(\overrightarrow{OB}-\overrightarrow{OA})\\
+\vec{m}= & \,\vec{a}+\frac{1}{2}(\vec{b}-\vec{a})\\
+= & \,\begin{pmatrix}a_1\\a_2\end{pmatrix}+\frac{1}{2}\begin{pmatrix}b_1-a_1\\b_2-a_2\end{pmatrix}\\
+= & \,\begin{pmatrix}a_1+\frac{1}{2}(b_1-a_1)\\a_2+\frac{1}{2}(b_2-a_2)\end{pmatrix}\\
+= & \,\begin{pmatrix}\frac{1}{2}a_1+\frac{1}{2}b_1\\\frac{1}{2}a_2+\frac{1}{2}b_2\end{pmatrix}=\begin{pmatrix}\frac{a_1+b_1}{2}\\\frac{a_2+b_2}{2}\end{pmatrix}
+\end{flalign*}}
+
+For 3 dimensions its works the same.
+\end{beweis}
+
+\begin{uebung}
+Determine the norm of the connecting vector of the points $A(2;-2;1)$ and $B(3;2;-7)$ as well as the midpoint $M$ of $A$ and $B$.
+
+\vspace{3.3cm}
+
+\end{uebung}
+
+\section{Linear Dependence of Vectors}
+\subsection{Introduction}
+If two or more vectors are combined by the elementary operations addition, subtraction and acalar multiplication, we speak of a \emph{linear combination}. If, for example,  $\vec{c}=3\vec{a}+2\vec{b}$, then $\vec{c}$ is a linear combination of $\vec{a}$ and $\vec{b}$.
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.7cm,y=0.7cm]
+\draw [->] (0,2) -- (3,3.5);
+\draw [->] (3,3.5) -- (6,5);
+\draw [->] (6,5) -- (9,6.5);
+\draw [->] (9,6.5) -- (10,3.5);
+\draw [->] (10,3.5) -- (11,0.5);
+\draw [->] (0,2) -- (11,0.5);
+\draw[color=black] (1.5,2.75) node[anchor=south east] {$\vec{a}$};
+\draw[color=black] (4.5,4.25) node[anchor=south east] {$\vec{a}$};
+\draw[color=black] (7.5,5.75) node[anchor=south east] {$\vec{a}$};
+\draw[color=black] (9.5,5) node[anchor=west] {$\vec{b}$};
+\draw[color=black] (10.5,2) node[anchor=west] {$\vec{b}$};
+\draw[color=black] (5.5,1.25) node[anchor=north east] {$\vec{c}=3\vec{a}+2\vec{b}$};
+\end{tikzpicture}
+\end{center}
+
+\begin{defn}[Linear (In)dependence]
+A set of vectors is called \emph{linearly dependent}, if one of the vectors can be written as a linear combination of the others. A set of vectors is called \emph{linearly independent}, if none of the vectors can be written as a linear combination of the others.
+\end{defn}
+
+\begin{beispiel}
+\begin{enumerate}
+	\item The vectors $\vec{a}={1\choose2}$, $\vec{b}={3\choose-1}$ and $\vec{c}={5\choose3}$ are linearly dependent because vector $\vec{c}$ can be written as a linear combination of the vectors $\vec{a}$ and $\vec{b}$:
+\[\vec{c}=2\vec{a}+\vec{b}\quad\Rightarrow\quad \begin{pmatrix}5\\3\end{pmatrix}=2\cdot \begin{pmatrix}1\\2\end{pmatrix}+ \begin{pmatrix}3\\-1\end{pmatrix}\]
+In this example $\vec{a}$ ($\vec{a}=-0.5\cdot\vec{b}+0.5\cdot\vec{c}$) and $\vec{b}$ ($\vec{b}=-2\cdot\vec{a}+\vec{c}$) can also be written as linear combinations of the others. \textbf{That is not always the case!}
+
+\bigskip
+
+\item The vctors $\vec{a}$, $\vec{b}$ and $\vec{c}$ below are linearly independent because none
+of the vectors can be written as a linear combination of the others.
+\[\vec{a}=\begin{pmatrix}1\\0\\0\end{pmatrix},\quad\vec{b}=\begin{pmatrix}0\\1\\0\end{pmatrix},\quad\vec{c}=\begin{pmatrix}0\\0\\1\end{pmatrix}\]
+\end{enumerate}
+\end{beispiel}
+
+
+\subsection{Linear Dependence of Two Vectors}
+\begin{wichtig}
+Two vectors $\vec{a}$ and $\vec{b}$ are linearly dependent if one can be written as a linear combination of the other. In this case this means that one vector is a scalar multiple of the other. Therefore, the vectors $\vec{a}$ and $\vec{b}$ are linearly dependent only if:
+\[\vec{a}=t\cdot\vec{b}\]
+\end{wichtig}
+Thus, if two vectors are linearly dependent, they have to be parallel, also called \emph{collinear}. The words linearly dependent, parallel and collinear are synonyms with respect to two vectors. If two vectors are linearly independent, they are not parallel and are called \emph{non-collinear}.
+
+\begin{beispiel}
+\begin{enumerate}
+	\item $\vec{a}=\begin{pmatrix} 1\\-2\\3
+\end{pmatrix}$ and $\vec{b}=\begin{pmatrix}
+3\\-6\\9
+\end{pmatrix}$ are linearly dependent, because $\vec{b}=3\vec{a}$.
+
+\item $\vec{a}=\begin{pmatrix} -2\\1\\5
+\end{pmatrix}$ and $\vec{b}=\begin{pmatrix}
+-4\\3\\20
+\end{pmatrix}$ are linearly independent.
+
+If $\vec{b}=t\cdot\vec{a}$ were possible, then $t$ would have to be $2$ because of the $x$-coordinate, and at the same time it would have to $3$ because of the $y$-coordinate. $\vec{b}$ can therefore not be written as a multiple of  $\vec{a}$.
+\end{enumerate}
+\end{beispiel}
+
+\vspace{-5mm}
+
+\subsection{Linear Dependence of Three Vectors}
+\begin{wichtig}
+Three vectors $\vec{a}$, $\vec{b}$ and $\vec{c}$ are linearly dependent if one vector can be written as a linear combination of the other two vectors. \textbf{At least one} of the following equations must have a solution.
+\[\vec{a}=r\vec{b}+s\vec{c},\qquad\vec{b}=r\vec{c}+s\vec{a},\qquad\vec{c}=r\vec{a}+s\vec{b}\]
+\end{wichtig}
+If three vectors are linearly dependent, they all lie in one plane. Vectors that lie in one plane are called \emph{coplanar}. If three vectors are linearly independent, they do not lie in the same plane and are called \emph{non-coplanar}.
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[color=black] (-1*\yx,-1*\yy) -- (4*\yx,4*\yy);
+\draw[->,color=black,dash pattern=on 2pt off 2pt] (4*\yx,4*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[color=black] (0,-1*\zy) -- (0,2.3*\zy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (0,2.3*\zy) -- (0,3.04*\zy);
+\draw[->,color=black] (0,3.04*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+%Ecken (-1,-1,3)   (7,-1,2)   (7,5,3)   (-1,5,4)
+\fill[fill=black,fill opacity=0.1] (-1.409,2.777) -- (4.719,0.078) -- (8.576,2.59) -- (2.448,5.289) -- cycle;
+%\foreach \x in {1,...,9}
+%\foreach \y in {1,...,9}
+%\draw [fill=black] (-1.409+\x*0.613+\y*0.386,2.777+\x*-0.270+\y*0.251) circle (1.0pt);
+\draw [->] (-1.409+2*0.613+2*0.386,2.777+2*-0.270+2*0.251) -- (-1.409+3*0.613+8*0.386,2.777+3*-0.270+8*0.251);
+\draw [->] (-1.409+4*0.613+7*0.386,2.777+4*-0.270+7*0.251) -- (-1.409+6*0.613+3*0.386,2.777+6*-0.270+3*0.251);
+\draw [->] (-1.409+6*0.613+5*0.386,2.777+6*-0.270+5*0.251) -- (-1.409+9*0.613+6*0.386,2.777+9*-0.270+6*0.251);
+\draw[color=black] (3.311,-2.3) node {coplanar};
+\end{tikzpicture}\qquad\qquad\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[->,color=black] (-1*\yx,-1*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[->,color=black] (0,-1*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+\draw [->] (4.473,-0.837) -- (8.823,-1.193);
+\draw [dash pattern=on 2pt off 2pt] (4.473,-0.837) -- (7.537,-1.717);
+\draw [dash pattern=on 2pt off 2pt] (7.537,-1.717) -- (8.823,-1.193);
+\draw [->] (6.525,-0.533) -- (10.505,0.557);
+\draw [dash pattern=on 2pt off 2pt] (6.525,-0.533) -- (7.291,-0.753);
+\draw [dash pattern=on 2pt off 2pt] (7.291,-0.753) -- (10.505,0.557);
+\draw [->] (2.818,0.084) -- (6.921,4.451);
+\draw [dash pattern=on 2pt off 2pt] (2.818,0.084) -- (4.35,-0.355);
+\draw [dash pattern=on 2pt off 2pt] (4.35,-0.355) -- (6.921,0.693);
+\draw [dash pattern=on 2pt off 2pt] (6.921,0.693) -- (6.921,4.451);
+\draw[color=black] (3.311,-2.3) node {non-coplanar};
+\end{tikzpicture}
+\end{center}
+
+\begin{beispiel}
+\begin{enumerate}
+	\item Are $\vec{a}=\begin{pmatrix}2\\3\\-1
+\end{pmatrix}$, $\vec{b}=\begin{pmatrix}5\\-2\\4
+\end{pmatrix}$ and $\vec{c}=\begin{pmatrix}-1\\8\\-6
+\end{pmatrix}$ linearly dependent?
+\[\vec{a}=r\vec{b}+s\vec{c}\qquad\qquad\begin{pmatrix}2\\3\\-1
+\end{pmatrix}=r\begin{pmatrix}5\\-2\\4
+\end{pmatrix}+s\begin{pmatrix}-1\\8\\-6
+\end{pmatrix}\qquad\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r}
+2 & = & 5r & - & s\\
+3 & = & -2r & + & 8s\\
+-1 & = & 4r & - & 6s\end{array}\]
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r|l}
+2 & = & 5r & - & s &\\
+3 & = & -2r & + & 8s & +8\cdot\mbox{I}\\
+-1 & = & 4r & - & 6s &
+-6\cdot\mbox{I}\end{array}\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r|l}
+2 & = & 5r & - & s &\\
+19 & = & 38r & & & \div 38\\
+-13 & = & -26r & & & \div
+-26\end{array}\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r}
+2 & = & 5r & - & s \\
+0.5 & = & r & & \\
+0.5 & = & r & & \end{array}\qquad\begin{array}{l}
+s=0.5\\
+\text{ }\\
+\text{ }
+\end{array}\]
+Hence we have $\vec{a}=0.5\vec{b}+0.5\vec{c}$, and the three vectors are in fact linearly dependent.
+
+\bigskip
+
+\item Are $\vec{a}=\begin{pmatrix}3\\-2\\2
+\end{pmatrix}$, $\vec{b}=\begin{pmatrix}-1\\5\\-3
+\end{pmatrix}$ and $\vec{c}=\begin{pmatrix}4\\4\\-1
+\end{pmatrix}$ linearly dependent?
+\[\vec{a}=r\vec{b}+s\vec{c}\qquad\qquad\begin{pmatrix}3\\-2\\2
+\end{pmatrix}=r\begin{pmatrix}-1\\5\\-3
+\end{pmatrix}+s\begin{pmatrix}4\\4\\-1
+\end{pmatrix}\qquad\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r}
+3 & = & -r & + & 4s\\
+-2 & = & 5r & + & 4s\\
+2 & = & -3r & - & s\end{array}\]
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r|l}
+3 & = & -r & + & 4s &\\
+-2 & = & 5r & + & 4s & -\mbox{I}\\
+2 & = & -3r & - & s &
+4\cdot\mbox{III}+\mbox{I}\end{array}\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r|l}
+3 & = & -r & + & 4s &\\
+-5 & = & 6r & & & \div 6\\
+11 & = & -13r & & & \div
+-13\end{array}\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r}
+3 & = & -r & + & 4s \\
+-\frac{5}{6} & = & r & & \\
+-\frac{11}{13} & = & r & & \end{array}\]
+We do not get a unique solution for $r$. The system of equations thus has no solution, and the three vectors are  linearly independent.
+
+\bigskip
+
+\item Are $\vec{a}=\begin{pmatrix}5\\-2\\3
+\end{pmatrix}$, $\vec{b}=\begin{pmatrix}-1\\2\\-3
+\end{pmatrix}$ and $\vec{c}=\begin{pmatrix}2\\-4\\6
+\end{pmatrix}$ linearly dependent?
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r|l}
+5 & = & -r & + & 2s &\\
+-2 & = & 2r & - & 4s & +2\cdot\mbox{I}\\
+3 & = & -3r & + & 6s & -3\cdot\mbox{I}\end{array}\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r}
+3 & = & -r & + & 4s\\
+7 & = & 0 & & \\
+-12 & = & 0 & & 
+\end{array}\]
+Both variables $r$ and $s$ dropped out and we are left with contradictory equations. That means that the system does not have a solution. \textbf{But it does not mean that the vectors are linearly independent!} Because it also means that $\vec{b}$ and $\vec{c}$ are collinear (here $\vec{c}=-2\vec{b}$). And if two of the three vectors are collinear (i.e. parallel), the three vectors are always linearly dependent (here $\vec{c}=0\cdot\vec{a}-2\vec{b}$).
+\end{enumerate}
+\end{beispiel}
+
+\subsection{Basis Vectors}
+We need 2 linearly independent (non-collinear) vectors to express any other 2-dimensional vector as a linear combination, and 3 linearly independent (non-coplanar) vectors to express any other 3- dimensional vector as a linear combination. We call such vectors basis vectors. So, what are the most simple sets of linearly independent vectors in the 2- and 3-dimensional space which can be used to form any other 2- or 3-dimensional vector?
+\[\mbox{2-dimensional: }\vec{e}_1=\begin{pmatrix}1\\0
+\end{pmatrix},\,\vec{e}_2=\begin{pmatrix}0\\1
+\end{pmatrix}\qquad\mbox{3-dimensional: }\vec{e}_1=\begin{pmatrix}1\\0\\0
+\end{pmatrix},\,\vec{e}_2=\begin{pmatrix}0\\1\\0
+\end{pmatrix},\,\vec{e}_3=\begin{pmatrix}0\\0\\1
+\end{pmatrix}\]
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.7cm,y=0.7cm]
+\draw[->,color=black] (-0.5,0) -- (5.5,0);
+\foreach \x in {1,2,3,4,5}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt);
+\draw[->,color=black] (0.,-1.5) -- (0.,3.5);
+\foreach \y in {-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt);
+\draw [->] (1,1) -- (2,1);
+\draw [->] (1,1) -- (1,2);
+\draw[color=black] (2,1) node[anchor=west] {$\vec{e}_1$};
+\draw[color=black] (1,2) node[anchor=south] {$\vec{e}_2$};
+\draw [->] (1,-1) -- (2,-1);
+\draw [->] (2,-1) -- (3,-1);
+\draw [->] (3,-1) -- (4,-1);
+\draw [->] (4,-1) -- (5,-1);
+\draw [->] (5,-1) -- (5,0);
+\draw [->] (5,0) -- (5,1);
+\draw [->] (1,-1) -- (5,1);
+\draw[color=black] (3,0) node[anchor=south east] {$\vec{a}$};
+\end{tikzpicture}\qquad\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.745cm,y=0.745cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (8*\xx,8*\xy);
+\foreach \x in {1,...,7}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[->,color=black] (-1*\yx,-1*\yy) -- (8*\yx,8*\yy);
+\foreach \x in {1,...,7}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[->,color=black] (0,-1*\zy) -- (0,4*\zy);
+\foreach \x in {1,...,3}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+\draw [->] (1.409,0.042) -- (2.175,-0.178);
+\draw [->] (1.409,0.042) -- (2.052,0.304);
+\draw [->] (1.409,0.042) -- (1.409,0.982);
+\draw[color=black] (2,0.05) node[anchor=north west] {$\vec{e}_1$};
+\draw[color=black] (2,0.1) node[anchor=south west] {$\vec{e}_2$};
+\draw[color=black] (1.409,0.982) node[anchor=south] {$\vec{e}_3$};
+\draw [->] (2.818,0.084) -- (3.584,-0.136);
+\draw [->] (3.584,-0.136) -- (4.35,-0.355);
+\draw [->] (4.35,-0.355) -- (5.116,-0.575);
+\draw [->] (5.116,-0.575) -- (5.882,-0.795);
+\draw [->] (5.882,-0.795) -- (6.525,-0.533);
+\draw [->] (6.525,-0.533) -- (7.167,-0.271);
+\draw [->] (7.167,-0.271) -- (7.167,0.669);
+\draw [->] (7.167,0.669) -- (7.167,1.608);
+\draw [->] (7.167,1.608) -- (7.167,2.548);
+\draw [->] (2.818,0.084) -- (7.167,2.548);
+\draw[color=black] (4.993,1.361) node[anchor=north west] {$\vec{b}$};
+\draw [dash pattern=on 2pt off 2pt] (4.103,0.608) -- (7.167,-0.271);
+\draw [dash pattern=on 2pt off 2pt] (2.818,2.903) -- (5.882,2.024);
+\draw [dash pattern=on 2pt off 2pt] (4.103,3.427) -- (7.167,2.548);
+\draw [dash pattern=on 2pt off 2pt] (2.818,0.084) -- (4.103,0.608);
+\draw [dash pattern=on 2pt off 2pt] (2.818,2.903) -- (4.103,3.427);
+\draw [dash pattern=on 2pt off 2pt] (5.882,2.024) -- (7.167,2.548);
+\draw [dash pattern=on 2pt off 2pt] (2.818,0.084) -- (2.818,2.903);
+\draw [dash pattern=on 2pt off 2pt] (5.882,-0.795) -- (5.882,2.024);
+\draw [dash pattern=on 2pt off 2pt] (4.103,0.608) -- (4.103,3.427);
+\end{tikzpicture}
+\end{center}
+\[\vec{a}=\begin{pmatrix}4\\2
+\end{pmatrix}=4\vec{e}_1+2\vec{e}_2\qquad\qquad\qquad\qquad\vec{b}=\begin{pmatrix}4\\2\\3
+\end{pmatrix}=4\vec{e}_1+2\vec{e}_2+3\vec{e}_3\]
+
+\subsection{Determining Dividing Proportions}
+Vector geometry is a practical tool to find the ratio in which certain line segments within a geometric figure intersect each other. The method shall be demonstrated in the following example.
+
+In what ratio do the medians of a triangle intersect?
+
+\parbox[T]{7cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.7cm,y=0.7cm]
+\draw (0,3)-- (6,5);
+\draw (6,5)-- (8,0);
+\draw (8,0)-- (0,3);
+\draw (4,1.5)-- (6,5);
+\draw (7,2.5)-- (0,3);
+\draw[color=black] (0,3) node[anchor=east] {$A$};
+\draw[color=black] (8,0) node[anchor=north west] {$B$};
+\draw[color=black] (6,5) node[anchor=south] {$C$};
+\draw[color=black] (7,2.5) node[anchor=west] {$E$};
+\draw[color=black] (4,1.5) node[anchor=north east] {$D$};
+\draw[color=black] (4.666,2.666) node[anchor=south east] {$S$};
+\end{tikzpicture}}\parbox[T]{9.5cm}{The idea is that we do the following:
+\begin{enumerate}
+\setlength{\itemsep}{-1ex}
+	\item First we find a vector equation (linear combination) that includes the point of intersection.
+	\item Then we express every vector involved through the same basis.
+	\item Since basis vectors are always linearly independent, we will get a linear combination in which all coefficients must be zero.
+	\item That will allow us to find the ratio.
+\end{enumerate}}
+
+\parbox[T]{7cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.7cm,y=0.7cm]
+\fill[fill=black,fill opacity=0.1] (0,3) -- (4,1.5) -- (4.666,2.666) -- cycle;
+\draw [->] (0,3) -- (6,5);
+\draw [->] (0,3) -- (8,0);
+\draw (6,5)-- (8,0);
+\draw [->] (0,3) -- (4.666,2.666);
+\draw [->] (0,3) -- (4,1.5);
+\draw [->] (4,1.5) -- (4.666,2.666);
+\draw (7,2.5)-- (0,3);
+\draw (4,1.5)-- (6,5);
+\draw[color=black] (0,3) node[anchor=east] {$A$};
+\draw[color=black] (8,0) node[anchor=north west] {$B$};
+\draw[color=black] (6,5) node[anchor=south] {$C$};
+\draw[color=black] (7,2.5) node[anchor=west] {$E$};
+\draw[color=black] (4,1.5) node[anchor=north east] {$D$};
+\draw[color=black] (4.666,2.666) node[anchor=south east] {$S$};
+
+\draw[color=black] (3,4) node[anchor=south east] {$\vec{b}$};
+\draw[color=black] (5,1.125) node[anchor=north east] {$\vec{a}$};
+
+\draw[color=black] (2,2.25) node[anchor=north east] {$\overrightarrow{AD}$};
+\draw[color=black] (4.333,2.083) node[anchor=west] {$\overrightarrow{DS}$};
+\draw[color=black] (2.333,2.833) node[anchor=south] {$\overrightarrow{AS}$};
+\end{tikzpicture}}\parbox[T]{9.5cm}{
+\begin{enumerate}
+	\item We choose the following linear combination containing the centroid $S$:
+	\[\overrightarrow{AD}+\overrightarrow{DS}=\overrightarrow{AS}\]
+\end{enumerate}}
+\begin{enumerate}
+\setcounter{enumi}{1}
+	\item Since all these vectors lie in a plane, we can express all of them through two basis vectors, for example $\vec{a}=\overrightarrow{AB}$ and $\vec{b}=\overrightarrow{AC}$:
+	\[\begin{array}{l}
+	\overrightarrow{AD}=\frac{1}{2}\overrightarrow{AB}=\frac{1}{2}\vec{a}\\
+	\overrightarrow{DS}=r\cdot\overrightarrow{DC}=r\cdot\left(-\frac{1}{2}\vec{a}+\vec{b}\right)\\
+	\overrightarrow{AS}=s\cdot\overrightarrow{AE}=s\cdot\left(\overrightarrow{AB}+\frac{1}{2}\overrightarrow{BC}\right)=s\cdot\left(\vec{a}+\frac{1}{2}(\vec{b}-\vec{a})\right)=s\cdot\left(\frac{1}{2}\vec{a}+\frac{1}{2}\vec{b}\right)
+	\end{array}\]
+	$r$ and $s$ are used because it is not known what portions $\overrightarrow{DS}$ and $\overrightarrow{AS}$ are of $\overrightarrow{DC}$ and $\overrightarrow{AE}$ respectively.
+	\item These are now put into the linear combination, which is then simplified
+	\begin{eqnarray*}
+	\overrightarrow{AD}+\overrightarrow{DS} & = & \overrightarrow{AS}\\
+	\frac{1}{2}\vec{a}+r\cdot\left(-\frac{1}{2}\vec{a}+\vec{b}\right) & = & s\cdot\left(\frac{1}{2}\vec{a}+\frac{1}{2}\vec{b}\right)\\
+	\frac{1}{2}\vec{a}-\frac{1}{2}r\vec{a}+r\vec{b} & = & \frac{1}{2}s\vec{a}+\frac{1}{2}s\vec{b}\\
+	\frac{1}{2}\vec{a}-\frac{1}{2}r\vec{a}-\frac{1}{2}s\vec{a} & = & -r\vec{b}+\frac{1}{2}s\vec{b}\\
+	\left(\frac{1}{2}-\frac{1}{2}r-\frac{1}{2}s\right)\vec{a} & = & \left(-r+\frac{1}{2}s\right)\vec{b}
+	\end{eqnarray*}
+	\item Since $\vec{a}$ and $\vec{b}$ form a basis and are thus linearly independent, they cannot be multiples of each other. The only possibility is $0\vec{a}=0\vec{b}$, so the two brackets have to be equal to zero.
+	\[\begin{array}{r|l}
+	0.5-0.5r-0.5s=0 & \\
+	-r+0.5s=0 & +\mbox{I}
+	\end{array}\qquad\begin{array}{r}
+	0.5-0.5r-0.5s=0 \\
+	0.5-1.5r=0
+	\end{array}\]
+	The second equation is solved for $r$ and the result then used to find $s$. This gives us
+	\[r=\frac{1}{3}\mbox{ und }s=\frac{2}{3}\]
+	$\overrightarrow{DS}$ is therefore a third of the vector $\overrightarrow{DC}$. $S$ divides the medians in the ratio $1:2$.
+\end{enumerate}
+
+\section{Scalar (Dot) Product}
+\subsection{Derivation and Definition}
+The scalar product is of great importance when it comes to calculating angles and projections. It will be derived below:
+
+To find the angle between two vectors, we use theorems from trigonometry. As we learned, if the sides $a$, $b$ and $c$ of a triangle are known, the angles can be calculated with the law of cosines:
+
+\parbox[T]{7cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [shift={(0,0)},fill=black,fill opacity=0.1] (0,0) -- (14.036:0.6) arc (14.036:69.443:0.6) -- cycle;
+\draw [shift={(1.5,4)},fill=black,fill opacity=0.1] (0,0) -- (-110.556:0.6) arc (-110.556:-29.054:0.6) -- cycle;
+\draw [shift={(6,1.5)},fill=black,fill opacity=0.1] (0,0) -- (150.945:0.6) arc (150.945:194.036:0.6) -- cycle;
+\draw (0,0)-- (6,1.5);
+\draw (6,1.5)-- (1.5,4);
+\draw (1.5,4)-- (0,0);
+\draw[color=black] (3,0.75) node[anchor=north west] {$b$};
+\draw[color=black] (3.75,2.75) node[anchor=south west] {$c$};
+\draw[color=black] (0.75,2) node[anchor=east] {$a$};
+\draw[color=black] (0.3,0.2) node[anchor=south west] {$\gamma$};
+\end{tikzpicture}}\parbox[T]{9.5cm}{Law of cosines:
+\begin{align*}c^2 &= a^2+b^2-2ab\cdot\cos(\gamma)\\
+2ab\cdot\cos(\gamma) &= a^2+b^2-c^2\\
+\\
+\cos\gamma &= \frac{a^2+b^2-c^2}{2ab}
+\end{align*}}
+
+If we now take the norms of the three vectors $\vec{a}$, $\vec{b}$ and $\vec{b}-\vec{a}$ for the three triangle sides, we can solve the equation for $\gamma$:
+
+\parbox[T]{7cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [shift={(0,0)},fill=black,fill opacity=0.1] (0,0) -- (14.036:0.6) arc (14.036:69.443:0.6) -- cycle;
+\draw [->] (0,0)-- (6,1.5);
+\draw [->] (1.5,4)-- (6,1.5);
+\draw [->] (0,0)-- (1.5,4);
+\draw[color=black] (3,0.75) node[anchor=north west] {$\vec{b}$};
+\draw[color=black] (3.75,2.75) node[anchor=south west] {$\vec{b}-\vec{a}$};
+\draw[color=black] (0.75,2) node[anchor=east] {$\vec{a}$};
+\draw[color=black] (0.3,0.2) node[anchor=south west] {$\gamma$};
+\end{tikzpicture}}\parbox[T]{9.5cm}{Law of cosines:
+\begin{align*}|\vec{b}-\vec{a}|^2 &= |\vec{a}|^2+|\vec{b}|^2-2|\vec{a}||\vec{b}|\cdot\cos(\gamma)\\
+\left|\begin{pmatrix}b_1-a_1\\b_2-a_2\\b_3-a_3\end{pmatrix}\right|^2 &= \left|\begin{pmatrix}a_1\\a_2\\a_3\end{pmatrix}\right|^2+\left|\begin{pmatrix}b_1\\b_2\\b_3\end{pmatrix}\right|^2-2|\vec{a}||\vec{b}|\cdot\cos(\gamma)
+\end{align*}}
+
+To get a useful equation to calculate angle $\gamma$, the above equation needs to be transformed:
+
+\hspace{-15mm}\parbox[t]{20cm}{\begin{eqnarray*}
+\left(\sqrt{(b_1-a_1)^2+(b_2-a_2)^2+(b_3-a_3)^2}\right)^2 & = &
+\left(\sqrt{a_1^2+a_2^2+a_3^2}\right)^2+\left(\sqrt{b_1^2+b_2^2+b_3^2}\right)^2-2|\vec{a}||\vec{b}|\cdot\cos\gamma\\
+(b_1-a_1)^2+(b_2-a_2)^2+(b_3-a_3)^2 & = &
+(a_1^2+a_2^2+a_3^2)+(b_1^2+b_2^2+b_3^2)-2|\vec{a}||\vec{b}|\cdot\cos\gamma\\
+\end{eqnarray*}
+
+\vspace{-15mm}
+
+\begin{eqnarray*}
+(b_1^2-2a_1b_1+a_1^2)+(b_2^2-2a_2b_2+a_2^2)+(b_3^2-2a_3b_3+a_3^2) & = & a_1^2+a_2^2+a_3^2+b_1^2+b_2^2+b_3^2-2|\vec{a}||\vec{b}|\cdot\cos\gamma\\
+\cancel{b_1^2}-2a_1b_1+\cancel{a_1^2}+\cancel{b_2^2}-2a_2b_2+\cancel{a_2^2}+\cancel{b_3^2}-2a_3b_3+\cancel{a_3^2} & = & \cancel{a_1^2}+\cancel{a_2^2}+\cancel{a_3^2}+\cancel{b_1^2}+\cancel{b_2^2}+\cancel{b_3^2}-2|\vec{a}||\vec{b}|\cdot\cos\gamma\\
+-2a_1b_1-2a_2b_2-2a_3b_3 & = & -2|\vec{a}||\vec{b}|\cdot\cos\gamma\\
+-2(a_1b_1+a_2b_2+a_3b_3) & = & -2|\vec{a}||\vec{b}|\cdot\cos\gamma\\
+a_1b_1+a_2b_2+a_3b_3 & = & |\vec{a}||\vec{b}|\cdot\cos\gamma\\
+\end{eqnarray*}}
+
+\begin{defn}[Scalar Product]
+The term $a_1b_1+a_2b_2+a_3b_3$ is going to be of importance in the future, therefore it is given its own name, the \emph{scalar product} of the vectors $\vec{a}$ and $\vec{b}$, and its own notation, a dot $\cdot$.
+\[\vec{a}\cdot\vec{b}=\begin{pmatrix}a_1\\a_2\\a_3
+\end{pmatrix}\cdot\begin{pmatrix}b_1\\b_2\\b_3
+\end{pmatrix}=a_1b_1+a_2b_2+a_3b_3\]
+Note: The term scalar product is used because the result of this calculation with two vectors is a scalar (i.e. a number) and not a vector! Sometimes it is also called \emph{dot product} because of its notation with a dot.
+\end{defn}
+
+With the new notation of the scalar product, we rewrite the final term of the derivation above and get an alternative definition, which is often used in Physics:
+\[\vec{a}\cdot\vec{b}=|\vec{a}||\vec{b}|\cdot\cos(\gamma)\]
+In words: ``The scalar product of the vectors $\vec{a}$ and $\vec{b}$ is identical to the product of the norms of the two vectors and the cosine of their enclosed angle $\gamma$.''
+
+All that allows us to now formulate the following theorem.
+
+\begin{satz}
+The formula for the calculation of the angle between two vectors is:
+\[\cos(\gamma)=\frac{\vec{a}\cdot\vec{b}}{|\vec{a}||\vec{b}|}\]
+The cosine of the angel between two vectors is equal to the scalar product divided by the product of the magnitudes!
+\end{satz}
+
+\begin{uebung} Calculate the angle between
+$\vec{a}=\begin{pmatrix}3\\-4\\3
+\end{pmatrix}$ und $\vec{b}=\begin{pmatrix}5\\1\\-1
+\end{pmatrix}$.
+
+\vspace{4cm}
+
+\end{uebung}
+
+\subsection{Geometric Properties}
+As the theorem above shows that when the scalar product of two vectors is positive/negative then the cosine of the enclosed angle $\gamma$ is also positive/negative. Using our knowledge form trigonometry that means
+\[\begin{array}{l}\vec{a}\cdot\vec{b}>0\quad\Leftrightarrow\quad\cos(\gamma)>0\quad\Leftrightarrow\quad\gamma<90\deg\\
+\vec{a}\cdot\vec{b}<0\quad\Leftrightarrow\quad\cos(\gamma)<0\quad\Leftrightarrow\quad\gamma>90\deg\end{array}\]
+The scalar product is positive iff the enclosed angle is acute and it is negative iff the enclosed angle is obtuse. The most important and useful property of the scalar product is, however, the following:
+\begin{wichtig}
+Two vectors $\vec{a}$ and $\vec{b}$ are perpendicular (i.e. enclosed angle $\gamma=90\deg$), if their scalar product is equal to 0:
+\[\vec{a}\bot\vec{b}\quad\Leftrightarrow\quad\vec{a}\cdot\vec{b}=0\]
+\end{wichtig}
+
+\begin{uebung}
+\begin{enumerate}[\bfseries 1.]
+	\item Are $\vec{a}=\begin{pmatrix} -3\\5\\2 \end{pmatrix}$ and $\vec{b}=\begin{pmatrix} -4\\-4\\1 \end{pmatrix}$ perpendicular to one another?
+	
+	\vspace{2.4cm}
+	
+	\item Are $\vec{a}=\begin{pmatrix} 1\\-5\\2\end{pmatrix}$ and $\vec{b}=\begin{pmatrix} 9\\3\\3\end{pmatrix}$ perpendicular to one another?
+	
+	\vspace{2.4cm}
+	
+	\item Find three vectors, perpendicular to $\begin{pmatrix}3\\2\\-5\end{pmatrix}$.
+	
+	\vspace{2.4cm}
+	
+\end{enumerate}
+\end{uebung}
+
+\section{Vector (Cross) Product}
+\subsection{Derivation and Definition}
+Whereas the scalar product can be used to test perpendicularity, the vector product can be used to find perpendicularity, especially to two linearly independent vectors. For example in physics to work with electromagnetic fields or torque. Such physical vector quantities work perpendicularly to the generating vector quantities.
+\begin{defn}[Vector Product]
+The \emph{vector product} of the vectors $\vec{a}$ and $\vec{b}$ is defined as follows:
+\[\vec{a}\times\vec{b}=\begin{pmatrix}
+a_1\\a_2\\a_3
+\end{pmatrix}\times\begin{pmatrix}
+b_1\\b_2\\b_3
+\end{pmatrix}=\begin{pmatrix}
+a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1
+\end{pmatrix}\]
+Note: The term vector product is used because the result of this calculation with two vectors is another vector! Sometimes it is also called \emph{cross product} because of its notation with a cross and because the multiplications of the components are done crosswise.
+\end{defn}
+\begin{uebung}
+Calculate the vector product of the vectors $\vec{a}=\begin{pmatrix} -3\\1\\2 \end{pmatrix}$ and $\vec{b}=\begin{pmatrix} -1\\1\\3 \end{pmatrix}$.
+
+\vspace{3cm}
+\end{uebung}
+
+As mentioned in the introduction, the following is true for the vector product.
+
+\begin{satz}
+The vector product $\vec{a}\times\vec{b}$ is perpendicular to both $\vec{a}$ and $\vec{b}$.
+\end{satz} 
+
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\draw [shift={(0,1)}] (0,0) -- (26.565:1) arc (26.565:90:1) -- cycle;
+\draw [->] (0,1) -- (4,0);
+\draw [->] (0,1) -- (4,3);
+\draw [->] (0,1) -- (0,5);
+\draw [shift={(0,1)},fill=white,fill opacity=1.0] (0,0) -- (-14.036:0.6) arc (-14.036:90:0.6) -- cycle;
+\fill[fill=black] (0.25,1.25) circle (0.05);
+\fill[fill=black] (0.4,1.55) circle (0.05);
+\draw[color=black] (2,0.5) node[anchor=north east] {$\vec{a}$};
+\draw[color=black] (2,2) node[anchor=south east] {$\vec{b}$};
+\draw[color=black] (0,5) node[anchor=south] {$\vec{a}\times\vec{b}$};
+\end{tikzpicture}
+\end{center}
+
+\begin{beweis}
+You have to show that the scalar product of $\vec{a}\times\vec{b}$ with both $\vec{a}$ and $\vec{b}$ is equal to zero.
+\end{beweis}
+
+\vspace{-4mm}
+
+\subsection{Geometric Properties}
+The vector product of two non-collinear vectors $\vec{a}$ and $\vec{b}$ also has the following important property.
+\begin{satz}
+
+\vspace{-4mm}
+
+The area $A$ of the parallelogram spanned by $\vec{a}$ and $\vec{b}$ is equal to the norm of their vector product:
+\[A_{\text{parallelogram}}=|\vec{a}\times\vec{b}|\]
+\end{satz}
+\parbox[T]{9.5cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.8cm,y=0.8cm]
+\fill[fill=black,fill opacity=0.1] (0,1) -- (4,0) -- (8,2) -- (4,3) -- cycle;
+\draw [shift={(0,1)}] (0,0) -- (26.565:1) arc (26.565:90:1) -- cycle;
+\draw [->] (0,1) -- (4,0);
+\draw [->] (0,1) -- (4,3);
+\draw (4,0)-- (8,2);
+\draw (8,2)-- (4,3);
+\draw [->] (0,1) -- (0,5);
+\draw [shift={(0,1)},fill=white,fill opacity=1.0] (0,0) -- (-14.036:0.6) arc (-14.036:90:0.6) -- cycle;
+\fill[fill=black] (0.25,1.25) circle (0.05);
+\fill[fill=black] (0.4,1.55) circle (0.05);
+\draw[color=black] (2,0.5) node[anchor=north east] {$\vec{a}$};
+\draw[color=black] (2,2) node[anchor=south east] {$\vec{b}$};
+\draw[color=black] (0,5) node[anchor=south] {$\vec{a}\times\vec{b}$};
+\draw[color=black] (4,1.5) node {$A=|\vec{a}\times\vec{b}|$};
+\end{tikzpicture}}\parbox[T]{6cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [shift={(0,0)},fill=black,fill opacity=0.1] (0,0) -- (0:0.6) arc (0:56.309:0.6) -- cycle;
+\draw (0,0)-- (2,3);
+\draw (0,0)-- (5,0);
+\draw (5,0)-- (7,3);
+\draw (7,3)-- (2,3);
+\draw (2,3)-- (2,0);
+\draw[color=black] (1,1.5) node[anchor=south east] {$b$};
+\draw[color=black] (2.5,0) node[anchor=north] {$a$};
+\draw[color=black] (2,1.5) node[anchor=west] {$h_a$};
+\draw[color=black] (0.4,0.2) node[anchor=south west] {$\gamma$};
+\end{tikzpicture}
+\[\sin(\gamma)=\frac{h_a}{b}\quad\Rightarrow\quad b\cdot\sin(\gamma)=h_a\]}
+\begin{beweis}
+I will just outline the proof here. The area of a parallelogram is calculated by
+\[A=a\cdot h_a=a\cdot b\cdot\sin(\gamma)\]
+Using that within our vector context:
+\[A=|\vec{a}|\cdot|\vec{b}|\cdot\sin(\gamma)=|\vec{a}|\cdot|\vec{b}|\cdot\sqrt{1-\cos^2(\gamma)}=|\vec{a}|\cdot|\vec{b}|\cdot\sqrt{1-\left(\frac{\vec{a}\cdot\vec{b}}{|\vec{a}||\vec{b}|}\right)^2}=\]
+\[\sqrt{|\vec{a}|^2|\vec{b}|^2-(\vec{a}\cdot\vec{b})^2}=\sqrt{(a_1^2+a_2^2+a_3^2)(b_1^2+b_2^2+b_3^2)-(a_1b_1+a_2b_2+a_3b_3)^2}\]
+Now we have to show that that is equal to
+\[|\vec{a}\times\vec{b}|=\left|\begin{pmatrix}
+a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1
+\end{pmatrix}\right|=\sqrt{(a_2b_3-a_3b_2)^2+(a_3b_1-a_1b_3)^2+(a_1b_2-a_2b_1)^2}\]
+\end{beweis}
+
+\begin{uebung}
+\begin{enumerate}[\bfseries 1.]
+	\item Determine two vectors that are perpendicular to both vectors $\vec{a}=\begin{pmatrix} 2\\1\\2 \end{pmatrix}$ and $\vec{b}=\begin{pmatrix} -1\\2\\-1 \end{pmatrix}$. How many vectors are there that are perpendicular to both $\vec{a}$ and $\vec{b}$?
+	
+	\vspace{5.5cm}
+	
+	\item Find a vector that is perpendicular to both $\vec{a}=\begin{pmatrix} 2\\2\\1 \end{pmatrix}$ and $\vec{b}=\begin{pmatrix} -2\\1\\2 \end{pmatrix}$ with length 3.
+	
+	\vspace{5.5cm}
+	
+	\item Calculate the area of the triangle $ABC$ with $A(1;1;1)$, $B(4;3;3)$ and $C(0;-1;3)$.
+	
+	\vspace{5.5cm}
+\end{enumerate}
+\end{uebung}
+
+\section{Lines}
+
+\vspace{-5mm}
+
+\subsection{Parametric Equation of a Straight Line}
+
+\vspace{-3mm}
+
+We have described straight lines in the two-dimensional space with linear functions. Using vectors, we are now also able to algebraically describe lines in the three-dimensional space. A straight line in space contains infinitely many points. Our goal is to define such a line by means of an equation of vectors so that we can calculate the position vector $\overrightarrow{OX}$ of every point $X$ of this line. To do so, we need to understand two important concepts:
+\begin{enumerate}
+	\item The \emph{starting vector} $\vec{a}$: To get from the origin on to the line, we need to know a point $A$ on this line, which we call our starting point. The position vector from the origin to point $A$ is called starting vector.
+	\item The \emph{direction vector} $\vec{d}$: To know in which direction the line extends, we have to know a vector that lies on the line. Such a vector can be easily found by calculating the connecting vector $\overrightarrow{AB}$ between the starting point $A$ and any other point $B$ on the line. This vector is called direction vector.
+\end{enumerate}
+
+\begin{defn}[Straight Line]
+A \emph{straight line} is defined by the following parametric equation:
+
+\parbox[T]{7.4cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.75cm,y=0.75cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[->,color=black] (-1*\yx,-1*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[->,color=black] (0,-1*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+
+\draw [domain=-1.351:-0.2] plot(\x,{(55.993-5.923*\x)/15.795});
+\draw [domain=0.2:8.321] plot(\x,{(55.993-5.923*\x)/15.795});
+\draw [->,line width=1.6pt] (0,0) -- (1.822,2.861);
+\draw [->,line width=1.6pt] (1.822,2.861) -- (3.400,2.269);
+\draw [->,dash pattern=on 2pt off 2pt] (0,0) -- (-1.024,3.929);
+\draw [->,dash pattern=on 2pt off 2pt] (0,0) -- (5.681,1.414);
+\draw [->,dash pattern=on 2pt off 2pt] (0,0) -- (7.792,0.622);
+\draw[color=black] (1.822,2.861) node[anchor=south] {$A$};
+\draw[color=black] (3.400,2.269) node[anchor=south] {$B$};
+\draw[color=black] (-1.024,3.929) node[anchor=south] {$X$};
+\draw[color=black] (5.681,1.414) node[anchor=south] {$X$};
+\draw[color=black] (7.792,0.622) node[anchor=south] {$X$};
+\draw[color=black] (0.911,1.431) node[anchor=south east] {$\vec{a}$};
+\draw[color=black] (2.611,2.565) node[anchor=south] {$\vec{d}$};
+\draw[color=black] (-0.512,1.965) node[anchor=south east] {$\vec{x}$};
+\draw[color=black] (4,1) node[anchor=north] {$\vec{x}$};
+\draw[color=black] (3.896,0.311) node[anchor=north] {$\vec{x}$};
+\end{tikzpicture}}\parbox[T]{8.6cm}{\[\begin{array}{l}
+g:\vec{x}=\vec{a}+t\cdot\vec{d}\qquad\text{or}\\[3mm]
+g:\overrightarrow{OX}=\overrightarrow{OA}+t\cdot\overrightarrow{AB}\\
+\end{array}\]
+\begin{itemize}
+\setlength{\itemsep}{0ex}
+	\item $A$ and $B$ are points on the line
+	\item $\vec{a}=\overrightarrow{OA}$ is the starting vector to a point $A$
+	\item $\vec{d}=\overrightarrow{AB}$ is the direction vector
+	\item $\vec{x}=\overrightarrow{OX}$ is the position vector to any point $X$ on the line
+	\item $t\in\R$ is the parameter
+\end{itemize}}
+\end{defn}
+
+\begin{bemerkung}
+\begin{itemize}
+\setlength{\itemsep}{-0.5ex}
+	\item We can now insert infinitely many different real numbers for parameter $t$ which will then give us the infinitely many points that make up the line.
+	\item Two random points $A$ and $B$ of a line are enough to be able to define this line with a parametric equation!
+	\item A line can be defined by infinitely many different parametric equations because the line contains infinitely many points we can choose as starting points and there are infinitely
+many collinear vectors that we can choose as direction vectors.
+\end{itemize}
+\end{bemerkung}
+
+\begin{uebung}
+\begin{enumerate}[\bfseries 1.]
+	\item \begin{enumerate}[(a)]
+	\setlength{\itemsep}{-1ex}
+		\item Given are the two points $A(1;-3;2)$ and $B(2;-1;1)$. Determine the parametric equation of the line that goes through the points $A$ and $B$.
+		\item Are the points $P(4;3;-1)$ and $Q(-1;-7;0)$ also points of this line?
+	\end{enumerate}
+
+	\vspace{7.2cm}
+	
+	\item Given is the parametric equation of line $g:\vec{x}=\begin{pmatrix}4\\3\\4\end{pmatrix}+t\cdot \begin{pmatrix}2\\4\\-4\end{pmatrix}$.
+	\begin{enumerate}[(a)]
+	\setlength{\itemsep}{-1ex}
+		\item Find another parametric equation with a different starting and direction vector that defines the same line.
+		\item The points of intersection of a straight line with the three coordinate planes are
+called \emph{trace points}. Determine the trace points of the line $g$.\\
+\emph{Hint: Points on the $xy$-plane have the coordinates $(x;y;0)$, points on the $yz$-plane
+$(0;y;z)$ and points on the $xz$-plane $(x;0;z)$.}
+	\end{enumerate}
+	
+	\vspace{7.2cm}
+\end{enumerate}
+\end{uebung}
+
+\subsection{Mutual Position of Two Straight Lines}
+There are four possible mutual positions of two straight lines in space:
+
+\parbox[T]{8cm}{\textbf{1. identical} (or coincident)
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.75cm,y=0.75cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[->,color=black] (-1*\yx,-1*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[->,color=black] (0,-1*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+
+\draw [domain=-1.351:-0.2] plot(\x,{(55.993-5.923*\x)/15.795});
+\draw [domain=0.2:8.321] plot(\x,{(55.993-5.923*\x)/15.795});
+\draw[color=black] (8.321,0.425) node[anchor=north] {$g=h$};
+\end{tikzpicture}
+
+\textbf{3. intersecting} (point of intersection $S$)
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.75cm,y=0.75cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[->,color=black] (-1*\yx,-1*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[->,color=black] (0,-1*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+
+\draw [domain=-1.351:-0.2] plot(\x,{(55.993-5.923*\x)/15.795});
+\draw [domain=0.2:8.321] plot(\x,{(55.993-5.923*\x)/15.795});
+\draw[color=black] (8.321,0.425) node[anchor=west] {$g$};
+\draw [domain=-1.351:7] plot(\x,{0.6*\x+0.8});
+\draw[color=black] (7,5) node[anchor=west] {$h$};
+\draw [fill=black] (2.815,2.489) circle (1.0pt);
+\draw[color=black] (2.815,2.489) node[anchor=south] {$S$};
+\end{tikzpicture}}\hfill\parbox[T]{8cm}{\textbf{2. truly parallel}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.75cm,y=0.75cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[->,color=black] (-1*\yx,-1*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[->,color=black] (0,-1*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+
+\draw [domain=-1.351:-0.2] plot(\x,{(55.993-5.923*\x)/15.795});
+\draw [domain=0.2:8.321] plot(\x,{(55.993-5.923*\x)/15.795});
+\draw[color=black] (8.321,0.425) node[anchor=west] {$g$};
+\draw [domain=-1.351:-0.2] plot(\x,{(35.993-5.923*\x)/15.795});
+\draw [domain=0.2:8.321] plot(\x,{(35.993-5.923*\x)/15.795});
+\draw[color=black] (8.321,-0.842) node[anchor=west] {$h$};
+\end{tikzpicture}
+
+\textbf{4. skew}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.75cm,y=0.75cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[->,color=black] (-1*\yx,-1*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[->,color=black] (0,-1*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+
+\draw [domain=-1.351:-0.2] plot(\x,{(55.993-5.923*\x)/15.795});
+\draw [domain=0.2:2.2] plot(\x,{(55.993-5.923*\x)/15.795});
+\draw [domain=2.6:8.321] plot(\x,{(55.993-5.923*\x)/15.795});
+\draw[color=black] (8.321,0.425) node[anchor=west] {$g$};
+\draw [domain=-1.351:7] plot(\x,{0.6*\x+1.2});
+\draw[color=black] (7,5.4) node[anchor=west] {$h$};
+\end{tikzpicture}}
+
+Scheme to determine the mutual position of two lines $g:\vec{x}=\vec{a}+t\cdot\vec{d}$ and $h:\vec{x}=\vec{b}+r\cdot\vec{c}$
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=0.5cm]
+\draw [->] (2.,2.) -- (0.,0.);
+\draw [->] (2.,2.) -- (4.,0.);
+\draw [->] (10.,2.) -- (8.,0.);
+\draw [->] (10.,2.) -- (12.,0.);
+\draw (-1.,2.)-- (5.,2.);
+\draw (5.,2.)-- (5.,5.);
+\draw (5.,5.)-- (-1.,5.);
+\draw (-1.,5.)-- (-1.,2.);
+\draw (7.,2.)-- (13.,2.);
+\draw (13.,2.)-- (13.,5.);
+\draw (13.,5.)-- (7.,5.);
+\draw (7.,5.)-- (7.,2.);
+\draw [->] (6.,7.) -- (10.,5.);
+\draw [->] (6.,7.) -- (2.,5.);
+\draw (3.,7.)-- (9.,7.);
+\draw (9.,7.)-- (9.,10.);
+\draw (9.,10.)-- (3.,10.);
+\draw (3.,10.)-- (3.,7.);
+\draw[color=black] (0,0) node[anchor=north] {\textbf{identical}};
+\draw[color=black] (4,0) node[anchor=north] {\textbf{parallel}};
+\draw[color=black] (8,0) node[anchor=north] {\textbf{intersecting}};
+\draw[color=black] (12,0) node[anchor=north] {\textbf{skew}};
+\draw[color=black] (1,1) node[anchor=east] {yes};
+\draw[color=black] (3,1) node[anchor=west] {no};
+\draw[color=black] (9,1) node[anchor=east] {yes};
+\draw[color=black] (11,1) node[anchor=west] {no};
+\draw[color=black] (2,4.1) node {$\vec{a}=\vec{b}+r\cdot\vec{c}$};
+\draw[color=black] (2,2.9) node {solvable for $r$?};
+\draw[color=black] (10,4.1) node {$\vec{a}+t\cdot\vec{d}=\vec{b}+r\cdot\vec{c}$};
+\draw[color=black] (10,2.9) node {solvable for $t$ and $r$?};
+\draw[color=black] (4,6) node[anchor=east] {yes};
+\draw[color=black] (8,6) node[anchor=west] {no};
+\draw[color=black] (6,9.1) node {$\vec{d}=k\cdot\vec{c}$};
+\draw[color=black] (6,7.9) node {solvable for $k$?};
+\end{tikzpicture}
+\end{center}
+
+So if we are given the parametric equations $g:\vec{x}=\vec{a}+t\cdot\vec{d}$ and $h:\vec{x}=\vec{b}+r\cdot\vec{c}$ of two lines, it is relatively easy to algebraically determine their mutual position:
+\begin{enumerate}
+	\item \textbf{Analyse their direction vectors:} Are they linearly dependent (i.e. collinear / parallel) or not? Check: Is $\vec{d}=k\cdot\vec{c}$ solvable for $k$?
+	\begin{itemize}
+	\setlength{\itemsep}{-1ex}
+		\item If the direction vectors are linearly dependent: the lines are either identical or truly parallel.
+		\item If the direction vectors are not linearly dependent: the lines are intersecting or skew.
+	\end{itemize}
+	
+	\item \textbf{Identical or truly parallel?} If the direction vectors are linearly dependent, check if the starting vector $\vec{a}$ of line $g$ fulfils the parametric equation of line $h$, i.e. lies on line $h$.
+		\begin{itemize}
+		\setlength{\itemsep}{-1ex}
+		\item If it does fulfil the other equation, this means that this point also lies on the second line and that they are thus identical.
+		\item If it does not fulfil the other equation, this means that this point does not lie on the second line and that they are thus truly parallel.
+	\end{itemize}
+	
+	\item \textbf{Intersecting or skew?} If two lines are intersecting, they have one common point $S$ which fulfils both parametric equations. So equate the two parametric equations and try to solve this system of equations for $t$ and $r$ to see if you can find such a point $S$.
+	\begin{itemize}
+	\setlength{\itemsep}{-1ex}
+		\item If you can find a solution for the two parameters, there is exactly one point of intersection which you find by inserting the parameters $t$ and $r$ back into the parametric equations.
+		\item If you cannot find a solution for the two parameters, the two lines are skew.
+	\end{itemize}
+	\end{enumerate}
+	
+\begin{beispiel}
+Analyse the position of the lines
+\[g:\vec{x}=\begin{pmatrix}1\\-1\\0\end{pmatrix}+t\cdot \begin{pmatrix}2\\2\\-4\end{pmatrix}\text{ and }h:\vec{x}=\begin{pmatrix}3\\1\\-4\end{pmatrix}+r\cdot \begin{pmatrix}-1\\-1\\2\end{pmatrix}\]
+\begin{enumerate}
+	\item Are the direction vectors linearly dependent? Yes, we have
+	\[\begin{pmatrix}2\\2\\-4\end{pmatrix}=(-2)\cdot\begin{pmatrix}-1\\-1\\2\end{pmatrix}\]
+	So the lines are either identical or truly parallel.
+	\item Does the starting vector of $g$ fulfil the parametric equation of $h$? Yes, we have
+	\[\begin{pmatrix}1\\-1\\0\end{pmatrix}=\begin{pmatrix}3\\1\\-4\end{pmatrix}+r\cdot \begin{pmatrix}-1\\-1\\2\end{pmatrix}\quad\Rightarrow\quad\begin{array}{rcl}
+	1 & = & 3-r\\
+	-1 & = & 1-r\\
+	0 & = & -4+2r
+	\end{array}\quad\Rightarrow\quad\begin{array}{l}
+	r=2\\
+	r=2\\
+	r=2
+	\end{array}\]
+	So the lines are identical.	
+\end{enumerate}
+\end{beispiel}
+
+\section{Planes}
+\subsection{Coordinate Equation of a Plane}
+To be able to work with the coordinate equation of a plane, we first need to introduce the following concept:
+\begin{defn}[Normal Vector]
+A \emph{normal vector} $\vec{n}_E$ is a vector that is normal (i.e. perpendicular) to the plane $E$.
+\end{defn}
+
+\begin{wichtig}
+\parbox[T]{7cm}{\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.65cm,y=0.65cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[color=black] (-1*\yx,-1*\yy) -- (4*\yx,4*\yy);
+\draw[->,color=black,dash pattern=on 2pt off 2pt] (4*\yx,4*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[color=black] (0,-1*\zy) -- (0,2.3*\zy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (0,2.3*\zy) -- (0,3.04*\zy);
+\draw[->,color=black] (0,3.04*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+%Ecken (-1,-1,3)   (7,-1,2)   (7,5,3)   (-1,5,4)
+\fill[fill=black,fill opacity=0.1] (-1.409,2.777) -- (4.719,0.078) -- (8.576,2.59) -- (2.448,5.289) -- cycle;
+%\foreach \x in {1,...,9}
+%\foreach \y in {1,...,9}
+%\draw [fill=black] (-1.409+\x*0.613+\y*0.386,2.777+\x*-0.270+\y*0.251) circle (1.0pt);
+\draw [->] (-1.409+4*0.613+4*0.386,2.777+4*-0.270+4*0.251) -- (-1.409+9*0.613+5*0.386,2.777+9*-0.270+5*0.251);
+\draw [->] (-1.409+4*0.613+4*0.386,2.777+4*-0.270+4*0.251) -- (2.54,6.176);
+\draw (0,0) -- (0.5*6.038,0.5*1.602);
+\draw [->,dash pattern=on 2pt off 2pt] (0.5*6.038,0.5*1.602) -- (-1.409+9*0.613+5*0.386,2.777+9*-0.270+5*0.251);
+\draw (0,0) -- (0.55*2.587,0.55*2.701);
+\draw [->,dash pattern=on 2pt off 2pt] (0.55*2.587,0.55*2.701) -- (-1.409+4*0.613+4*0.386,2.777+4*-0.270+4*0.251);
+\draw [shift={(-1.409+4*0.613+4*0.386,2.777+4*-0.270+4*0.251)},fill=white,fill opacity=1.0] (0,0) -- (-18:0.6) arc (-18:91:0.6) -- cycle;
+\fill[fill=black] (-1.409+4*0.613+4*0.386+0.25,2.777+4*-0.270+4*0.251+0.2) circle (0.05);
+\draw[color=black] (2.587,2.701) node[anchor=east] {$A$};
+\draw[color=black] (0.5*2.587,0.5*2.701) node[anchor=east] {$\vec{a}$};
+\draw[color=black] (6.038,1.602) node[anchor=west] {$X$};
+\draw[color=black] (0.5*6.038,0.5*1.602) node[anchor=north] {$\vec{x}$};
+\draw[color=black] (4.313,2.152) node[anchor=south] {$\vec{x}-\vec{a}$};
+\draw[color=black] (2.54,6.176) node[anchor=west] {$\vec{n}_E$};
+
+\end{tikzpicture}}\parbox[T]{9cm}{The idea behind the coordinate equation of a plane is the following:
+
+If $A$ is a point on the plane, the vector $\overrightarrow{AX}=\vec{x}-\vec{a}$ connecting $A$ with an arbitrary point $X$ on the plane is completely in the plane. The normal vector is perpendicular to any vector in the plane, thus also to $\overrightarrow{AX}=\vec{x}-\vec{a}$. Two vectors are perpendicular to each other, when the scalar product is zero. In summary:
+\[X\text{ in }E\quad\Rightarrow\quad\vec{n}_E\bot(\vec{x}-\vec{a})\quad\Rightarrow\quad\vec{n}_E\cdot(\vec{x}-\vec{a})=0\]}
+\end{wichtig}
+
+The actual coordinate form is obtained by expanding the above formula $\vec{n}_E\cdot(\vec{x}-\vec{a})=0$.
+
+\begin{beispiel}
+Let us assume that $\vec{n}_E=\begin{pmatrix}2\\3\\4\end{pmatrix}$ is a normal vector of plane $E$, $A(5;6;-5)$ is a given point on the plane and $X(x;y;z)$ is an arbitrary point on the plane:
+\[\vec{n}_E\cdot(\vec{x}-\vec{a})=\begin{pmatrix}2\\3\\4\end{pmatrix}\cdot\left(\begin{pmatrix}x\\y\\z\end{pmatrix}-\begin{pmatrix}5\\6\\-5\end{pmatrix}\right)=\begin{pmatrix}2\\3\\4\end{pmatrix}\cdot\begin{pmatrix}x-5\\y-6\\z+5\end{pmatrix}=\]
+\[2(x-5)+3(y-6)+4(z+5)=2x-10+3y-18+4z+20=2x+3y+4z-8=0\]
+So all points $X(x;y;z)$ that fulfil the equation $2x+3y+4z-8=0$ are thus on plane $E$.
+
+For example, the point $P(4;0;0)$ is on the plane because the equation $2\cdot4+3\cdot0+4\cdot0-8=0$ is true for these coordinates.
+
+In other words, the coordinate equation $2x+3y+4z-8=0$ defines the plane $E$.
+\end{beispiel}
+
+\begin{satz}[Coordinate Equation]
+A plane $E$ is defined by the following \emph{coordinate equation}:
+\[E:ax+by+cz+d=0\]
+$a,b,c,d\in\R$ are called \emph{coefficients}.\\ $a$, $b$ and $c$ are the components of a normal vector of this plane: $\vec{n}_E=\begin{pmatrix}a\\b\\c\end{pmatrix}$
+
+Note: A normal vector of a plane can be found by calculating the vector product of any two
+vectors $\vec{a}$ and $\vec{b}$ that lie on the plane: $\vec{n}_E=\vec{a}\times\vec{b}$
+\end{satz}
+
+\begin{beispiel}
+\begin{enumerate}
+	\item Find the coordinate equation of the plane E that contains the points $A(1;0;-6)$,
+$B(3;2;7)$ and $C(1;2;3)$.
+\begin{enumerate}[(a)]
+	\item Find a normal vector $\vec{n}_E$ of plane $E$:
+	\[\vec{n}_E=\overrightarrow{AB}\times\overrightarrow{AC}=\begin{pmatrix}2\\2\\13\end{pmatrix}\times\begin{pmatrix}0\\2\\9\end{pmatrix}=\begin{pmatrix}-8\\-18\\4\end{pmatrix}\]
+	\item Insert the components $a$, $b$ and $c$ of the normal vector in the coordinate equation:
+	\[E:-8x-18y+4z+d=0\]
+	\item Insert the coordinates of one of the points $A$, $B$ or $C$ into the coordinate equation:
+	\[A(1;0;-6)\text{ in }E:\quad-8\cdot1-18\cdot0+4\cdot(-6)+d=0\quad\Rightarrow\quad d=32\]
+	\item Insert the value found for $d$ in the coordinate equation and simplify it if possible:
+	\[E:-8x-18y+4z+32=0\quad\stackrel{:(-2)}{\Rightarrow}\quad E:4x+9y-2z-16=0\]
+\end{enumerate}
+\item Do the points $P(5;0;2)$ and $Q(-2;4;5)$ lie in this plane $E:4x+9y-2z-16=0$? Check if the points fulfil the equation by inserting their coordinates:
+\begin{flalign*}
+& P: & 4\cdot5+9\cdot0-2\cdot2-16=0 & \quad\Rightarrow\quad0=0\quad\Rightarrow\quad P\text{ lies in the plane }E\\
+& Q: & 4\cdot(-2)+9\cdot4-2\cdot5-16=0 & \quad\Rightarrow\quad2\neq0\quad\Rightarrow\quad Q\text{ does not lie in the plane }E
+\end{flalign*}
+\end{enumerate}
+\end{beispiel}
+
+\newpage
+
+\begin{uebung}
+\begin{enumerate}[\bfseries 1.]
+\setlength{\itemsep}{1ex}
+	\item Determine the coordinate equation of the plane $E$ that contains the points $A(-1;0;2)$, $B(0;-2;-2)$ and $C(-4;3;5)$. Then, check if the points $P(-3;5;9)$ and $Q(6;-4;4)$ lie in the plane.
+	
+	\vspace{8.5cm}
+	
+	\item Determine the coordinate equation of the plane $E$ that contains the point $B(3;0;2)$ and the line $g:\vec{x}=\begin{pmatrix}1\\1\\0\end{pmatrix}+t\cdot \begin{pmatrix}0\\3\\-1\end{pmatrix}$.
+	
+	\vspace{8.5cm}
+	
+	$\text{ }$	
+	\newpage
+	
+	\item Given is the plane $E:2x-3y+z+5=0$.
+	\begin{enumerate}[(a)]
+	\setlength{\itemsep}{-1ex}
+		\item Determine three normal vectors of the plane $E$.
+		\item Determine three points that lie on the plane $E$.
+		\item Find a different coordinate equation that defines the plane $E$.
+	\end{enumerate}
+	
+	\vspace{6cm}
+		
+	\item \parbox[t]{8cm}{The lines of intersection of a plane $E$ with the three coordinate planes ($xy$-plane, $xz$-plane and $yz$-plane) are called \emph{traces}. The points of intersection of a plane $E$ with the three coordinate axes are called \emph{axis intercepts}. Study the sketch to the right and determine the axis intercepts and traces of the plane $E:4x+3y+6z-12=0$.}\hfill\parbox[t]{6.5cm}{$\text{ }$\vspace{-3mm}
+	
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.65cm,y=0.65cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[color=black] (-1*\yx,-1*\yy) -- (4.8*\yx,4.8*\yy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (4.8*\yx,4.8*\yy) -- (10*\yx,10*\yy);
+\draw[->,color=black] (10*\yx,10*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[->,color=black] (0,-1*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+\fill[fill=black,fill opacity=0.1] (0,4*\zy) -- (9*\xx,9*\xy) -- (10*\yx,10*\yy) -- cycle;
+\draw [fill=black] (0,4*\zy) circle (1.0pt);
+\draw [fill=black] (9*\xx,9*\xy) circle (1.0pt);
+\draw [fill=black] (10*\yx,10*\yy) circle (1.0pt);
+\draw [domain=-0.78:8] plot(\x,{(--25.92144-5.74*\x)/6.894});
+\draw [domain=6.3:7] plot(\x,{(-30.79368--4.6*\x)/-0.464});
+\draw [domain=-0.78:8] plot(\x,{(-24.1768--1.14*\x)/-6.43});
+\draw[color=black] (9*\xx,9*\xy) node[anchor=south west] {$(x;0;0)$};
+\draw[color=black] (10*\yx,10*\yy) node[anchor=south west] {$(0;y;0)$};
+\draw[color=black] (0,4*\zy) node[anchor=south west] {$(0;0;z)$};
+\draw[color=black] (4.5*\xx+5*\yx,4.5*\xy+5*\yy) node[anchor=west] {$s_1$};
+\draw[color=black] (5*\yx,5*\yy+2*\zy) node[anchor=south] {$s_2$};
+\draw[color=black] (4.5*\xx,4.5*\xy+2*\zy) node[anchor=north east] {$s_3$};
+\end{tikzpicture}}
+
+\vspace{7.5cm}
+	
+\end{enumerate}
+\end{uebung}
+
+\subsection{Mutual Poistion of Two Planes}
+There are three possible mutual positions of two planes in space:
+
+\parbox[T]{5.3cm}{\textbf{1. identical}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[color=black] (-1*\yx,-1*\yy) -- (4*\yx,4*\yy);
+\draw[->,color=black,dash pattern=on 2pt off 2pt] (4*\yx,4*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[color=black] (0,-1*\zy) -- (0,2.3*\zy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (0,2.3*\zy) -- (0,3.04*\zy);
+\draw[->,color=black] (0,3.04*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+%Ecken (-1,-1,3)   (7,-1,2)   (7,5,3)   (-1,5,4)
+\fill[fill=black,fill opacity=0.3] (-1.409,2.777) -- (4.719,0.078) -- (8.576,2.59) -- (2.448,5.289) -- cycle;
+%\foreach \x in {1,...,9}
+%\foreach \y in {1,...,9}
+%\draw [fill=black] (-1.409+\x*0.613+\y*0.386,2.777+\x*-0.270+\y*0.251) circle (1.0pt);
+\draw[color=black] (4.719,0.078) node[anchor=north] {$E=F$};
+\end{tikzpicture}}\hfill\parbox[T]{5.3cm}{\textbf{2. truly parallel}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[color=black] (-1*\yx,-1*\yy) -- (4*\yx,4*\yy);
+\draw[->,color=black,dash pattern=on 2pt off 2pt] (4*\yx,4*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[color=black] (0,-1*\zy) -- (0,2.3*\zy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (0,2.3*\zy) -- (0,3.04*\zy);
+\draw[color=black] (0,3.04*\zy) -- (0,3.3*\zy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (0,3.3*\zy) -- (0,4.04*\zy);
+\draw[->,color=black] (0,4.04*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+%Ecken (-1,-1,3)   (7,-1,2)   (7,5,3)   (-1,5,4)
+\fill[fill=black,fill opacity=0.1] (-1.409,2.777) -- (4.719,0.078) -- (8.576,2.59) -- (2.448,5.289) -- cycle;
+\fill[fill=black,fill opacity=0.2] (-1.409,3.777) -- (4.719,1.078) -- (8.576,3.59) -- (2.448,6.289) -- cycle;
+%\foreach \x in {1,...,9}
+%\foreach \y in {1,...,9}
+%\draw [fill=black] (-1.409+\x*0.613+\y*0.386,2.777+\x*-0.270+\y*0.251) circle (1.0pt);
+\draw[color=black] (8.376,2.59) node[anchor=west] {$E$};
+\draw[color=black] (8.376,3.59) node[anchor=west] {$F$};
+\end{tikzpicture}}\hfill\parbox[T]{5.3cm}{\textbf{3. intersecting}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[color=black] (-1*\xx,-1*\xy) -- (2.9*\xx,2.9*\xy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (2.9*\xx,2.9*\xy) -- (4.1*\xx,4.1*\xy);
+\draw[->,color=black] (4.1*\xx,4.1*\xy) -- (11*\xx,11*\xy);
+
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[color=black] (-1*\yx,-1*\yy) -- (2.4*\yx,2.4*\yy);
+\draw[->,color=black,dash pattern=on 2pt off 2pt] (2.4*\yx,2.4*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[color=black] (0,-1*\zy) -- (0,2.3*\zy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (0,2.3*\zy) -- (0,3.04*\zy);
+\draw[color=black] (0,3.04*\zy) -- (0,4*\zy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (0,4*\zy) -- (0,5*\zy);
+\draw[->,color=black] (0,5*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+%Ecken (-1,-1,3)   (7,-1,2)   (7,5,3)   (-1,5,4)
+\fill[fill=black,fill opacity=0.1] (-1.409,2.777) -- (4.719,0.078) -- (8.576,2.59) -- (2.448,5.289) -- cycle;
+\fill[fill=black,fill opacity=0.2] (2.421,-1.141) -- (8.117,0.561) -- (5.359,6.239) -- (-0.336,4.536) -- cycle;
+%\foreach \x in {1,...,9}
+%\foreach \y in {1,...,9}
+%\draw [fill=black] (-1.409+\x*0.613+\y*0.386,2.777+\x*-0.270+\y*0.251) circle (1.0pt);
+\draw[color=black] (-1.409+4*0.613,2.777+4*-0.270) -- (-1.409+7*0.613+10*0.386,2.777+7*-0.270+10*0.251);
+\draw[color=black] (8.376,2.59) node[anchor=west] {$E$};
+\draw[color=black] (7.917,0.561) node[anchor=west] {$F$};
+\end{tikzpicture}}
+
+If we are given the coordinate equations of two planes $E$ and $F$, it is relatively easy to algebraically determine their mutual position:
+\begin{enumerate}
+	\item \textbf{Analyse their normal vectors:} Are they linearly dependent (i.e. collinear / parallel) or not? Check: Is $\vec{n}_E=k\cdot\vec{n}_F$ solvable for $k$?
+	\begin{itemize}
+	\setlength{\itemsep}{-1ex}
+		\item If the normal vectors are linearly dependent: the planes are either identical or truly parallel.
+		\item If the normal vectors are not linearly dependent: the planes are intersecting.
+	\end{itemize}
+	
+	\item \textbf{Identical or truly parallel?} If the normal vectors are linearly dependent, analyse if the coordinate equations of the planes are identical. Check: Is $E=k\cdot F$ solvable for k?
+		\begin{itemize}
+		\setlength{\itemsep}{-1ex}
+		\item If the coordinate equations are identical, the planes are identical.
+		\item If the coordinate equations are not identical, the planes are truly parallel.
+	\end{itemize}
+	\end{enumerate}
+	
+\begin{beispiel}
+Determine the mutual position of the planes
+\[E:8x+6y+2z-24=0\text{ and }F:4x+3y+z-10=0\]
+\begin{enumerate}
+	\item Are their normal vectors linearly dependent? Yes, we have
+	\[\begin{pmatrix}8\\6\\2\end{pmatrix}=2\cdot\begin{pmatrix}4\\3\\1\end{pmatrix}\]
+	So the planes are either identical or truly parallel.
+	\item Are the coordinate equations identical? No, because
+	\[E\neq k\cdot F\qquad\forall k\in\R\]
+	So the planes are truly parallel.	
+\end{enumerate}
+\end{beispiel}
+
+\begin{beispiel}
+Determine the mutual position of the planes
+\[E:2x-y+6z+3=0\text{ and }F:4x-9y-2z-1=0\]
+\begin{enumerate}
+	\item Are their normal vectors linearly dependent? No, because
+	\[\begin{pmatrix}2\\-1\\6\end{pmatrix}\neq k\cdot\begin{pmatrix}4\\-9\\-2\end{pmatrix}\qquad\forall k\in\R\]
+	So the planes are intersecting.
+	\item What is the line of intersection?\\
+	We combine both coordinate equations into one system of equations.
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+2x & - & y  & + & 6z & = & -3 & \\
+4x & - & 9y & - & 2z & = & 1 & -2\cdot I
+\end{array}\quad\quad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+2x & - & y  & + & 6z  & = & -3 & \\
+   & - & 7y & - & 14z & = & 7  & :(-7)
+\end{array}\quad\quad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+2x & - & y & + & 6z & = & -3 \\
+   &   & y & + & 2z & = & -1  
+		\end{array}\]
+This has infinitely many solutions of which we need 2 to form the line of intersection.
+	\[\begin{array}{l}
+	A:\qquad z=1\quad\Rightarrow\quad y=-3\quad\Rightarrow\quad x=-6\quad\Rightarrow\quad A(-6;-3;1)\\
+	B:\qquad z=0\quad\Rightarrow\quad y=-1\quad\Rightarrow\quad x=-2\quad\Rightarrow\quad B(-2;-1;0)
+	\end{array}\]
+	\[g:\vec{x}=\overrightarrow{OA}+t\cdot\overrightarrow{AB}\quad\Rightarrow\quad g:\vec{x}=\begin{pmatrix}-6\\-3\\1\end{pmatrix}+t\cdot \begin{pmatrix}4\\2\\-1\end{pmatrix}\]
+\end{enumerate}
+\end{beispiel}
+
+\begin{uebung}
+Determine the mutual position of the following planes (lines of intersections do not have to be calculated):
+\begin{enumerate}[(a)]
+\setlength{\itemsep}{-1ex}
+\item $E:-3x+6y-12z+9=0$ and $F:x-2y+4z+3=0$
+
+\vspace{1.6cm}
+
+\item $E:-7x+14y-8z-4=0$ and $F:14x-28y+18z+8=0$
+
+\vspace{1.6cm}
+
+\item $E:10x+5y-25z+15=0$ and $F:2x+y-5z+3=0$
+
+\vspace{1.6cm}
+
+\end{enumerate}
+\end{uebung}
+
+
+\subsection{Intersection Points of a Line and a Plane}
+There are three possible mutual positions of a line and a plane in space and according to their position they either have infinitely many intersection points, no or one intersection point:
+
+\parbox[T]{5.3cm}{\textbf{1. infinitely many}\\ (line lies in the plane)
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[color=black] (-1*\yx,-1*\yy) -- (4*\yx,4*\yy);
+\draw[->,color=black,dash pattern=on 2pt off 2pt] (4*\yx,4*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[color=black] (0,-1*\zy) -- (0,2.3*\zy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (0,2.3*\zy) -- (0,3.04*\zy);
+\draw[->,color=black] (0,3.04*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+%Ecken (-1,-1,3)   (7,-1,2)   (7,5,3)   (-1,5,4)
+\fill[fill=black,fill opacity=0.1] (-1.409,2.777) -- (4.719,0.078) -- (8.576,2.59) -- (2.448,5.289) -- cycle;
+\draw [domain=-1.18:-0.2] plot(\x,{(--28.974021999999998-2.198*\x)/6.902});
+\draw [domain=0.2:8] plot(\x,{(--28.974021999999998-2.198*\x)/6.902});
+%\foreach \x in {1,...,9}
+%\foreach \y in {1,...,9}
+%\draw [fill=black] (-1.409+\x*0.613+\y*0.386,2.777+\x*-0.270+\y*0.251) circle (1.0pt);
+\draw[color=black] (8.376,2.59) node[anchor=west] {$E$};
+\draw[color=black] (8,1.65) node[anchor=west] {$g$};
+\end{tikzpicture}}\hfill\parbox[T]{5.3cm}{\textbf{2. none}\\ (line is parallel to the plane)
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[color=black] (-1*\yx,-1*\yy) -- (4*\yx,4*\yy);
+\draw[->,color=black,dash pattern=on 2pt off 2pt] (4*\yx,4*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[color=black] (0,-1*\zy) -- (0,2.3*\zy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (0,2.3*\zy) -- (0,3.04*\zy);
+\draw[->,color=black] (0,3.04*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+%Ecken (-1,-1,3)   (7,-1,2)   (7,5,3)   (-1,5,4)
+\fill[fill=black,fill opacity=0.1] (-1.409,2.777) -- (4.719,0.078) -- (8.576,2.59) -- (2.448,5.289) -- cycle;
+\draw [domain=-1.18:-0.2] plot(\x,{(--28.974021999999998-2.198*\x)/6.902+1});
+\draw [domain=0.2:8] plot(\x,{(--28.974021999999998-2.198*\x)/6.902+1});
+\draw [domain=-1.18:-0.2,dash pattern=on 2pt off 2pt] plot(\x,{(--28.974021999999998-2.198*\x)/6.902});
+\draw [domain=0.2:8,dash pattern=on 2pt off 2pt] plot(\x,{(--28.974021999999998-2.198*\x)/6.902});
+\draw[<->,color=black] (1.521,3.714) -- (1.521,4.714);
+\draw[<->,color=black] (6.423,2.152) -- (6.423,3.152);
+
+%\foreach \x in {1,...,9}
+%\foreach \y in {1,...,9}
+%\draw [fill=black] (-1.409+\x*0.613+\y*0.386,2.777+\x*-0.270+\y*0.251) circle (1.0pt);
+\draw[color=black] (8.376,2.59) node[anchor=west] {$E$};
+\draw[color=black] (8,2.65) node[anchor=south] {$g$};
+\end{tikzpicture}}\hfill\parbox[T]{5.3cm}{\textbf{3. one}\\ $\text{ }$
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\def\xx{0.766}
+\def\xy{-0.220}
+\def\yx{0.643}
+\def\yy{0.262}
+\def\zy{0.940}
+\draw[->,color=black] (-1*\xx,-1*\xy) -- (11*\xx,11*\xy);
+\foreach \x in {1,...,10}
+\draw[shift={(\xx*\x,\xy*\x)},color=black] (0.2*\xx,-0.2*\xy) -- (-0.2*\xx,0.2*\xy);
+\draw[color=black] (-1*\yx,-1*\yy) -- (4*\yx,4*\yy);
+\draw[->,color=black,dash pattern=on 2pt off 2pt] (4*\yx,4*\yy) -- (11*\yx,11*\yy);
+\foreach \x in {1,...,10}
+\draw[shift={(\yx*\x,\yy*\x)},color=black] (0.2*\yx,-0.2*\yy) -- (-0.2*\yx,0.2*\yy);
+\draw[color=black] (0,-1*\zy) -- (0,2.3*\zy);
+\draw[color=black,dash pattern=on 2pt off 2pt] (0,2.3*\zy) -- (0,3.04*\zy);
+\draw[->,color=black] (0,3.04*\zy) -- (0,6*\zy);
+\foreach \x in {1,...,5}
+\draw[shift={(0,\zy*\x)},color=black] (0.1,0) -- (-0.1,0);
+%Ecken (-1,-1,3)   (7,-1,2)   (7,5,3)   (-1,5,4)
+\fill[fill=black,fill opacity=0.1] (-1.409,2.777) -- (4.719,0.078) -- (8.576,2.59) -- (2.448,5.289) -- cycle;
+\draw [domain=0.8:3] plot(\x,{(--37.0204-5.46*\x)/5.9});
+\draw [domain=3:5.9,dash pattern=on 2pt off 2pt] plot(\x,{(--37.0204-5.46*\x)/5.9});
+\draw [domain=5.9:8] plot(\x,{(--37.0204-5.46*\x)/5.9});
+\draw [fill=black] (3,3.498) circle (1.0pt);
+%\foreach \x in {1,...,9}
+%\foreach \y in {1,...,9}
+%\draw [fill=black] (-1.409+\x*0.613+\y*0.386,2.777+\x*-0.270+\y*0.251) circle (1.0pt);
+\draw[color=black] (8.376,2.59) node[anchor=west] {$E$};
+\draw[color=black] (8,-1.129) node[anchor=west] {$g$};
+\draw[color=black] (3,3.498) node[anchor=south west] {$S$};
+\end{tikzpicture}}
+
+How can we determine the intersection point $S$ of a line and a plane?
+
+\begin{beispiel}
+Determine the point of intersection $S$ of the line $g$ and the plane $E$:
+\[g:\vec{x}=\begin{pmatrix}-5\\2\\10\end{pmatrix}+t\cdot \begin{pmatrix}2\\0\\-3\end{pmatrix}\qquad E:3x-2y+5z-4=0\]
+The point of intersection $S(x;y;z)$ lies on the line and the plane. Thus, this point fulfils both equations! With the parametric equation of the line we can define its position vector as follows:
+\[\overrightarrow{OS}=\begin{pmatrix}-5\\2\\10\end{pmatrix}+t\cdot \begin{pmatrix}2\\0\\-3\end{pmatrix}=\begin{pmatrix}-5+2t\\2\\10-3t\end{pmatrix}=\begin{pmatrix}x\\y\\z\end{pmatrix}\]
+We now insert the components of the position vector of point $S$ into the plane equation and solve for $t$:
+\[3\cdot(-5+2t)-2\cdot2+5\cdot(10-3t)-4=0\quad\Rightarrow\quad-15+6t-4+50-15t-4=0\quad\Rightarrow\quad t=3\]
+Now we can determine the position vector of point $S$ by inserting the value $t=3$:
+\[\overrightarrow{OS}=\begin{pmatrix}-5+2\cdot3\\2\\10-3\cdot3\end{pmatrix}=\begin{pmatrix}1\\2\\1\end{pmatrix}\quad\Rightarrow\quad S(1;2;1)\]
+\end{beispiel}
+
+\newpage
+
+\begin{wichtig}
+To find out if a line lies in a plane or is truly parallel, we can follow the same procedure as outlined in the example above. However, when you insert the components of the position vector of point $S$ in the plane equation you are going to get a generally valid equation (e.g. $0=0$ or $3=3$) if the line lies in the plane and a wrong equation (e.g. $5=0$ or $2=4$) if the line is truly parallel to the plane.
+\end{wichtig}
+
+\begin{uebung}
+\begin{enumerate}[\bfseries 1.]
+	\item Determine the number of intersection points of the line $g$ and the plane $E$:
+\[g:\vec{x}=\begin{pmatrix}1\\0\\-1\end{pmatrix}+t\cdot \begin{pmatrix}-1\\0\\-1\end{pmatrix}\qquad E:-2x+y+2z+4=0\]
+
+\vspace{6cm}
+
+	\item Determine the number of intersection points of the line $g$ and the plane $E$:
+\[g:\vec{x}=\begin{pmatrix}1\\0\\0\end{pmatrix}+t\cdot \begin{pmatrix}2\\-1\\3\end{pmatrix}\qquad E:4x+2y-2z+4=0\]
+
+\vspace{6cm}
+
+\end{enumerate}
+\end{uebung}
+
+
+
+\end{document}

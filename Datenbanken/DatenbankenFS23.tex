@@ -1,0 +1,58 @@
+\documentclass[12pt,deu]{skript_ogg}
+\usepackage{subfiles}
+\usepackage{hyperref}
+
+\stufe{FS23}
+\thema{Datenbanken}
+
+%---------------------------------------------------------------
+
+%------------------HAUPTDOKUMENT--------------------------------
+
+%---------------------------------------------------------------
+
+\begin{document}
+%---------------------------------------------------------------
+%Titelseite
+%---------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+
+\begin{center}
+
+\vspace*{0cm} {\setlength{\baselineskip}{8ex}
+
+{\Huge\textbf{Datenbanken}\\[2.5cm]}
+
+{\Large\textbf{Fr\"uhlingssemester 23}}}
+
+\vspace{5mm}
+
+\includegraphics[width=10cm]{Postgresql_elephant.png}
+\end{center}
+
+\vfill
+
+
+\rule{\textwidth}{0.5pt}
+
+\begin{flushright}
+Manuel Fl\"uckiger\\
+Universit\"at Bern\\
+\vspace{5mm} \copyright\,\,Mai 2023
+\end{flushright}
+
+\end{titlepage}
+
+
+\clearpage
+\subfile{01_intro/introduction.tex}
+
+\clearpage
+\tableofcontents        % Inhaltsverzeichnis
+\newpage
+
+\clearpage
+\subfile{02_mengenlehre/mengenlehre.tex}
+
+\end{document}

@@ -1,0 +1,1856 @@
+\documentclass[12pt,eng]{skript_ogg}
+
+\stufe{3}
+
+\thema{Differential Calculus}
+
+%---------------------------------------------------------------
+
+%------------------HAUPTDOKUMENT--------------------------------
+
+%---------------------------------------------------------------
+
+\begin{document}
+%---------------------------------------------------------------
+%Titelseite
+%---------------------------------------------------------------
+\thispagestyle{plain}
+\begin{titlepage}
+
+\begin{center}
+
+\vspace*{0cm} {\setlength{\baselineskip}{8ex}
+
+{\Huge\textbf{GYM3}\\[2.5cm]}
+
+{\Large\textbf{3\\Differential Calculus}}}
+
+\vspace{5mm}
+
+\includegraphics[scale=1.5]{Titelblatt.jpg}
+\end{center}
+
+\vfill
+
+{\large Name:\\
+Class:}\\
+\rule{\textwidth}{0.5pt}
+
+\begin{flushright}
+Theo Oggier\\
+Gymnasium Burgdorf\\
+\vspace{5mm} \copyright\,\,August 2020
+\end{flushright}
+
+\end{titlepage}
+
+\tableofcontents        % Inhaltsverzeichnis
+\newpage
+
+\clearpage
+
+\section{Introduction}
+\subsection{Tangent Problem}
+Differential calculus solves a problem that was already formulated by the ancient Greek mathematicians: the so called \emph{tangent problem}. It was well known to the Greeks, when given a circle $c$ with center $M$ and a point $P$ outside the circle, how to construct a tangent $t$ to that circle passing through $P$.
+
+\vspace{-3mm}
+
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-2.88,-2.16) rectangle (4.52,3.28);
+\draw(-0.94,1.08) circle (1.87cm);
+\draw [dash pattern=on 3pt off 3pt] (-1.26,1.17)-- (4.14,-0.39);
+\draw [dash pattern=on 3pt off 3pt] (0.83,-1.72)-- (2.1,2.66);
+\draw [dash pattern=on 3pt off 3pt] (1.44,0.39) circle (2.48cm);
+\draw (-0.61,3.2)-- (4.14,-0.56);
+\draw [shift={(-0.94,1.08)},dash pattern=on 3pt off 3pt] plot[domain=-1.051:0.499,variable=\t]({3*cos(\t r)},{3*sin(\t r)});
+\draw [shift={(3.82,-0.3)},dash pattern=on 3pt off 3pt] plot[domain=2.079:3.629,variable=\t]({3*cos(\t r)},{3*sin(\t r)});
+\draw[color=black] (-2.02,2.36) node {$c$};
+\draw[color=black] (2.9,0.84) node {$t$};
+\draw [fill=black] (-0.94,1.08) circle (1.0pt);
+\draw[color=black] (-0.94,1.08) node[anchor=south east] {$M$};
+\draw [fill=black] (3.82,-0.3) circle (1.0pt);
+\draw[color=black] (3.82,-0.3) node[anchor=south west] {$P$};
+\draw [fill=black] (0.22,2.55) circle (1.0pt);
+\draw[color=black] (0.22,2.55) node[anchor=south] {$T$};
+\end{tikzpicture}
+\end{center}
+
+However, it was unclear to them how to construct a tangent to an arbitrary curve (parabola, hyperbola, etc.). Around 1640 \textsc{Pierre de Fermat} solved the problem for polynomials.  \textsc{Fermat} introduced the term \emph{adequality} ($=$ almost equal) for his method. We will see that his ideas, if not as rigorous as what came after, are still helpful to develop an intuition about tangents to curves. The problem was finally solved for any curve or, to use modern day terminology, for the graph of any function by the English mathematician Sir \textsc{Isaac Newton} and independently by the German mathematician \textsc{Gottfried Wilhelm Leibniz} at the end of the 17\textsuperscript{th} century.
+
+\subsection{Instantaneous Rate of Change}
+
+When solving the tangent problem, \textsc{Newton} and \textsc{Leibniz} also solved the \emph{instantaneous rate of change} problem. Imagine a journey by car. You leave home at 1 pm and you reach your destination, which is 60 km away, at 2 pm. You traveled 60 km in 1 h, which means that your average velocity or average rate of change in position was 
+\[\mbox{rate}=\frac{\mbox{distance traveled}}{\mbox{time elapsed}}=\frac{60\mbox{ km}}{1\mbox{ h}}=60\mbox{ km/h}\]
+It is clear, though, that you did not travel a constant 60 km/h. You probably traveled on different types of roads with different speed limits and you had to stop at crossroads. So what exactly was your velocity at say 13:41:17.85?
+
+Both problems translate into the question about how to find the slope or gradient of an arbitrary function at an arbitrary point.
+
+\subsection{Tangent and Instantaneous Rate of Change with Straight Lines}
+
+As we already know, we can uniquely assign a slope to any non-vertical straight line. If we choose two arbitrary points $P_1(x_1;y_1)$ and $P_2(x_2;y_2)$ on the line, then the slope $m$ is defined as
+\[m=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}.\]
+
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-0.5,0) -- (5,0);
+\draw[->,color=black] (0,-0.5) -- (0,3);
+\draw (5,0) node[anchor=south east] {$x$};
+\draw (0,3) node[anchor=north west] {$y$};
+\clip(-0.5,-0.5) rectangle (5,3);
+\draw [dash pattern=on 3pt off 3pt] (3,1.5)-- (3,0.75);
+\draw [dash pattern=on 3pt off 3pt] (3,0.75)-- (1.5,0.75);
+\draw [domain=-0.5:5] plot(\x,{0.5*\x});
+\begin{scriptsize}
+\draw[color=black] (3,1.25) node[anchor=west] {$\Delta y$};
+\draw[color=black] (2.25,0.75) node[anchor=north] {$\Delta x$};
+\draw [fill=black] (1.5,0.75) circle (1.0pt);
+\draw[color=black] (1.5,0.75) node[anchor=south east] {$P_1(x_1;y_1)$};
+\draw [fill=black] (3,1.5) circle (1.0pt);
+\draw[color=black] (3,1.5) node[anchor=south east] {$P_2(x_2;y_2)$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+
+All slope triangles are similar, so it does not matter which points we choose.
+\begin{bemerkung}
+\textbf{Tangent:} A tangent to a straight line at a point $P$ is just the straight line itself. So the slope of the tangent is equal to the slope of the line.
+
+\textbf{Instantaneous Rate of change:} The average rate of change between two points $\Delta y/\Delta x$ is always the same. So it makes sense to say that the instantaneous rate of change at a certain point is also equal to that ratio.
+\end{bemerkung}
+
+\subsection{Tangent and Instantaneous Rate of Change with an Arbitrary Function}
+
+Consider now the graph of the function $f(x)=2\sqrt{x-2}$. The graph of this function is curved: If you follow the graph in positive $x$-direction, it becomes flatter. How do we define the slope at a certain point? Consider the point $P(3;2)$. If we do the same as before with the straight line, we will not get a unique result: According to which point we choose for the second one, we will get a different slope triangle and therefore a different slope. However, what seems to be uniquely defined, at least in our example, is the tangent line. Hence, we define the slope at $P$ as the slope of the tangent at that point, i.e.\ the slope of the one line that touches but does not cut the graph at $P$.
+\begin{defn}[Slope of a Function]
+The Graph $G_f$ of a function $f$ has a unique tangent $t$ at the point $P$. The slope of $f$ at $P$ is equal to the slope of $t$.
+\end{defn}
+
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.8cm,y=0.8cm]
+\draw[->,color=black] (-0.5,0) -- (7.5,0);
+\foreach \x in {1,2,3,4,5,6,7}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,5.5);
+\foreach \y in {1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-0.5,-0.5) rectangle (7.5,5.5);
+\draw[color=black] (7.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,5.5) node[anchor=north west] {$f(x)$};
+\draw[smooth,samples=100,domain=2:7.5] plot(\x,{2*sqrt((\x)-2)});
+\draw [color=black] (2,4) node {slope $=$ ?};
+\draw [->] (2,3.5) -- (3,2);
+\draw (2,4) ellipse (1.5 and 0.5);
+\draw [fill=black] (3,2) circle (1.0pt);
+\draw [color=black] (3,2) node[anchor=north west] {$P(3;2)$};
+\end{tikzpicture}\qquad\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.8cm,y=0.8cm]
+\draw[->,color=black] (-0.5,0) -- (7.5,0);
+\foreach \x in {1,2,3,4,5,6,7}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,5.5);
+\foreach \y in {1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-0.5,-0.5) rectangle (7.5,5.5);
+\draw[color=black] (7.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,5.5) node[anchor=north west] {$f(x)$};
+\draw[smooth,samples=100,domain=2:7.5] plot(\x,{2*sqrt((\x)-2)});
+\draw [domain=-0.5:7.5] plot(\x,{\x-1});
+\draw [fill=black] (3,2) circle (1.0pt);
+\draw [color=black] (3,2) node[anchor=north west] {$P(3;2)$};
+\end{tikzpicture}
+\end{center}
+
+That is how this translates into the tangent problem: How to find the tangent (and especially its slope) at a point $P$ on the graph of $f$. To put it bluntly, the aim of differential calculus is to solve the tangent problem for any function.
+
+How it is related to the rate of change problem becomes clear if we tackle it a bit more mathematically. We want to find the slope of the function $f(x)=2\sqrt{x-2}$ at the point $P_1(3;2)$. We start at point $P_1$ and go a certain distance in positive $x$-direction (e.g.\ $\Delta x=3$). Then, we calculate the coordinates of the corresponding point on the graph: $P_2(6;4)$. The straight line through these two points has the slope 
+\[\frac{\Delta y}{\Delta x}=\frac{4-2}{6-3}=\frac{2}{3}.\]
+This line is also called a \textbf{secant line} through $P_1$ and $P_2$ and its slope is called \textbf{difference quotient} $\frac{\Delta y}{\Delta x}$. The difference quotient is of course equal to the average rate of change. $\frac{2}{3}$ is a first rough approximation of the slope at the point $P_1$, i.e.\ of the slope of the tangent at that point and also for the instantaneous rate of change. As we can see, though, the value $\frac{2}{3}$ is too small: The tangent line is steeper than the secant line through $P_1$ and $P_2$. 
+
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.8cm,y=0.8cm]
+\draw[->,color=black] (-0.5,0) -- (7.5,0);
+\foreach \x in {1,2,3,4,5,6,7}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,5.5);
+\foreach \y in {1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-0.5,-0.5) rectangle (7.5,5.5);
+\draw[color=black] (7.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,5.5) node[anchor=north west] {$f(x)$};
+\draw[smooth,samples=100,domain=2:7.5] plot(\x,{2*sqrt((\x)-2)});
+\draw [dotted,domain=-0.5:7.5] plot(\x,{\x-1});
+\draw [dash pattern=on 2pt off 2pt] (3,2)-- (6,2);
+\draw [dash pattern=on 2pt off 2pt] (6,2)-- (6,4);
+\draw [domain=-0.5:7.5] plot(\x,{(0.666*\x});
+\draw [fill=black] (3,2) circle (1.0pt);
+\draw[color=black] (3,2) node[anchor=south east] {$P_1(3;2)$};
+\draw [fill=black] (6,4) circle (1.0pt);
+\draw[color=black] (6,4) node[anchor=south east] {$P_2(6;4)$};
+\draw[color=black] (4.5,2) node[anchor=north] {$\Delta x$};
+\draw[color=black] (6,3) node[anchor=west] {$\Delta y$};
+\end{tikzpicture}\qquad\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.8cm,y=0.8cm]
+\draw[->,color=black] (-0.5,0) -- (7.5,0);
+\foreach \x in {1,2,3,4,5,6,7}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,5.5);
+\foreach \y in {1,2,3,4,5}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-0.5,-0.5) rectangle (7.5,5.5);
+\draw[color=black] (7.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,5.5) node[anchor=north west] {$f(x)$};
+\draw[smooth,samples=100,domain=2:7.5] plot(\x,{2*sqrt((\x)-2)});
+\draw [dotted,domain=-0.5:7.5] plot(\x,{\x-1});
+\draw [dash pattern=on 2pt off 2pt] (3,2)-- (4,2);
+\draw [dash pattern=on 2pt off 2pt] (4,2)-- (4,2.828);
+\draw [domain=-0.5:7.5] plot(\x,{(0.828*\x-0.484});
+\draw [fill=black] (3,2) circle (1.0pt);
+\draw[color=black] (3,2) node[anchor=south east] {$P_1(3;2)$};
+\draw [fill=black] (4,2.828) circle (1.0pt);
+\draw[color=black] (4,2.828) node[anchor=south east] {$P_2(4;2\sqrt{2})$};
+\draw[color=black] (3.5,2) node[anchor=north] {$\Delta x$};
+\draw[color=black] (4,2.414) node[anchor=west] {$\Delta y$};
+\end{tikzpicture}
+\end{center}
+
+
+A better approximation is obtained if we choose $\Delta x$ to be smaller, e.g.\ $\Delta x=1$. The secant line through $P_1(3;2)$ and $P_2(4;2\sqrt{2})$ has the slope and the difference quotient $\frac{\Delta y}{\Delta x}\approx 0.828$. If we choose smaller and smaller values for $\Delta x$, the slope of the secant line approaches the slope of the tangent line. In the table below $\Delta x$ becomes smaller from one row to the next. The slope of the corresponding secant line can be seen in the last column. It approaches the value $1$. We will see later that $1$ is in fact the exact result for the slope in the point $P_1(3;2)$.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}\hline
+$\Delta x$& Point &$\Delta y$ & Difference quotient ($\frac{\Delta y}{\Delta x}$)\\ \hline \hline 
+$3$ & $P_2(6;4)$ & $2$ & $0.667$ \\ \hline
+$2$ & $P_2(5;2\sqrt{3})$ & $1.464$ & $0.732$ \\ \hline
+$1$ &  $P_2(4;2\sqrt{2})$ & $0.828$ & $0.828$ \\ \hline
+$0.5$ & $P_2(3.5;2.449)$ & $0.449$ & $0.899$ \\ \hline
+$0.1$ & $P_2(3.1;2.098)$ & $0.098$ & $0.976$ \\ \hline
+$0.01$ & $P_2(3.01;2.010)$ & $0.010$ & $0.998$ \\ \hline
+$0.001$ & $P_2(3.001; 2.001)$ & $0.001$ & $0.9998$ \\ \hline
+\end{tabular}
+\end{center}
+
+The approach in this example is the basis for the calculation of the slope of a tangent line: You consider the difference quotient $\frac{\Delta y}{\Delta x}$ and then you let $\Delta x$ approach zero. As $\Delta x \rightarrow 0$ we get the exact slope of the tangent line. 
+
+In another example, let us consider the function $f(x)=x^2$. We want to calculate the slope at the point $P_1(1;1)$.
+
+\vspace{-3mm}
+
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.7cm,y=1.7cm]
+\draw[->,color=black] (-0.5,0) -- (2.5,0.);
+\foreach \x in {1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt);
+\draw[->,color=black] (0,-0.5) -- (0,3.8);
+\foreach \y in {1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt);
+\clip(-2.5,-0.5) rectangle (4.5,3.8);
+\draw[color=black] (2.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,3.8) node[anchor=north west] {$f(x)$};
+\draw[smooth,samples=100,domain=-0.5:2.5] plot(\x,{(\x)^(2)});
+\draw [dash pattern=on 2pt off 2pt] (1,1)-- (1.7,1);
+\draw [dash pattern=on 2pt off 2pt] (1.7,1)-- (1.7,2.89);
+\draw [dotted] (0,2.89)-- (1.7,2.89);
+\draw [dotted] (0,1)-- (1,1);
+\draw [dotted] (1,1)-- (1,0);
+\draw [dotted] (1.7,1)-- (1.7,0);
+\draw [fill=black] (1,1) circle (1.0pt);
+\draw[color=black] (1,1) node[anchor=south east] {$P_1(1;1)$};
+\draw [fill=black] (1.7,2.89) circle (1.0pt);
+\draw[color=black] (1.7,2.89) node[anchor=south west] {$P_2(1+h;(1+h)^2)$};
+\draw[color=black] (1.35,1) node[anchor=north] {$\Delta x=h$};
+\draw[color=black] (1.7,1.95) node[anchor=west] {$\Delta y=h^2+2h$};
+\draw[color=black] (1,0) node[anchor=north] {$1$};
+\draw[color=black] (0,1) node[anchor=east] {$1$};
+\draw[color=black] (1.7,0) node[anchor=north] {$1+h$};
+\draw[color=black] (0,2.89) node[anchor=east] {$f(1+h)=(1+h)^2$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{-3mm}
+
+Now imagine going a very small distance $\Delta x=h$ in positive $x$-direction. The corresponding point on $G_f$ is $P_2\left(1+h;(1+h)^2\right)$. The slope of the secant line or rather the difference quotient through $P_1$ and $P_2$ is then
+\[\frac{\Delta y}{\Delta x}=\frac{f(1+h)-f(1)}{h}=\frac{(1+h)^2-1^2}{h}=\frac{1+2h+h^2-1}{h}=\frac{h^2+2h}{h}.\]
+Again, the smaller the value of $h$, the better is the difference quotient an approximation for the slope in  $P_1$. On the other hand, we can see from 
+\[\frac{h^2+2h}{h}\]
+that $h$ \emph{cannot} be equal to zero -- division by zero is not defined. We want to determine the value of
+\[\frac{\Delta y}{\Delta x}=\frac{h^2+2h}{h}\]
+for values of $h$ that get \emph{arbitrarily close} to zero without becoming \emph{equal} to zero. This is basically the concept of the \textbf{limit}.
+
+\begin{wichtig}
+You write
+\[\lim_{h\rightarrow 0}\frac{h^2+2h}{h}\]
+and read: The limit of $\frac{h^2+2h}{h}$ as $h$ tends to zero.
+\end{wichtig}
+
+Before continuing with the tangent problem we need to have a closer look at the concept of a limit.
+ 
+\newpage
+
+\section{Limits and Continuity of Functions}
+Even though limits are the foundation of differential calculus, we will only have to explicitly use them in but a few situations. The goal of this section is therefore more to sharpen our intuition for the concept of a limit than to understand its exact mathematical definition.\footnote{Incidentally, also Newton and Leibniz, the two founders of calculus, did not have an exact definition of the limit.} The central question is always the same: What happens with the value of a term or of a function as the value of the variable contained therein \emph{tends} to a certain number?
+
+\begin{defn}[Limit from below]
+We write
+\[\lim_{x\rightarrow a^{-}}f(x)=L\]
+and say, the \textbf{limit from below} of $f(x)$ as $x$ tends to $a$ is equal to $L$, if the value of $f(x)$ gets arbitrarily close to $L$, as we chose $x$ close enough to, but \emph{less} than $a$. 
+\end{defn}
+
+This is no strict mathematical definition. For this we would have to explain what is meant by ``arbitrarily close'' and ``close enough''. An analogous definition for the limit from above is:
+\begin{defn}[Limit from above]
+We write
+\[\lim_{x\rightarrow a^{+}}f(x)=L\]
+and say, the \textbf{limit from above} of $f(x)$ as $x$ tends to $a$ is equal to $L$, if the value of $f(x)$ gets arbitrarily close to $L$, as we chose $x$ close enough to, but \emph{greater} than $a$.
+\end{defn}
+
+In a limit from below $x$ approaches $a$ \emph{from the left} ($x<a$) and in a limit from above \emph{from the right} ($x>a$). In both cases we look what number $L$ is approached by the function value $f(x)$. With the help of these two definitions we can now define the actual limit of a function.
+
+\begin{defn}[Limit]
+We write
+\[\lim_{x\rightarrow a}f(x)=L\]
+and say, the \textbf{limit} of $f(x)$ as $x$ tends to $a$ is equal to $L$, if the limit from below as well as the limit from above are equal to $L$. That is, when
+\[\lim_{x\rightarrow a^{-}}f(x)=\lim_{x\rightarrow a^{+}}f(x)=L.\]
+\end{defn}
+
+\begin{beispiel}
+Consider the function $f(x)=x+1$. We want to calculate the limit
+\[\lim_{x\rightarrow 1}(x+1)\]
+We let $x$ approach $1$ from the left: $0.9$, $0.99$ and $0.999$. And we let it approach $1$ from the right: $1.1$, $1.01$ and $1.001$. We see in the table below that $f(x)$ approaches $2$. Thus, $f(x)$ can be made arbitrarily close to the limit of 2 just by making $x$ sufficiently close to 1. The limit from below (2\textsuperscript{nd} row) as well as the one from above (3\textsuperscript{rd} row) must be equal to $2$.
+\begin{center}
+\begin{tabular}{|c||c|c|c||c||c|c|c|}\hline
+$x$ & $0.9$ & $0.99$ & $0.999$ & $\left[1\right]$ & $1.001$ & $1.01$ & $1.1$ \\\hline  \hline
+$f(x)$ left-hand &$1.9$ & $1.99$ & $1.999$ & $\Rightarrow 2$  &  &  &  \\ \hline 
+$f(x)$ right-hand &  &  &  & $ 2\Leftarrow$ & $2.001$ & $2.01$ & $2.1$ \\ \hline
+\end{tabular}
+\end{center}
+The same thing can be observed graphically: The arrows from below (red) as well as the ones from above (blue) both get arbitrarily close to $2$ on the $y$-axis as they approach $1$ on the $x$-axis. 
+
+\begin{center}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.7cm,y=1.7cm]
+\draw[->,color=black] (-0.2,0) -- (2.2,0);
+\foreach \x in {1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-0.2) -- (0.,3.2);
+\foreach \y in {1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-0.2,-0.2) rectangle (2.2,3.2);
+\draw[smooth,samples=100,domain=-0.2:2.2] plot(\x,{(\x)+1});
+\draw [->,line width=1.2pt,color=ffqqqq] (0.6,0) -- (1,0);
+\draw [->,line width=1.2pt,color=qqqqff] (1.4,0) -- (1,0);
+\draw [->,line width=1.2pt,color=ffqqqq] (0,1.6) -- (0,2);
+\draw [->,line width=1.2pt,color=qqqqff] (0,2.4) -- (0,2);
+\draw [->,line width=1.2pt,color=ffqqqq] (0.6,1.6) -- (1,2);
+\draw [->,line width=1.2pt,color=qqqqff] (1.4,2.4) -- (1,2);
+\draw [fill=black] (1,2) circle (2.0pt);
+\draw[color=black] (1,2) node[anchor=north west] {$P(1;2)$};
+\draw[color=black] (2.2,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,3.2) node[anchor=north west] {$f(x)$};
+\end{tikzpicture}
+\end{center}
+
+Thus, we get 
+\[\lim_{x\rightarrow 1^{-}}(x+1)=\lim_{x\rightarrow 1^{+}}(x+1)=2\]
+and therefore
+\[\lim_{x\rightarrow 1}(x+1)=2.\]
+\end{beispiel}
+
+The above example is somewhat uninteresting: The limit is nothing else but the function value at this point. This property actually has a name: If it is the case that for a certain point of the domain of the function the limit is equal to the function value at this point, then the function is said to be \textbf{continuous} at this point.
+\begin{defn}[Continuity]
+A function $f$ is \textbf{continuous} at the point $x_0\in D_f$, if
+\[\lim_{x\rightarrow x_0}f(x)=f(x_0)\]
+The function is continuous as a whole, if it is continuous at every point of the domain.
+\end{defn}
+
+The functions that we have got to know so far are all continuous: Linear and quadratic functions, polynomials, rational functions, root functions, exponential and logarithmic functions, trigonometric functions. It looks as if discontinuous functions are rather rare. At least for us that is true. Later, we will encounter virtually no discontinuous function. But in the next couple of examples we will see what such a function could look like.
+
+\begin{beispiel}
+Consider the following function
+\[g(x)=\left\{ \begin{array}{r@{\quad \mbox{for } }l}x+1 & x\in \mathbb{R}\setminus \{1\} \\
+1 & x=1\end{array}\right.\]
+\begin{center}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.7cm,y=1.7cm]
+\draw[->,color=black] (-0.2,0) -- (2.2,0);
+\foreach \x in {1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-0.2) -- (0.,3.2);
+\foreach \y in {1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-0.2,-0.2) rectangle (2.2,3.2);
+\draw[smooth,samples=100,domain=-0.2:2.2] plot(\x,{(\x)+1});
+\draw [->,line width=1.2pt,color=ffqqqq] (0.6,0) -- (1,0);
+\draw [->,line width=1.2pt,color=qqqqff] (1.4,0) -- (1,0);
+\draw [->,line width=1.2pt,color=ffqqqq] (0,1.6) -- (0,2);
+\draw [->,line width=1.2pt,color=qqqqff] (0,2.4) -- (0,2);
+\draw [->,line width=1.2pt,color=ffqqqq] (0.6,1.6) -- (1,2);
+\draw [->,line width=1.2pt,color=qqqqff] (1.4,2.4) -- (1,2);
+\draw [fill=white] (1,2) circle (2.0pt);
+\draw [color=black] (1,2) circle (2.0pt);
+\draw[color=black] (1,2) node[anchor=north west] {$P(1;2)$};
+\draw [fill=black] (1,1) circle (2.0pt);
+\draw[color=black] (1,1) node[anchor=west] {$Q(1;1)$};
+\draw[color=black] (2.2,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,3.2) node[anchor=north west] {$g(x)$};
+\end{tikzpicture}
+\end{center}
+$g$ is a \emph{piecewise} defined function. It is equal to $f$ except for the point $x=1$. What is the limit
+\[\lim_{x\rightarrow 1}g(x)\]
+now? Again we could make a table and approach the point $x=1$ from both sides.
+Or, we look at the graph of $g$ and see that, obviously, the function value again approaches $2$. Hence, we have
+\[\lim_{x\rightarrow 1}g(x)=2.\]
+But this time the function value at $1$ is \emph{not} equal to $2$, we have $g(1)=1$. This means that $g$ is discontinuous at this point.
+\end{beispiel}
+
+\begin{beispiel}
+Next we consider the function 
+\[h(x)=\frac{x^2-1}{x-1}.\]
+\begin{center}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.7cm,y=1.7cm]
+\draw[->,color=black] (-0.2,0) -- (2.2,0);
+\foreach \x in {1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-0.2) -- (0.,3.2);
+\foreach \y in {1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-0.2,-0.2) rectangle (2.2,3.2);
+\draw[smooth,samples=100,domain=-0.2:2.2] plot(\x,{(\x)+1});
+\draw [->,line width=1.2pt,color=ffqqqq] (0.6,0) -- (1,0);
+\draw [->,line width=1.2pt,color=qqqqff] (1.4,0) -- (1,0);
+\draw [->,line width=1.2pt,color=ffqqqq] (0,1.6) -- (0,2);
+\draw [->,line width=1.2pt,color=qqqqff] (0,2.4) -- (0,2);
+\draw [->,line width=1.2pt,color=ffqqqq] (0.6,1.6) -- (1,2);
+\draw [->,line width=1.2pt,color=qqqqff] (1.4,2.4) -- (1,2);
+\draw [dotted] (1,0)-- (1,3.2);
+\draw [fill=white] (1,2) circle (2.0pt);
+\draw [color=black] (1,2) circle (2.0pt);
+\draw[color=black] (1,2) node[anchor=north west] {$P(1;2)$};
+\draw[color=black] (2.2,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,3.2) node[anchor=north west] {$h(x)$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{-3mm}
+
+This function has a \textbf{singularity} at $x=1$, it is not defined at this point. What is the limit $\lim_{x\rightarrow 1}h(x)$ here? In fact, again $h(x)$ is equal to $f(x)$ except, of course, for $x=1$. If $x\neq 1$ we can actually reduce the fraction:
+\[\frac{x^2-1}{x-1}=\frac{(x-1)(x+1)}{x-1}=x+1.\]
+The graph is again identical to $G_f$, except for the point $x=1$. The situation is almost identical to the one in the previous example: If $x$ tends to $1$, the function value tends to $2$. And again we have
+\[\lim_{x\rightarrow 1}h(x)=2.\]
+However, the function $h(x)$ is discontinuous at $x=1$. Strictly speaking it is not even defined there, so we cannot really speak of continuity or discontinuity. The limit, though, may well exist, even if the function is not defined at the point in question.
+\end{beispiel}
+
+Examples of this type, in which the denominator and the numerator tend to zero are most prominent in differential calculus. The last example in the previous section was of this kind as well:
+\[\lim_{h\rightarrow 0}\frac{h^2+2h}{h}.\]
+Looking at the term $\frac{h^2+2h}{h}$, we can see that it is actually identical to the reduced term $h+2$, except for the point $h=0$. Again we may conclude
+\[\lim_{h\rightarrow 0}\frac{h^2+2h}{h}=\lim_{h\rightarrow 0}\left(h+2\right)\stackrel{(*)}{=}2.\]
+Equation $(*)$ follows, because the term $h+2$ is continuous.
+
+\begin{beispiel}
+Consider the limit
+\[\lim_{x\rightarrow 0}\frac{e^x-1}{x}.\]
+Here, we have an analogous situation: The denominator as well as the numerator tend to zero as $x$ tends to zero. This time, however, we cannot reduce the fraction to obtain the limit. With our restricted means at hand we must use our calculator and enter values close to zero and in this way make an \emph{educated guess} at the limit.
+\[\frac{e^{0.1}-1}{0.1}=1.05\qquad\frac{e^{0.01}-1}{0.01}=1.005\qquad\frac{e^{0.001}-1}{0.001}=1.0005\]
+So probably
+\[\lim_{x\rightarrow 0}\frac{e^x-1}{x}=1\]
+\end{beispiel}
+
+\begin{beispiel}\label{beispielsignum}
+Lastly we want to have look at a function that is discontinuous at a point, at which the limit does not exist: The signum or sign function at zero. The sign function is defined by
+\[\text{sgn}(x):=\left\{ \begin{array}{r@{\quad \mbox{for } }l}1 & x> 0 \\
+0 & x=0\\
+-1 & x< 0\end{array}\right.\]
+For $x\neq0$ the sign function can also be defined by $\text{sgn}(x)=\frac{\sqrt{x^2}}{x}$. The graph of $\text{sgn}(x)$ is given below.
+
+\vspace{-3mm}
+
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\draw[->,color=black] (-4.5,0) -- (4.5,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-1.5) -- (0.,1.5);
+\foreach \y in {-1,1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-4.5,-1.5) rectangle (4.5,1.5);
+\draw[smooth,samples=100,domain=-4.5:0] plot(\x,{-1});
+\draw[smooth,samples=100,domain=0:4.5] plot(\x,{1});
+\draw [fill=white] (0,1) circle (2.0pt);
+\draw [color=black] (0,1) circle (2.0pt);
+\draw [fill=white] (0,-1) circle (2.0pt);
+\draw [color=black] (0,-1) circle (2.0pt);
+\draw [fill=black] (0,0) circle (2.0pt);
+\draw[color=black] (4.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,1.6) node[anchor=north west] {$y$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{-3mm}
+
+Concerning the limit, we have
+\[\lim_{x\rightarrow 0^+}\text{sgn}(x)=1\text{ and }\lim_{x\rightarrow 0^-}\text{sgn}(x)=-1\]
+So, the limit from the right and the one from the left are not identical:
+\[\lim_{x\rightarrow 0^+}\text{sgn}(x)\neq \lim_{x\rightarrow 0^-}\text{sgn}(x).\]
+The definition of the limit asks for them to be identical. So in this case the limit does not exist, $\lim_{x\rightarrow 0} \text{sgn}(x) $ cannot be assigned a real number.
+
+\end{beispiel}
+
+\section{Definition of the Derivative}
+Using the definition of the limit, we are now capable of solving the tangent problem in general. Let us consider a function $f$ with graph $G_f$.
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.5cm,y=3.5cm]
+\draw[->,color=black] (-0.5,0) -- (2.5,0);
+\draw[->,color=black] (0,-0.5) -- (0,2.5);
+\clip(-0.5,-0.5) rectangle (2.5,2.5);
+\draw[smooth,samples=100,domain=-0.5:1.6] plot(\x,{(\x)^(2)});
+\draw [dash pattern=on 3pt off 3pt,domain=-0.5:2.5] plot(\x,{(-0.566--1.342*\x)/0.693});
+\draw [dash pattern=on 3pt off 3pt] (0.621,0.386)-- (1.314,0.386);
+\draw [dash pattern=on 3pt off 3pt] (1.314,0.386)-- (1.314,1.728);
+\draw [dotted] (1.314,0.386)-- (1.314,0);
+\draw [dotted] (0.621,0.386)-- (0,0.386);
+\draw [dotted] (0,1.728)-- (1.314,1.728);
+\draw [dotted] (0.621,0.386)-- (0.621,0);
+\begin{small}
+\draw[color=black] (0,2.5) node[anchor=north west] {$f(x)$};
+\draw [fill=black] (0.621,0.386) circle (1.0pt);
+\draw[color=black] (0.69,0.4) node[anchor=south east] {$P_1(x_0;f(x_0))$};
+\draw [fill=black] (1.314,1.728) circle (1.0pt);
+\draw[color=black] (1.314,1.69) node[anchor=south west] {$P_2(x_0+h;f(x_0+h))$};
+\draw[color=black] (0,0.386) node[anchor=east] {$f(x_0)$};
+\draw[color=black] (1.314,0) node[anchor=north] {$x_0+h$};
+\draw[color=black] (0.968,0.386) node[anchor=north] {$\Delta x=h$};
+\draw[color=black] (0,1.728) node[anchor=east] {$f(x_0+h)$};
+\draw[color=black] (0.621,0) node[anchor=north] {$x_0$};
+\draw[color=black] (1.314,1.057) node[anchor=west] {$\Delta y=f(x_0+h)-f(x_0)$};
+\end{small}
+\end{tikzpicture}
+\end{center}
+We want to find the slope of the tangent line to the graph $G_f$ at the point with  $x$-coordinate $x_0$: $P_1(x_0;f(x_0))$. For this we choose a small horizontal increment in positive $x$-direction $\Delta x=h$ and get the second point $P_2(x_0+h;f(x_0+h))$. The slope of the secant line through $P_1$ and $P_2$ is equal to the difference quotient and can be read off the slope triangle.
+\begin{defn}[Difference Quotient]
+The \textbf{difference quotient} for the two points $P_1(x_0;f(x_0))$ and $P_2(x_0+h);f(x_0+h))$ is defined by the slope $m_s$ of the secant line through these two points:
+\[m_s=\frac{\Delta y}{\Delta x}=\frac{f(x_0+h)-f(x_0)}{h}.\]
+\end{defn}
+The slope at the point $P_1$ is equal to the limit of the difference quotient, as $h$ tends to zero. This limit is also called the \textbf{differential quotient} or \textbf{derivative} of $f$ at the point $x_0$.
+\begin{defn}[Differential Quotient]
+The \textbf{differential quotient} or \textbf{derivative} of $f$ at the point $x_0$ (or at the point $P_1(x_0;f(x_0))$) is the slope $m_t$ of the tangent line at this point. This is now exactly defined as the limit of the slope of the secant line or as the limit of the difference quotient:
+\[m_t=f'(x_0)=\lim_{h\rightarrow 0}\frac{f(x_0+h)-f(x_0)}{h}\]
+\end{defn}
+
+\begin{beispiel}
+What is the derivative of $f(x)=x^2$ at the point $x_0=3$? First we transform the difference quotient:
+\[\frac{\Delta y}{\Delta x}=\frac{f(x_0+h)-f(x_0)}{h}\]
+with $f(x_0+h)=(x_0+h)^2=x_0^2+2x_0h+h^2$ and $f(x_0)=x_0^2$ it becomes
+\[\frac{\Delta y}{\Delta x}=\frac{x_0^2+2x_0h+h^2-x_0^2}{h}=\frac{2x_0h+h^2}{h}=2x_0+h.\]
+The derivative at $x_0$ is the limit of this expression as $h$ approaches 0:
+\begin{align}\label{def.1}
+f'(x_0)=\lim_{h\rightarrow 0}\,(2x_0+h)=2x_0.
+\end{align}
+For $x_0=3$ we obtain
+\[f'(3)=6.\]
+Remember the meaning of that result: We have solved the tangent problem at the point $3$ for the function $f(x)=x^2$ -- The tangent to the graph of $f$ at the point $P(3;9)$ hence has slope $6$.
+\end{beispiel}
+Looking at equation (\ref{def.1}) it is clear that it was irrelevant for our calculation with which value $x_0$ we started off. The tangent line at, for example, $x_0=-4$ has the slope
+\[f'(-4)=2\cdot(-4)=-8.\]
+
+\begin{defn}[Derivative]
+If the limit of the difference quotient, i.e.\ the differential quotient, exists for every  $x\in D_f$, the function $f$ yields another function in $x$, the derived function $f'$, which is usually also just called the \textbf{derivative} of $f$
+\[f'(x)=\lim_{h\rightarrow 0}\frac{f(x+h)-f(x)}{h}\]
+\end{defn} 
+\begin{bemerkung}
+There are several different notations for the derivative of a function. The one above was proposed by \textsc{Joseph Louis Lagrange} and is the most widely used today. Other notations are:
+\begin{center}
+	\begin{tabular}{l|l}
+	Proposed by & Alternative Notation for $f'(x)$ \\ \hline
+	\textsc{Gottfried Leibniz} & $\frac{dy}{dx}$ or $\frac{df}{dx}(x)$ or $\frac{df(x)}{dx}$ or $\frac{d}{dx}f(x)$\\[2mm]
+	\textsc{Isaac Newton} & $\dot{y}$\\[2mm]
+	\textsc{Leonhard Euler} & $Df$
+	\end{tabular}
+\end{center}
+The Leibniz notation $\frac{dy}{dx}$ can also be read as an infinitely small $\Delta y$ divided by an infinitely small $\Delta x$. Leibniz' and Newton's notation are still widely used in physics. 
+\end{bemerkung}
+
+\begin{beispiel}
+The derivative $f'(x)$ of $f(x)=3x^2-5x+7$ is to be calculated. The difference quotient
+\[\frac{\Delta y}{\Delta x} =\frac{f(x+h)-f(x)}{h}\]
+turns using
+\[f(x+h)=3(x+h)^2-5(x+h)+7=3x^2+6xh+3h^2-5x-5h+7\]
+and
+\[f(x)=3x^2-5x+7\]
+into
+\[\frac{\Delta y}{\Delta x}=\frac{3x^2+6xh+3h^2-5x-5h+7-3x^2+5x-7}{h}=\frac{6xh+3h^2-5h}{h}=6x+3h-5.\]
+The derivative is defined as the limit of this expression as $h$ tends to zero:
+\[f'(x)=\lim_{h\rightarrow 0}\frac{\Delta y}{\Delta x}=\lim_{h\rightarrow 0}(6x+3h-5)=6x-5.\]
+Remember the meaning of $f'(x)$: At every point $x$ it calculates the slope the function $f$ has at this point. 
+
+For $f(x)=3x^2-5x+7$ we have $f'(x)=6x-5$. The function $f$ thus has for example at $x=3$ the function value $f(3)=3\cdot3^2-5\cdot3+7=19$ and the slope $f'(3)=6\cdot3-5=13$.
+\end{beispiel}
+
+\newpage
+
+\section{Differentiability}
+Let us have another look at the definition of the derivative.
+\[f'(x)=\lim_{h\rightarrow 0}\frac{f(x+h)-f(x)}{h}.\]
+$f'(x)$ is defined as a limit. If this limit exists then the function $f(x)$ is said to be \textbf{differentiable}. In the second example on page \pageref{beispielsignum} we have seen, though, that limits need not always exist. Therefore, there are functions that are not differentiable for every $x$ in the domain. An example for that is the absolute value function $|x|$. It is defined by
+\[|x|\,=\left\{\begin{array}{r@{\quad \mbox{for }}l}
+x  & x\geqslant 0 \\
+-x & x<0
+\end{array}\right.\]
+It could also be defined as $|x|=\sqrt{x^2}$.
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-4.2,0) -- (4.2,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,4.2);
+\foreach \y in {1,2,3,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-4.2,-0.5) rectangle (4.2,4.2);
+\draw[smooth,samples=100,domain=-4.2:4.2] plot(\x,{abs((\x))});
+\begin{scriptsize}
+\draw[color=black] (4.2,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,4.2) node[anchor=north west] {$y$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+For all positive numbers $x$, the slope of $|x|$ is equal to  $1$, for all negative numbers it is equal to $-1$. For the point $x=0$ that means that the limit from the left and the one from the right in the definition of the derivative do not coincide and that the derivative at $x=0$ does therefore not exist. This already becomes intuitively clear when looking at the graph: At the point $x=0$ the graph does not have a tangent line. But since the derivative is nothing but the slope of the tangent line, it does not exist. We say that $f(x)=|x|$ is \textbf{not differentiable} at the point $x=0$. However, most functions that we will encounter are differentiable on their whole domain.
+
+The absolute value function is a good example to show that the concept of differentiability is stronger than the concept of continuity. The absolute value function is continuous everywhere but not differentiable everywhere. In summary:
+
+\begin{satz} A function that is continuous everywhere need not be differentiable everywhere. A function, however, that is differentiable everywhere, is also continuous everywhere.
+\end{satz}
+
+\subsection{Brief History on the Concept of Differentiability}
+
+The tangent line problem was known since antiquity. The solution suggesting itself was the approximation of the tangent line by a secant line over a finite (i.e.\ greater than zero) but arbitrarily small interval. The technical difficulty, however, was how to calculate with such infinitesimal small intervals. It was not resolved until \textsc{Fermat}\footnote{\textsc{Pierre de Fermat} (1607-1665), French mathematician and attorney.} was able to solve the tangent problem for a whole class of functions, the polynomials, around 1640. He even wrote down a derivative, yet without considering limits and without writing down what the mathematical justification for his approach was. At the same time, \textsc{Descartes} chose an algebraic approach by ascribing circles to graphs. Such circles intersect the graph in two points, except for when it just touches the graph. It was then possible for him to find the slope of the tangent line for certain special graphs.
+
+At the end of the 17\textsuperscript{th} century \textsc{Newton}\footnote{\textsc{Sir Isaac Newton} (1643-1727)English physicist, mathematician, astronomer, alchemist, philosopher and administrator.} and \textsc{Leibniz}\footnote{\textsc{Gottfried Wilhelm Leibniz} (1646-1716), German philosopher and scientist, mathematician, diplomat, physicist, historian, librarian and doctor of civil and of canon law.} succeeded independently of each other in developing contradiction-free formal systems. \textsc{Newton} was the first to apply calculus to general physics, and \textsc{Leibniz} developed much of the notation used in calculus today. When they first published their results, there was great controversy over which mathematician (and therefore which country) deserved credit. \textsc{Newton} derived his results first, but \textsc{Leibniz} published first. A careful examination of the papers of \textsc{Leibniz} and \textsc{Newton} shows that they arrived at their results independently. Their work allowed the abstraction of pure geometric perception and is therefore viewed as the beginning of calculus. 
+
+In mathematics, foundations refers to the rigorous development of a subject from precise axioms and definitions. In early calculus, the use of infinitesimal quantities was thought unrigorous, and was fiercely criticized by a number of authors, most notably \textsc{Michel Rolle} and \textsc{Bishop Berkeley}. \textsc{Berkeley} famously described infinitesimals as the ghosts of departed quantities in his book ``The Analyst'' in 1734. Working out a rigorous foundation for calculus occupied mathematicians for much of the century following \textsc{Newton} and \textsc{Leibniz}. It was not until 150 years later that \textsc{Augustin Louis Cauchy} defined the derivative in today's logical and strict way as the limit of the slope of the secant line (difference quotient). Today's definition of the limit was finally formulated by \textsc{Karl Weierstrass} at the end of the 19\textsuperscript{th} century. The differentiation rules (next sections) as we know them today go back to \textsc{Leonhard Euler}.
+
+\newpage
+
+\section{Differentiation of Polynomials}
+Using the limit definition, we can find the derivative $f'(x)$ of any function $f(x)$. However, it is obvious that this approach is rather tedious. In this chapter we therefore want to establish so called differentiation rules, with which deriving will become much easier. We start off with the derivative of power functions with natural exponents:
+\begin{satz}\label{1.1} If $f(x)=x^n$ with $n\in\mathbb{N}$, then 
+\[f'(x)=nx^{n-1}.\]
+\end{satz}
+\begin{beweis}
+Exemplary for $n=4$
+\begin{align*}
+f'(x)&=\lim_{h\rightarrow
+  0}\frac{f(x+h)-f(x)}{h}=\lim_{h\rightarrow
+  0}\frac{(x+h)^4-x^4}{h} \\
+&=\lim_{h\rightarrow
+  0}\frac{\cancel{x^4}+4x^{3}h+6x^2h^2+4xh^3+h^4-\cancel{x^4}}{h}
+\\
+&=\lim_{h\rightarrow 0}4x^{3}+6x^2h+4xh^2+h^3 \\
+&=4x^3
+\end{align*}
+All terms in the expansion of $(x+h)^n$, except the first two, contain $h$ in a power greater than 1, they disappear when calculating the limit.
+\end{beweis}
+\begin{beispiel}
+Find the slope of the function $f(x)=x^3$ at the point $P(-1;-1)$. Solution: The slope required is equal to the value of the derivative $f'(x)$ at the position $x=-1$. We first determine $f'$ using theorem \ref{1.1}:
+\begin{align*}
+f'(x)=\left( x^3\right)'=3x^2
+\end{align*}
+The value of $f'$ at the position $-1$ is thus
+\begin{align*}
+f'(-1)=3\cdot (-1)^2=3.
+\end{align*}
+So, the function $f(x)=x^3$ has a slope of $f'(-1)=3$ at the position $x=-1$.
+\end{beispiel}
+
+Whereas theorem \ref{1.1} tells us how to differentiate a certain type of function (power function with natural exponent), the next two rules apply to all differentiable functions.
+
+\begin{satz}[Sum rule]$\left[ f(x)+g(x)\right]'=f'(x)+g'(x)$.
+\end{satz}
+\vspace{-0.5cm}
+\begin{beweis}
+\vspace{-0.5cm}
+\begin{align*}
+\left[f(x)+g(x)\right]'&=\lim_{h\rightarrow
+  0}\frac{\left[f(x+h)+g(x+h)\right]-\left[f(x)+g(x)\right]}{h
+}\\
+&=\lim_{h\rightarrow
+  0}\left(\frac{f(x+h)-f(x)}{h}+\frac{g(x+h)-g(x)}{h} \right)
+\\
+&=\lim_{h\rightarrow 0}\frac{f(x+h)-f(x)}{h}+
+\lim_{h\rightarrow 0}
+\frac{g(x+h)-g(x)}{h} \\
+&=f'(x)+g'(x)
+\end{align*}
+\end{beweis}
+That the derivative of a sum is equal to the sum of the derivatives of the summands holds true for an arbitrary number of summands.
+\begin{beispiel}
+If $f(x)=x^{10}+x^5+x$ then 
+\[f'(x)=\left( x^{10}+x^5+x\right)'=\left( x^{10}\right) '+\left( x^5+x\right)' =\left( x^{10}\right)' +\left( x^5\right)'+\left(x\right)'=10x^9+5x^4 +1\]
+\end{beispiel}
+
+\begin{satz}[Constant factor rule]$\left[ c\cdot f(x)\right]'=c\cdot f'(x)$.
+\end{satz}
+\vspace{-0.5cm}
+\begin{beweis}
+\vspace{-0.5cm}
+\begin{align*}
+\left[ c\cdot f(x)\right]'&=\lim_{h\rightarrow
+  0} \frac{c\cdot f(x+h)-c\cdot f(x)}{h} \\
+&=c\cdot \lim_{h\rightarrow
+  0}\frac{f(x+h)-f(x)}{h} \\
+&=c\cdot f'(x)
+\end{align*}
+\end{beweis}
+With the help of these first three rules we can already differentiate all polynomials.
+
+\begin{beispiel}
+\vspace{-2mm}
+\begin{align*}
+f(x)=3x^4-5x^3+7x+11\quad\Rightarrow\quad f'(x) &=(3x^4-5x^3+7x+11)'\\
+&=(3x^4)'+(-5x^3)'+(7x)'+(11)'\\
+&=3(x^4)'-5(x^3)'+7(x)'\\
+&=3\cdot4x^3-5\cdot3x^2+7\cdot1x^0\\
+&=12x^3-15x^2+7
+\end{align*}
+\end{beispiel}
+
+\section{Tangent and Normal Line}
+We can now calculate the slope at an arbitrary position $x_0$ of an arbitrary function $f$, i.e.\ we know the slope of the tangent (namely $f'(x_0)$). The tangent itself, however, is a line or, to be more exact, the graph of a linear function and therefore has the functional equation 
+\[t_{x_0}(x)=mx+b\]
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-0.5,0) -- (6.5,0);
+\draw[->,color=black] (0,-0.5) -- (0,4.5);
+\clip(-0.5,-0.5) rectangle (6.5,4.5);
+\draw[smooth,samples=100,domain=-0.5:6.5] plot(\x,{0.5*((\x)-2)^(2)+1});
+\draw [domain=-0.5:6.5] plot(\x,{0.3088+0.32*\x});
+\draw [dash pattern=on 2pt off 2pt] (2.32,0)-- (2.32,1.0512);
+\draw[color=black] (6.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,4.5) node[anchor=north west] {$y$};
+\draw[color=black] (4.2,4) node {$f(x)$};
+\draw[color=black] (5.7,1.7) node {$t_{x_0}(x)$};
+\draw [fill=black] (2.32,1.0512) circle (1.5pt);
+\draw[color=black] (2.32,1.0512) node[anchor=north west] {$P(x_0;f(x_0))$};
+\draw[color=black] (2.32,0) node[anchor=north] {$x_0$};
+\end{tikzpicture}
+\end{center}
+The slope $m$ is just equal to $f'(x_0)$. In addition the tangent line has to pass through the point $P(x_0;f(x_0))$, the point of tangency.
+\[m=f'(x_0)\quad\mbox{so}\quad t_{x_0}(x)=f'(x_0)x+b\]
+Also
+\[t_{x_0}(x_0)=f(x_0)\quad\Rightarrow\quad f'(x_0)x_0+b=f(x_0)\quad\Rightarrow\quad b=f(x_0)-f'(x_0)x_0\]
+So, the requested function can be written as
+\[t_{x_0}(x)=f'(x_0)x+(f(x_0)-f'(x_0)x_0)=f'(x_0)x-f'(x_0)x_0+f(x_0)=f'(x_0)(x-x_0)+f(x_0)\]
+For the equation of a tangent line we get:
+\begin{satz}
+The equation of a tangent line $t_{x_0}(x)$ to the graph of a function $f(x)$ at the position $x_0$ is:
+\[t_{x_0}(x)=f'(x_0)(x-x_0)+f(x_0)\]
+\end{satz}
+\begin{beispiel}
+At the position $x_0=3$, put a tangent line to the graph of the function $f(x)=x^2$.
+\[\left.\begin{array}{l}f'(x)=2x\\ f'(3)=6\\ f(3)=9
+\end{array}\right\}\quad\Rightarrow\quad t_3(x)=6(x-3)+9=6x-9\]
+\end{beispiel}
+
+The line that is perpendicular to the tangent line is called the \textbf{normal line} $n_{x_0}(x)$. The question arises, what is the relation between the slopes of two lines that are mutually perpendicular?
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-0.5,0) -- (6.5,0);
+\draw[->,color=black] (0,-0.5) -- (0,4.5);
+\clip(-0.5,-0.5) rectangle (6.5,4.5);
+\draw [domain=-0.5:6.5] plot(\x,{0.5*(\x-4)+3});
+\draw [domain=-0.5:6.5] plot(\x,{-2*(\x-4)+3});
+\draw [dash pattern=on 2pt off 2pt] (4,3)-- (4,1.5);
+\draw [dash pattern=on 2pt off 2pt] (4,1.5)-- (1,1.5);
+\draw [dash pattern=on 2pt off 2pt] (4,3)-- (5.5,3);
+\draw [dash pattern=on 2pt off 2pt] (5.5,3)-- (5.5,0);
+\draw[color=black] (6.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,4.5) node[anchor=north west] {$y$};
+\draw[color=black] (6,4) node[anchor=north] {$g_1$};
+\draw[color=black] (3.5,4) node[anchor=east] {$g_2$};
+\draw [fill=black] (4,3) circle (1.5pt);
+\draw[color=black] (2.5,1.5) node[anchor=north] {$\Delta x$};
+\draw[color=black] (4,2.25) node[anchor=east] {$\Delta y$};
+\draw[color=black] (4.75,3) node[anchor=north] {$\Delta x'$};
+\draw[color=black] (5.5,1.5) node[anchor=west] {$\Delta y'$};
+\end{tikzpicture}
+\end{center}
+The figure above addresses this relation. We can turn the straight line $g_1$ into the straight line $g_2$ by rotating it by $90\deg$ about the common point of intersection. Any slope triangle of $g_1$ turns into one for $g_2$, with $\Delta x$ and $\Delta y$ swapping places and $\Delta y'$ changing sign, i.e.
+\[\Delta x'=\Delta y\mbox{ and }\Delta y'=-\Delta x\]
+For the two slopes $m_1$ and $m_2$ that means
+\[m_1=\frac{\Delta y}{\Delta x},\quad m_2=\frac{\Delta y'}{\Delta x'}\quad\Rightarrow\quad m_1\cdot m_2=\frac{\Delta y}{\Delta x}\cdot\frac{\Delta y'}{\Delta x'}=\frac{\Delta y}{\Delta x}\cdot\frac{-\Delta x}{\Delta y}=-1\]
+In summary
+
+\begin{satz}
+Two straight lines with the slopes $m_1$ and $m_2$ are mutually perpendicular, iff
+\[m_1\cdot m_2=-1\quad\mbox{or}\quad m_2=-\frac{1}{m_1}\]
+\end{satz}
+
+The tangent line has the slope $f'(x_0)$. Hence, the normal line has the slope $-\frac{1}{f'(x_0)}$. Since it also passes through the point of tangency $P(x_0;f(x_0))$, it has the following equation.
+
+\begin{satz}
+The equation of a normal line $n_{x_0}(x)$ to the graph of a function $f(x)$ at the position $x_0$ is:
+\[n_{x_0}(x)=-\frac{1}{f'(x_0)}(x-x_0)+f(x_0)\]
+\end{satz}
+
+\newpage
+
+
+\section{The Meaning of the Second Derivative}
+If you differentiate the derivative, you obtain the derivative of the derivative, or the \textbf{second derivative} $f''(x)$ of the function $f(x)$. We shall analyze its meaning with the help of the graph of the function $f$ in the figure below. 
+
+\vspace{-3mm}
+
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw[->,color=black] (-2,0) -- (1,0);
+\draw[->,color=black] (0,-1.5) -- (0,1.5);
+\draw[color=black] (-0.5,-1.5) node[anchor=north] {(a) The function $f(x)$};
+\clip(-2,-1.5) rectangle (1,1.5);
+\draw[smooth,samples=100,domain=-2:1] plot(\x,{((\x)+0.4)^(3)-((\x)+0.4)+0.8});
+\draw[->,dash pattern=on 2pt off 2pt,smooth,samples=100,domain=-1.3:-0.43] plot(\x,{((\x)+0.4)^(3)-((\x)+0.4)+1});
+\draw[->,dash pattern=on 2pt off 2pt,smooth,samples=100,domain=-0.37:0.5] plot(\x,{((\x)+0.4)^(3)-((\x)+0.4)+1});
+\draw [dash pattern=on 2pt off 2pt] (-0.4,0.8)-- (-0.4,0.);
+\draw[color=black] (1,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,1.5) node[anchor=north west] {$y$};
+\draw[color=black] (-0.4,0) node[anchor=north] {$x_0$};
+\draw [fill=black] (-0.4,0.8) circle (1.5pt);
+\end{tikzpicture}\qquad\qquad\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw[->,color=black] (-2,0) -- (1,0);
+\draw[->,color=black] (0,-1.5) -- (0,1.5);
+\draw[color=black] (-0.5,-1.5) node[anchor=north] {(b) The derivative $f'(x)$};
+\clip(-2,-1.5) rectangle (1,1.5);
+\draw[dash pattern=on 2pt off 2pt,smooth,samples=100,domain=-2:1] plot(\x,{((\x)+0.4)^(3)-((\x)+0.4)+0.8});
+\draw[smooth,samples=100,domain=-2:1] plot(\x,{3*(\x)^(2)+2.4*(\x)-0.52});
+\draw[->,dash pattern=on 2pt off 2pt,smooth,samples=100,domain=-1.3:-0.43] plot(\x,{((\x)+0.4)^(3)-((\x)+0.4)+1});
+\draw[->,dash pattern=on 2pt off 2pt,smooth,samples=100,domain=-0.37:0.5] plot(\x,{((\x)+0.4)^(3)-((\x)+0.4)+1});
+\draw [dash pattern=on 2pt off 2pt] (-0.4,0.)-- (-0.4,-1.);
+\draw[color=black] (1,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,1.5) node[anchor=north west] {$y$};
+\draw[color=black] (-0.4,0) node[anchor=south] {$x_0$};
+\draw [fill=black] (-0.4,0.8) circle (1.5pt);
+\draw [fill=black] (-0.4,-1.) circle (1.5pt);
+\end{tikzpicture}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw[->,color=black] (-2,0) -- (1,0);
+\draw[->,color=black] (0,-1.5) -- (0,1.5);
+\draw[color=black] (-0.5,-1.5) node[anchor=north] {(c) The second derivative $f''(x)$};
+\clip(-2,-1.5) rectangle (1,1.5);
+\draw[dash pattern=on 2pt off 2pt,smooth,samples=100,domain=-2:1] plot(\x,{((\x)+0.4)^(3)-((\x)+0.4)+0.8});
+\draw[smooth,samples=100,domain=-2:1] plot(\x,{6*(\x)+2.4});
+\draw[->,dash pattern=on 2pt off 2pt,smooth,samples=100,domain=-1.3:-0.43] plot(\x,{((\x)+0.4)^(3)-((\x)+0.4)+1});
+\draw[->,dash pattern=on 2pt off 2pt,smooth,samples=100,domain=-0.37:0.5] plot(\x,{((\x)+0.4)^(3)-((\x)+0.4)+1});
+\draw[color=black] (1,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,1.5) node[anchor=north west] {$y$};
+\draw[color=black] (-0.4,0) node[anchor=north west] {$x_0$};
+\draw [fill=black] (-0.4,0.8) circle (1.5pt);
+\draw [fill=black] (-0.4,0.) circle (1.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{-3mm}
+
+Imagine walking along the graph of $f(x)$ in figure (a) in positive $x$-direction. Up to the point $x_0$, the graph describes a right curve. We say that the function is \textbf{right curved}. From $x_0$ it describes a left curve, the graph is \textbf{left curved}.
+
+If the graph of a function describes a right curve, then the slope decreases. Figure (b) shows that the slope of $f(x)$ first decreases until it reaches a minimum at $x_0$. Then it starts to increase, meaning that the graph is now left curved.
+
+Up to $x_0$ the slope decreases, i.e.\ the value of the derivative decreases. The slope of the derivative, that is the second derivative, is therefore negative. In figure (c) we see that $f''(x)$ is negative up to $x_0$ and positive form $x_0$: The graph of $f'(x)$ hence has a negative slope up to $x_0$ and a positive one from $x_0$. In summary:
+\begin{satz} Curvature
+
+\begin{itemize}
+\item $f(x)$ is right curved, if $f'(x)$ decreases, if thus $f''(x)<0$
+\item $f(x)$ is left curved, if $f'(x)$ increases, if thus $f''(x)>0$
+\end{itemize} 
+\end{satz}
+
+\begin{defn}[Point of Inflection]
+Points at which the graph of $f$ changes curvature, i.e. where the second derivative is equal to zero are called \textbf{points of inflection}.
+\[f''(x_0)=0\quad\Rightarrow\quad (x_0;f(x_0))\text{ is a point of inflection}\]
+\end{defn}
+
+\begin{beispiel}
+Does the function $f(x)=x^4-2x^3-36x^2+7x+13$ have points of inflection?
+
+First we find the second derivative
+\begin{align*}
+f(x)&=x^4-2x^3-36x^2+7x+13\\
+f'(x)&=4x^3-6x^2-72x+7\\
+f''(x)&=12x^2-12x-72
+\end{align*}
+Now, we have to find the zeros of the second derivative
+\begin{align*}
+f''(x)=12x^2-12x-72&=0\,|\div12\\
+x^2-x-6&=0\\
+x&=\frac{1\pm\sqrt{1+24}}{2}\\
+x_1&=3\quad\Rightarrow\quad f(3)=-263\\
+x_2&=-2\quad\Rightarrow\quad f(-2)=-113
+\end{align*}
+The function thus has two points of inflection, namely
+\[INP(-2;-113)\qquad INP(3;-263)\]
+If we want to see where the function is right curved and where it is left curved, we just calculate the second derivative at a position left of $-2$, e.g.\ $f''(-3)=72>0$. So left of $-2$ the second derivative is positive. Therefore, the following holds for the function $f$
+\[\mbox{left curved: }]-\infty;-2]\quad\mbox{right curved: }[-2;3]\quad\mbox{left curved: }[3;\infty[\]
+\end{beispiel}
+
+\section{Extrema (Maxima and Minima) and Saddle Points}
+Next to points of inflection, minima and maxima are other important points of a function. Consider the graph in the figure below. At positions $x_1$, $x_2$ and $x_3$ it has horizontal tangent lines (slope $0$). Hence:
+\[f'(x_1)=f'(x_2)=f'(x_3)=0\]
+Let's have a look at the function values in a small interval around $x_1$ (expressed by the grey area in the figure below): All values within this interval are smaller than $f(x_1)$. It is said that the function $f(x)$ has a \textbf{local maximum} at the position $x_1$. We only see a small part of the graph of the function and can therefore not decide whether there are numbers that yield a value bigger than $f(x_1)$. If $f(x_1)$ were in fact the largest function value, then we would have not only a local but a \textbf{global maximum} in $x_1$. 
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.3cm,y=2.3cm]
+\draw[->,color=black] (-2.2,0) -- (1.3,0);
+\draw[->,color=black] (0,-1.2) -- (0,1.9);
+\clip(-2.2,-1.2) rectangle (1.3,1.9);
+\fill[fill=black,fill opacity=0.1] (-1.395,1.491) -- (-1.795,1.491) -- (-1.795,0) -- (-1.395,0) -- cycle;
+\fill[fill=black,fill opacity=0.1] (-0.7,0.44) -- (-0.7,0) -- (-0.3,0) -- (-0.3,0.44) -- cycle;
+\fill[fill=black,fill opacity=0.1] (0.395,0) -- (0.395,-0.611) -- (0.795,-0.611) -- (0.795,0) -- cycle;
+\draw[smooth,samples=100,domain=-2.06:1.05] plot(\x,{((\x)+0.5)^(5)-2*((\x)+0.5)^(3)+0.44});
+\draw [dash pattern=on 2pt off 2pt] (-1.595,1.491)-- (-1.595,0);
+\draw [dash pattern=on 2pt off 2pt] (-0.5,0.44)-- (-0.5,0.);
+\draw [dash pattern=on 2pt off 2pt] (0.595,0)-- (0.595,-0.611);
+\draw (-1.395,1.491)-- (-1.795,1.491);
+\draw (-0.3,0.44)-- (-0.7,0.44);
+\draw (0.395,-0.611)-- (0.795,-0.611);
+\draw[color=black] (1.3,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,1.9) node[anchor=north west] {$y$};
+\draw[color=black] (-1.595,0) node[anchor=north] {$x_1$};
+\draw[color=black] (-0.5,0) node[anchor=north] {$x_2$};
+\draw[color=black] (0.595,0) node[anchor=south] {$x_3$};
+\draw[color=black] (-1.595,1.491) node[anchor=south] {Loc. max.};
+\draw[color=black] (-0.5,0.64) node[anchor=south] {Saddle};
+\draw[color=black] (-0.5,0.44) node[anchor=south] {point};
+\draw[color=black] (0.595,-0.611) node[anchor=north] {Loc. min.};
+\draw [fill=black] (-1.5954451150103266,1.491627310409919) circle (1.5pt);
+\draw [fill=black] (0.5954451150103266,-0.6116273104099195) circle (1.5pt);
+\draw [fill=black] (-0.5,0.44) circle (1.5pt);
+\end{tikzpicture}\hfill\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.3cm,y=2.3cm]
+\draw[->,color=black] (-2.2,0) -- (1.3,0);
+\draw[->,color=black] (0,-1.2) -- (0,1.9);
+\clip(-2.2,-1.2) rectangle (1.3,1.9);
+\draw[smooth,samples=100,domain=-2.06:1.05] plot(\x,{((\x)+0.5)^(5)-2*((\x)+0.5)^(3)+0.44});
+\draw [dash pattern=on 2pt off 2pt] (-1.595,1.491)-- (-1.595,0);
+\draw [dash pattern=on 2pt off 2pt] (-0.5,0.44)-- (-0.5,0.);
+\draw [dash pattern=on 2pt off 2pt] (0.595,0)-- (0.595,-0.611);
+\draw[color=black] (1.3,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,1.9) node[anchor=north west] {$y$};
+\draw[color=black] (-1.595,0) node[anchor=north] {$x_1$};
+\draw[color=black] (-0.5,0) node[anchor=north] {$x_2$};
+\draw[color=black] (0.595,0) node[anchor=south] {$x_3$};
+\draw[color=black] (-1.295,1.491) node[anchor=south] {$f'(x_1)=0,\,f''(x_1)<0$};
+\draw[color=black] (-0.5,0.64) node[anchor=south] {$f'(x_2)=0,$};
+\draw[color=black] (-0.5,0.44) node[anchor=south] {$f''(x_2)=0$};
+\draw[color=black] (0.295,-0.611) node[anchor=north] {$f'(x_3)=0,\,f''(x_3)>0$};
+\draw [fill=black] (-1.5954451150103266,1.491627310409919) circle (1.5pt);
+\draw [fill=black] (0.5954451150103266,-0.6116273104099195) circle (1.5pt);
+\draw [fill=black] (-0.5,0.44) circle (1.5pt);
+\end{tikzpicture}
+\end{center}
+When looking at the graph in the above figure, it seems to be intuitively clear that in a local maximum the slope of the graph and therefore the value of the first derivative at the respective position have to be zero. It can be understood even better if you first look at the left side of the small interval around $x_1$. Here the function increases strictly monotonically, i.e.\ we must have $f'(x)>0$. On the right side, the function decreases, i.e.\ we have $f'(x)<0$. At the position $x_1$ itself we can only have $f'(x_1)=0$.
+
+This whole discussion can be transferred to the position $x_3$: This time it is just about a \textbf{local minimum}.
+
+With regards to the position $x_2$ we neither have a local maximum nor a local minimum. Just left of $x_2$ the values are bigger and right of it they are smaller than $f(x_2)$, yet in $x_2$ the slope is equal to zero. Such a point is called a \textbf{saddle point}.
+
+\newpage
+
+In summary, we have the following situation: If you have a zero of $f'(x)$, i.e.\ a position of the function where the graph has a horizontal tangent line, a \textbf{critical point}, then the function must have a local minimum or maximum or a saddle point at this position.
+
+Now, how can we distinguish those three cases? That is where the second derivative helps. Look again at position $x_1$:
+\begin{itemize}
+	\item The graph is right curved in $x_1$, i.e.\ we have $f''(x_1)<0$.
+	\item At the local minimum in $x_3$ it is left curved, i.e.\ we have $f''(x_3)>0$.
+	\item At $x_2$ the graph changes from being right curved to being left curved, hence $f''(x_2)=0$. A saddle point is therefore always a point of inflection.
+\end{itemize}
+
+In short: We have the following \emph{sufficient} condition:
+
+\begin{satz} Minima, maxima and saddle points
+
+\begin{itemize}
+\item $f(x)$ has a maximum at position $x$, if $f'(x)=0$ and $f''(x)<0$.
+\item $f(x)$ has a minimum at position $x$, if $f'(x)=0$ and $f''(x)>0$.
+\item $f(x)$ has a saddle point at position $x$, if $f'(x)=0$ and $f''(x)=0$.
+\end{itemize}
+\end{satz}
+
+\begin{beispiel}
+Does the function $f(x)=x^3-9x^2+24x-15$ have extrema?
+
+First we find the first two derivatives
+\begin{align*}
+f(x)&=x^3-9x^2+24x-15\\
+f'(x)&=3x^2-18x+24\\
+f''(x)&=6x-18
+\end{align*}
+Now, we have to calculate the zeros of the first derivative
+\begin{align*}
+f'(x)=3x^2-18x+24&=0\,|\div3\\
+x^2-6x+8&=0\\
+x&=\frac{6\pm\sqrt{36-32}}{2}\\
+x_1&=4\quad\Rightarrow\quad f''(4)=6>0\quad\Rightarrow\quad f(4)=1\\
+x_2&=2\quad\Rightarrow\quad f''(2)=-6<0\quad\Rightarrow\quad f(2)=5
+\end{align*}
+So, the function has a local minimum and a local maximum
+\[MAX(2;5)\qquad MIN(4;1)\]
+\end{beispiel}
+
+\section{Curve Sketching}
+Curve sketching is one of the most important techniques of analytical thinking. The skill of creating and understanding graphs is used in all of the physical sciences and in many of the social sciences as well. In previous sections, we have learned that certain aspects of the graph of a function $f$ can be determined from the first and second derivatives of $f$. We will also learn that graphs of functions can have asymptotes. In this section we combine all these concepts and use them to sketch the graphs of functions:
+\begin{enumerate}
+\setlength{\itemsep}{1mm}
+\item First, you determine the \emph{domain} of the function. For polynomials this is always $D_f=\mathbb{R}$. You have to be careful with rational functions and with functions that contain roots or logarithms.
+\item You check the function for \emph{simple symmetries}, i.e.\ is the function \textbf{even} (symmetric with respect to the $y$-axis) or \textbf{odd} (symmetric with respect to the origin). 
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw[->,color=black] (-1.7,0) -- (1.7,0);
+\draw[->,color=black] (0,-1.2) -- (0,1.2);
+\clip(-1.7,-1.2) rectangle (1.7,1.2);
+\draw[smooth,samples=100,domain=-1.7:1.7] plot(\x,{(\x)^(4)-2*(\x)^(2)});
+\draw [dash pattern=on 2pt off 2pt] (-0.902,0)-- (-0.902,-0.965);
+\draw [dash pattern=on 2pt off 2pt] (0.902,-0.965)-- (0.902,0);
+\draw[color=black] (1.7,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,1.2) node[anchor=north west] {$y$};
+\draw [fill=black] (-0.902,0) circle (1.5pt);
+\draw[color=black] (-0.902,0) node[anchor=south] {$-x$};
+\draw [fill=black] (0.902,0) circle (1.5pt);
+\draw[color=black] (0.902,0) node[anchor=south] {$x$};
+\end{tikzpicture}\hfill\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=2.0cm,y=2.0cm]
+\draw[->,color=black] (-1.7,0) -- (1.7,0);
+\draw[->,color=black] (0,-1.2) -- (0,1.2);
+\clip(-1.7,-1.2) rectangle (1.7,1.2);
+\draw[smooth,samples=100,domain=-1.7:1.7] plot(\x,{(\x)^(5)-2*(\x)^(3)});
+\draw [dash pattern=on 2pt off 2pt] (-0.902,0)-- (-0.902,0.871);
+\draw [dash pattern=on 2pt off 2pt] (0.902,-0.871)-- (0.902,0);
+\draw[color=black] (1.7,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,1.2) node[anchor=north west] {$y$};
+\draw [fill=black] (-0.902,0) circle (1.5pt);
+\draw[color=black] (-0.902,0) node[anchor=north] {$-x$};
+\draw [fill=black] (0.902,0) circle (1.5pt);
+\draw[color=black] (0.902,0) node[anchor=south] {$x$};
+\end{tikzpicture}	
+\end{center}
+In an even function the function values at $x$ and $-x$ are always equal, in an odd function they have opposite signs, see figure above.
+\begin{center}\fbox{\begin{tabular}{l}
+$f(-x)=f(x)\quad\Rightarrow\quad f$ is even.\\
+$f(-x)=-f(x)\quad\Rightarrow\quad f$ is odd.
+\end{tabular}}
+\end{center}
+\item You determine the \emph{zeros}.
+\item You check the function for \emph{(local) extrema} and \emph{saddle points}.
+\item Furthermore, you check the function for \emph{points of inflection}.
+\item[(6.)] If it is a rational function you analyze the \emph{singularities} (removable or pole) and you determine the \emph{asymptotes}.
+
+This is not relevant for polynomials, so for the moment we may ignore it.
+\item[7.] With the help of all the information gained above you sketch the approximate course of the function, you sketch its \emph{graph}.
+\end{enumerate}
+
+\newpage
+
+\begin{beispiel}
+Consider the function 
+\begin{align*}
+f(x)=-\frac{1}{2}x^4+2x^2
+\end{align*}
+The first two derivatives are: $f'(x)=-2x^3+4x$ and $f''(x)=-6x^2+4$
+\begin{enumerate}
+\setlength{\itemsep}{-0.5ex}
+\item $f$ is a polynomial and therefore defined for all $x\in \mathbb{R}$: $D_f=\mathbb{R}$.
+\item $f$ is even, since we have $f(-x)=-\frac{1}{2}(-x)^4+2(-x)^2=-\frac{1}{2}x^4+2x^2=f(x)$
+\item Zeros: $f(x)=-\frac{1}{2}x^4+2x^2=\frac{1}{2}x^2(-x^2+4)=0$
+
+A product is 0 if one of the factors is equal to zero:
+\begin{align*}
+\frac{1}{2}x^2=0 \quad \Rightarrow \quad x_1=0\quad\mbox{or}\quad-x^2+4=0 \quad \Rightarrow \quad x_2=-2,\quad x_3=2
+\end{align*}
+\[P_1(0;0),\,P_2(-2;0),\,P_3(2;0)\]
+\item Extrema: $f'(x)=-2x^3+4x=-2x(x^2-2)=0$
+\begin{align*}
+x_4=0, \quad x_5=-\sqrt{2}\approx-1.414,\quad x_6=\sqrt{2}\approx1.414
+\end{align*}
+\[\begin{array}{llll}
+f''(0)=4>0 & f(0)=0 & MIN(0;0) & P_4(0;0)\\
+f''(-1.414)=-8<0 & f(-1.414)=2 & MAX(-1.414;2) & P_5(-1.414;2)\\
+f''(1.414)=-8<0 & f(1.414)=2 & MAX(1.414;2) & P_6(1.414;2)
+\end{array}\]
+\item Points of inflection:
+\begin{align*}
+f''(x)=-6x^2+4=0 \quad \Rightarrow \quad x_7=-\sqrt{\frac{2}{3}}\approx-0.816,\quad x_8=\sqrt{\frac{2}{3}}\approx0.816
+\end{align*}
+\[\begin{array}{lll}
+f(-0.816)=1.111 & INP(-0.816;1.111) & P_7(-0.816;1.111)\\
+f(0.861)=1.111 & INP(0.816;1.111) & P_8(0.816;1.111)
+\end{array}\]
+\item We plot all these points and connect them to obtain a rough idea of the graph of $f$.
+
+\vspace{-3mm}
+
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.4cm,y=1.4cm]
+\draw[->,color=black] (-2.5,0) -- (2.5,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,2.5);
+\foreach \y in {-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-2.5,-1.5) rectangle (2.5,2.5);
+\begin{scriptsize}
+\draw[color=black] (2.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,2.5) node[anchor=north west] {$y$};
+\draw [fill=black] (-2,0) circle (1.5pt);
+\draw[color=black] (-2,0) node[anchor=south] {$P_2$};
+\draw [fill=black] (0,0) circle (1.5pt);
+\draw[color=black] (0,0) node[anchor=south] {$P_1=P_4$};
+\draw [fill=black] (2,0) circle (1.5pt);
+\draw[color=black] (2,0) node[anchor=south] {$P_3$};
+\draw [fill=black] (-1.414,2) circle (1.5pt);
+\draw[color=black] (-1.414,2) node[anchor=south] {$P_5$};
+\draw [fill=black] (1.414,2) circle (1.5pt);
+\draw[color=black] (1.414,2) node[anchor=south] {$P_6$};
+\draw [fill=black] (-0.816,1.111) circle (1.5pt);
+\draw[color=black] (-0.816,1.111) node[anchor=south] {$P_7$};
+\draw [fill=black] (0.816,1.111) circle (1.5pt);
+\draw[color=black] (0.816,1.111) node[anchor=south] {$P_8$};
+\end{scriptsize}
+\end{tikzpicture}\qquad	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.4cm,y=1.4cm]
+\draw[->,color=black] (-2.5,0) -- (2.5,0);
+\foreach \x in {-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.5) -- (0,2.5);
+\foreach \y in {-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-2.5,-1.5) rectangle (2.5,2.5);
+\draw[smooth,samples=100,domain=-2.5:2.5] plot(\x,{-0.5*(\x)^(4)+2*(\x)^(2)});
+\begin{scriptsize}
+\draw[color=black] (2.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,2.5) node[anchor=north west] {$y$};
+\draw [fill=black] (-2,0) circle (1.5pt);
+\draw [fill=black] (0,0) circle (1.5pt);
+\draw [fill=black] (2,0) circle (1.5pt);
+\draw [fill=black] (-1.414,2) circle (1.5pt);
+\draw [fill=black] (1.414,2) circle (1.5pt);
+\draw [fill=black] (-0.816,1.111) circle (1.5pt);
+\draw [fill=black] (0.816,1.111) circle (1.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+\end{beispiel}
+
+\section{Parameter Problems}
+In this section we want to discuss an example of a type of problem that often appears. On the basis of certain information about a function (type, position of zeros, extrema or points of inflection), we are to find the equation of the function.
+
+\begin{beispiel}
+A polynomial of degree three $f(x)=ax^3+bx^2+cx+d$ passes through the point  $P(0;2)$, has a zero at position $-2$ and a minimum in the point $Q(3;-1)$. Determine the values of the parameters $a$, $b$, $c$ and $d$.
+
+Since we have four variables, we need four equations. Point $P$ gives us one, the zero gives us one and point $Q$ gives us two. But for that we need the derivative of the function:
+\[f(x)=ax^3+bx^2+cx+d\quad\Rightarrow\quad f'(x)=3ax^2+2bx+c\]
+Now, we translate all the information we have into equations
+\[\begin{array}{rl@{\qquad}lcr@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+\mbox{I}   & \mbox{Passing through }P         & f(0)=2  & \Rightarrow & & & & & & & d & = & 2            \\
+\mbox{II}  & \mbox{Zero}      & f(-2)=0 & \Rightarrow & -8a & + & 4b & - & 2c & + & d & = & 0  \\
+\mbox{III} & \mbox{Passing through }Q         & f(3)=-1 & \Rightarrow & 27a & + & 9b & + & 3c & + & d & = & -1 \\
+\mbox{IV}  & \mbox{Slope 0 in }Q & f'(3)=0 & \Rightarrow & 27a & + & 6b & + & c &   &   & = & 0     \\
+\end{array}\]
+This system now has to be solved. $d$ can already be substituted into the other three equations and we are only left with three equations
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+-8a & + & 4b & - & 2c & = & -2 & +2\cdot\mbox{III}\\
+27a & + & 9b & + & 3c & = & -3 & -3\cdot\mbox{III}\\
+27a & + & 6b & + & c  & = & 0  & 
+\end{array}\qquad\qquad\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l|l}
+46a  & + & 16b &   &   & = & -2 & 9\cdot\mbox{I}+16\cdot\mbox{II}\\
+-54a & - & 9b  &   &   & = & -3 & \\
+27a  & + & 6b  & + & c & = & 0  &
+\end{array}\]
+\[\begin{array}{r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}l}
+-450a &   &     &   &   & = & -66 \\
+-54a  & - & 9b  &   &   & = & -3 \\
+27a   & + & 6b  & + & c & = & 0  
+\end{array}\]
+From this we get 
+\[a=\frac{11}{75}\qquad b=-\frac{41}{75}\qquad c=-\frac{17}{25}\]
+by calculating and substituting. The required function hence is
+\[f(x)=\frac{11}{75}x^3-\frac{41}{75}x^2-\frac{17}{25}+2=\frac{1}{75}(11x^3-41x^2-51x+150)\]
+\end{beispiel}
+
+\newpage
+
+\section{Product, Quotient and Chain Rule}
+The following differentiation rules deal with combined functions. If we know the derivatives of the functions $f(x)$ and $g(x)$ how can we find the derivatives of the combinations $f(x)\cdot g(x)$, $\frac{f(x)}{g(x)}$ and $f(g(x))$?
+\begin{satz}[Product rule]$\left[f(x)\cdot g(x)\right]'=f'(x)\cdot
+  g(x)+f(x)\cdot g'(x)$.
+\end{satz}
+\begin{beweis}
+\begin{align*}
+\left[f(x)\cdot g(x)\right]'=&\lim_{h\rightarrow
+  0}\frac{f(x+h)\cdot g(x+h)-f(x)\cdot g(x)}{h} \\
+=&\lim_{h\rightarrow
+  0}\left( \frac{f(x+h)\cdot g(x+h)-f(x)\cdot g(x)}{h}+\frac{f(x)\cdot
+  g(x+h)-f(x)\cdot g(x+h)}{h}\right) \\
+=&\lim_{h\rightarrow
+  0}\frac{g(x+h)\cdot
+  \left[f(x+h)-f(x)\right]+f(x)\cdot\left[g(x+h)-g(x)\right]}{h} \\
+=&\lim_{h\rightarrow 0} g(x+h)\cdot
+\frac{f(x+h)-f(x)}{h}+\lim_{h\rightarrow 0} f(x)\cdot
+\frac{g(x+h)-g(x)}{h} \\
+=&\lim_{h\rightarrow 0}g(x+h)\cdot\lim_{h\rightarrow
+  0}\frac{f(x+h)-f(x)}{h}+f(x)\cdot g'(x) \\
+=&g(x)\cdot f'(x)+f(x)\cdot g'(x)
+\end{align*}
+\end{beweis}
+
+\begin{satz}[Quotient rule]$\left(\frac{f(x)}{g(x)}\right)'=\frac{f'(x)\cdot g(x)-f(x)\cdot g'(x)}{[g(x)]^2}$
+\end{satz}
+\begin{beweis}
+We define the function $q(x)$ as
+\begin{align*}
+q(x):=\frac{f(x)}{g(x)}.
+\end{align*}
+So
+\begin{align*}
+f(x)=q(x)\cdot g(x).
+\end{align*}
+Because of the product rule we get
+\begin{align*}
+f'(x)=q'(x)\cdot g(x)+q(x)\cdot g'(x).
+\end{align*}
+which implies
+\begin{align*}
+q'(x)\cdot g(x)=f'(x)-q(x)\cdot g'(x)\quad\Rightarrow\quad q'(x)=\frac{f'(x)-q(x)\cdot g'(x)}{g(x)}.
+\end{align*}
+Now we replace $q(x)$ with $\frac{f(x)}{g(x)}$
+\begin{align*}
+\left(\frac{f(x)}{g(x)}\right)'=\frac{f'(x)-\frac{f(x)}{g(x)}\cdot g'(x)}{g(x)}.
+\end{align*}
+After expanding the fraction with $g(x)$, we finally obtain
+\begin{align*}
+\left(\frac{f(x)}{g(x)}\right)'=\frac{f'(x)\cdot g(x)-f(x)\cdot g'(x)}{[g(x)]^2}
+\end{align*}
+\end{beweis}
+
+\begin{satz}[Chain rule]$\left(f\left[g(x)\right]\right)'=f'\left[g(x)\right]\cdot g'(x)$.
+\end{satz}
+\begin{beweis}
+\begin{align*}
+\left(f\left[g(x)\right]\right)'&=\lim_{h\rightarrow
+  0}\frac{f\left[g(x+h)\right]-f\left[g(x)\right]}{h} \\
+&=\lim_{h\rightarrow
+  0}\frac{f\left[g(x+h)\right]-f\left[g(x)\right]}{h}\cdot
+\frac{g(x+h)-g(x)}{g(x+h)-g(x)} \\
+&=\lim_{h\rightarrow
+  0}\frac{f\left[g(x+h)\right]-f\left[g(x)\right]}{g(x+h)-g(x)}\cdot \lim_{h\rightarrow 0}\frac{g(x+h)-g(x)}{h} \\
+&=\left(\lim_{h\rightarrow
+  0}\frac{f\left[g(x+h)\right]-f\left[g(x)\right]}{g(x+h)-g(x)}\right)\cdot g'(x)
+\end{align*}
+Now, we introduce a new variable:
+\begin{align*}
+\bar{h}:=g(x+h)-g(x)\Rightarrow g(x+h)=g(x)+\bar{h}
+\end{align*}
+As $h$ goes to zero, so does the new variable $\bar{h}$. We obtain
+\begin{align*}
+\left(f\left[g(x)\right]\right)'&=\left(\lim_{\bar{h}\rightarrow
+    0}\frac{f\left[g(x)+\bar{h}\right]-f\left[g(x)\right]}{\bar{h}}\right)\cdot g'(x) \\
+&=f'\left[g(x)\right]\cdot g'(x)
+\end{align*}
+\end{beweis}
+
+\newpage
+
+We end this section by looking at the derivatives of two specific functions.
+
+\begin{satz}$\left(\frac{1}{x}\right)'=-\frac{1}{x^2}$.
+\end{satz}
+\begin{beweis}
+\begin{align*}
+\left(\frac{1}{x}\right)' &= \lim_{h\rightarrow
+  0}\frac{\frac{1}{x+h}-\frac{1}{x}}{h}=\lim_{h\rightarrow
+  0}\frac{\frac{x\cdot(x+h)}{x+h}-\frac{x\cdot(x+h)}{x}}{h\cdot x\cdot(x+h)}\\
+&=\lim_{h\rightarrow
+  0}\frac{x-(x+h)}{h\cdot x\cdot(x+h)}=\lim_{h\rightarrow
+  0}\frac{-h}{h\cdot x\cdot(x+h)}\\
+&=\lim_{h\rightarrow
+  0}\frac{-1}{x\cdot(x+h)}=\frac{-1}{x\cdot x}=-\frac{1}{x^2}
+\end{align*}
+\end{beweis}
+
+\begin{satz}$\left(\sqrt{x}\right)'=\frac{1}{2\sqrt{x}}$.
+\end{satz}
+\begin{beweis}
+\begin{align*}
+\left(\sqrt{x}\right)' &= \lim_{h\rightarrow
+  0}\frac{\sqrt{x+h}-\sqrt{x}}{h}\\
+&= \lim_{h\rightarrow 0}\frac{\sqrt{x+h}-\sqrt{x}}{h}\cdot\frac{\sqrt{x+h}+\sqrt{x}}{\sqrt{x+h}+\sqrt{x}}\\
+&= \lim_{h\rightarrow 0}\frac{(\sqrt{x+h})^2-(\sqrt{x})^2}{h(\sqrt{x+h}+\sqrt{x})}=\lim_{h\rightarrow 0}\frac{x+h-x}{h(\sqrt{x+h}+\sqrt{x})}\\
+&= \lim_{h\rightarrow 0}\frac{h}{h(\sqrt{x+h}+\sqrt{x})}=\lim_{h\rightarrow 0}\frac{1}{\sqrt{x+h}+\sqrt{x}}\\
+&= \frac{1}{\sqrt{x}+\sqrt{x}}=\frac{1}{2\sqrt{x}}
+\end{align*}
+\end{beweis}
+
+Both of these functions and their derivatives can be written as powers. What happens if we did this and then just applied the rule for polynomials $(x^n)'=nx^{n-1}$?
+\[\left(\frac{1}{x}\right)'=\left(x^{-1}\right)'=(-1)\cdot x^{-2}=-x^{-2}=-\frac{1}{x^2}\]
+and
+\[\left(\sqrt{x}\right)'=\left(x^{\frac{1}{2}}\right)'=\frac{1}{2}\cdot x^{-\frac{1}{2}}=\frac{1}{2}\cdot\frac{1}{x^{\frac{1}{2}}}=\frac{1}{2\sqrt{x}}\]
+So at least in these two cases, i.e. for the exponents $-1$ and $\frac{1}{2}$, the rule is also valid.
+
+\section{Rational Functions}
+\begin{defn}[Rational Function]
+A \textbf{rational function} is any function which can be written as the ratio of two polynomial functions:
+\[f(x)=\frac{a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0}{b_mx^m+b_{m-1}x^{m-1}+\cdots+b_1x+b_0}\]
+\end{defn}
+\begin{beispiel}
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-3.5,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-2.5) -- (0.,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,-2.5) node[anchor=north] {(a) $f(x)=\frac{x+1}{x^2-4}$};
+\clip(-3.5,-2.5) rectangle (3.5,2.5);
+\draw[smooth,samples=100,domain=-3.5:-2.1] plot(\x,{((\x)+1)/((\x)^(2)-4)});
+\draw[smooth,samples=100,domain=-1.9:1.9] plot(\x,{((\x)+1)/((\x)^(2)-4)});
+\draw[smooth,samples=100,domain=2.1:3.5] plot(\x,{((\x)+1)/((\x)^(2)-4)});
+\draw [dash pattern=on 3pt off 3pt] (-2,-2.5) -- (-2,2.5);
+\draw [dash pattern=on 3pt off 3pt] (2,-2.5) -- (2,2.5);
+\end{tikzpicture}\quad	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-3.5,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-2.5) -- (0.,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,-2.5) node[anchor=north] {(b) $f(x)=\frac{2x}{3x+3}$};
+\clip(-3.5,-2.5) rectangle (3.5,2.5);
+\draw[smooth,samples=100,domain=-3.5:-1.1] plot(\x,{(2*(\x))/(3*(\x)+3)});
+\draw[smooth,samples=100,domain=-0.9:3.5] plot(\x,{(2*(\x))/(3*(\x)+3)});
+\draw [dash pattern=on 3pt off 3pt] (-1,-2.5) -- (-1,2.5);
+\draw [dash pattern=on 3pt off 3pt] (-3.5,0.666) -- (3.5,0.666);
+\end{tikzpicture}
+
+\bigskip
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-3.5,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-2.5) -- (0.,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,-2.5) node[anchor=north] {(c) $f(x)=\frac{x^2-3x}{2x-2}$};
+\clip(-3.5,-2.5) rectangle (3.5,2.5);
+\draw[smooth,samples=100,domain=-3.5:0.9] plot(\x,{((\x)^(2)-3*(\x))/(2*(\x)-2)});
+\draw[smooth,samples=100,domain=1.1:3.5] plot(\x,{((\x)^(2)-3*(\x))/(2*(\x)-2)});
+\draw [dash pattern=on 3pt off 3pt] (1,-2.5) -- (1,2.5);
+\draw [dash pattern=on 3pt off 3pt] (-3.5,-2.75) -- (3.5,0.75);
+\end{tikzpicture}\quad	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-3.5,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-2.5) -- (0.,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0,-2.5) node[anchor=north] {(d) $f(x)=\frac{x^3-3x^2+x+2}{x-1}$};
+\clip(-3.5,-2.5) rectangle (3.5,2.5);
+\draw[smooth,samples=100,domain=-3.5:0.9] plot(\x,{((\x)^(3)-3*(\x)^(2)+(\x)+2)/((\x)-1)});
+\draw[smooth,samples=100,domain=1.1:3.5] plot(\x,{((\x)^(3)-3*(\x)^(2)+(\x)+2)/((\x)-1)});
+\draw [dash pattern=on 3pt off 3pt] (1,-2.5) -- (1,2.5);
+\draw[dash pattern=on 3pt off 3pt,smooth,samples=100,domain=-3.5:3.5] plot(\x,{(\x)^(2)-2*(\x)-1});
+\end{tikzpicture}
+\end{center}
+\end{beispiel}
+
+There are two things that need to be discussed about rational functions. Since the functional term is a fraction, the denominator can be zero and the function, therefore, is not defined for that $x$. So we need to understand what happens for those numbers $x$, where the function $f$ is not defined.
+
+Secondly, rational functions have an interesting behaviour for large $x$. So we need to know what happens, as $x$ grows larger and larger.
+
+\newpage
+
+\subsection{Singularities}
+
+If $g(x_0)=0$ in a function $f(x)=\frac{h(x)}{g(x)}$, the function $f(x)$ is not defined at $x_0$. 
+\begin{defn}[Singularity]
+\textbf{1. Removable singularity:} The limit $\lim_{x\to x_0}\frac{h(x)}{g(x)}=y_0$ exists. In this case we also have $h(x_0)=0$. The function can be extended as follows
+\[f(x)=\left\{\begin{array}{lll}\frac{h(x)}{g(x)} & \mbox{ for} & x\neq x_0\\ y_0 & \mbox{for} & x=x_0\end{array}\right.\]
+In this function the function value at $x_0$ is equal to the limit. This function is therefore also continuous at $x_0$. $x_0$ is called a removable singularity or removable discontinuity. Since $x_0$ is in this case a zero of the numerator as well as the denominator, we can reduce $\frac{h(x)}{g(x)}$ for $x\neq x_0$ by $(x-x_0)$ or a power of it.
+
+\medskip
+
+\textbf{2. Pole:} We have $\lim_{x\to x_0}\left|\frac{h(x)}{g(x)}\right|=\infty$. Here $h(x_0)\neq0$. A singularity of this kind is called a pole, or vertical asymptote. If the denominator of the reduced fraction contains the factor $(x-x_0)^n$, we speak of a pole of order $n$. If $n$ is odd, $f(x)$ changes the sign at $x_0$, if $n$ is even, $f(x)$ has the same sign in a small interval around $x_0$.
+\end{defn}
+
+\vspace{-3mm}
+
+\begin{beispiel}
+Consider the function $f(x)=\frac{x^2-x}{x^2-1}$. 
+
+\vspace{-3mm}
+
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.7cm,y=0.7cm]
+\draw[->,color=black] (-3.5,0) -- (3.5,0);
+\foreach \x in {-3,-2,-1,1,2,3}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-2.5) -- (0,2.5);
+\foreach \y in {-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-3.5,-2.5) rectangle (3.5,2.5);
+\draw[smooth,samples=100,domain=-3.5:-1.1] plot(\x,{((\x)^(2)-(\x))/((\x)^(2)-1)});
+\draw[smooth,samples=100,domain=-0.9:3.5] plot(\x,{((\x)^(2)-(\x))/((\x)^(2)-1)});
+\draw [dash pattern=on 3pt off 3pt] (-1,-2.5) -- (-1,2.5);
+\draw [fill=white] (1,0.5) circle (2pt);
+\draw [color=black] (1,0.5) circle (2pt);
+\draw[color=black] (3.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,2.5) node[anchor=north west] {$y$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{-3mm}
+
+This function has two singularities, namely at $x=-1$ and $x=1$. If we factorize the function, we get
+\[f(x)=\frac{x(x-1)}{(x+1)(x-1)}\]
+For all $x\neq1$ we can therefore reduce and get
+\[f(x)=\frac{x}{x+1}\]
+So, it is clear that $x=-1$ is a pole with a change of sign and $x=1$ is a removable singularity.
+\end{beispiel}
+
+\subsection{Behaviour as $x$ approaches infinity}
+
+\vspace{-2mm}
+
+Polynomials all go to $\pm\infty$ as $x$ goes to $\pm\infty$. Rational functions, however, behave differently. We differentiate three cases:
+
+\begin{satz} $\mbox{ }$
+\begin{enumerate}
+\item Degree of the numerator is smaller than the degree of the denominator ($n<m$), See figure (a).
+\[f(x)\rightarrow0\mbox{ as }x\rightarrow\pm\infty\mbox{ or }\lim_{x\to\infty}f(x)=0\]
+\item Degree of the numerator is equal to the degree of the denominator ($n=m$), see figure (b).
+\[f(x)\rightarrow\frac{a_n}{b_m}\mbox{ as }x\rightarrow\pm\infty\mbox{ or }\lim_{x\to\infty}f(x)=\frac{a_n}{b_m}\]
+\item Degree of the numerator is larger than the degree  of the denominator ($n>m$), see figure (c) and (d)
+\[f(x)\rightarrow\pm\infty\mbox{ as }x\rightarrow\pm\infty\mbox{ or }\lim_{x\to\infty}f(x)=\pm\infty\]
+\end{enumerate}
+\end{satz}
+
+\vspace{-2mm}
+
+If $n\leqslant m$, the function approaches horizontal lines as  $x\rightarrow\pm\infty$ (either $g(x)=0$ or $g(x)=\frac{a_n}{b_m}$). Such lines are called \textbf{asymptotes}. For large numbers $x$, the $f$ looks like $g$.
+
+\begin{defn}
+A straight line (or polynomial) $g(x)$ is called asymptote of the function $f(x)$, if
+\[\lim_{x\to\pm\infty}\left[f(x)-g(x)\right]=0\]
+\end{defn}
+
+If $n>m$, we can separate a polynomial term using polynomial long division. The function then consists of a polynomial and a rational function, whose numerator has a smaller degree than its denominator and which thus goes to zero for $x\rightarrow\pm\infty$. The polynomial part is therefore asymptote of the function.
+
+\begin{beispiel}
+Given is the function $f(x)=\frac{x^2-3x}{2x-2}$ from figure (c). We break it apart using polynomial long division:
+\[f(x)=\frac{1}{2}x-1-\frac{1}{x-1}\]
+Claim: $g(x)=\frac{1}{2}x-1$ is an asymptote. Consider
+\[\lim_{x\to\pm\infty}\left[f(x)-g(x)\right]=\lim_{x\to\pm\infty}\left[\frac{1}{2}x-1-\frac{1}{x-1}-\left(\frac{1}{2}x-1\right)\right]=\lim_{x\to\pm\infty}\left[-\frac{1}{x-1}\right]=0\]
+\end{beispiel}
+
+The slant line in figure (c) is exactly this asymptote $g(x)=\frac{1}{2}x-1$.
+
+\newpage
+
+\subsection{Curve Sketching}
+\begin{beispiel}
+Consider the function 
+\begin{align*}
+f(x)=\frac{x^2-2x+2}{x-1}
+\end{align*}
+The first two derivatives are: $f'(x)=\frac{x^2-2x}{(x-1)^2}$ and $f''(x)=\frac{2}{(x-1)^3}$
+\begin{enumerate}
+\setlength{\itemsep}{-0.5ex}
+\item $f$ is a rational function: $D_f=\mathbb{R}\backslash\{1\}$.
+\item $f$ is neither even nor odd. 
+\item Zeros: $f(x)=\frac{x^2-2x+2}{x-1}=0\quad \Rightarrow \quad x^2-2x+2=0$
+\[x=\frac{2\pm\sqrt{4-8}}{2}=\frac{2\pm\sqrt{-4}}{2}\quad\mbox{No solution, hence no zero}\]
+\item Extrema: $f'(x)=\frac{x^2-2x}{(x-1)^2}=0\quad \Rightarrow \quad x^2-2x=x(x-2)=0\quad \Rightarrow \quad x_1=0, \quad x_2=2$
+\[\begin{array}{llll}
+f''(0)=-2<0 & f(0)=-2 & MAX(0;-2) & P_1(0;-2)\\
+f''(2)=2>0 & f(2)=2 & MIN(2;2) & P_2(2;2)\\
+\end{array}\]
+\item Points of inflection: $f''(x)=\frac{2}{(x-1)^3}=0\quad \Rightarrow \quad 2=0$. No solution, hence no point of inflection.
+\item Singularities and asymptotes: The numerator is not equal to zero at $x=1$, so we have a pole (vertical asymptote) with change of sign. The function can be written as:
+\[f(x)=\frac{x^2-2x+2}{x-1}=x-1+\frac{1}{x-1}\]
+Thus, the line $g(x)=x-1$ is a slant asymptote.
+\item We plot all these points and connect them keeping in mind the asymptotes to obtain a rough idea of the graph of $f$.
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.8cm,y=0.8cm]
+\draw[->,color=black] (-3.5,0) -- (4.5,0);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.5) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-3.5,-3.5) rectangle (4.5,3.5);
+\draw [dash pattern=on 3pt off 3pt] (1,-3.5) -- (1,3.5);
+\draw [dash pattern=on 3pt off 3pt,domain=-3.5:4.5] plot(\x,{-1+\x});
+\draw[color=black] (4.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,3.5) node[anchor=north west] {$y$};
+\draw [fill=black] (2,2) circle (1.5pt);
+\draw[color=black] (2,2) node[anchor=north] {$P_2$};
+\draw [fill=black] (0,-2) circle (1.5pt);
+\draw[color=black] (0,-2) node[anchor=south west] {$P_1$};
+\end{tikzpicture}\qquad \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.8cm,y=0.8cm]
+\draw[->,color=black] (-3.5,0) -- (4.5,0);
+\foreach \x in {-3,-2,-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.5) -- (0,3.5);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-3.5,-3.5) rectangle (4.5,3.5);
+\draw[smooth,samples=100,domain=-3.5:0.9] plot(\x,{((\x)^(2)-2*(\x)+2)/((\x)-1)});
+\draw[smooth,samples=100,domain=1.1:4.5] plot(\x,{((\x)^(2)-2*(\x)+2)/((\x)-1)});
+\draw [dash pattern=on 3pt off 3pt] (1,-3.5) -- (1,3.5);
+\draw [dash pattern=on 3pt off 3pt,domain=-3.5:4.5] plot(\x,{-1+\x});
+\draw[color=black] (4.5,0) node[anchor=south east] {$x$};
+\draw[color=black] (0,3.5) node[anchor=north west] {$y$};
+\draw [fill=black] (2,2) circle (1.5pt);
+\draw [fill=black] (0,-2) circle (1.5pt);
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+\end{beispiel}
+
+\section{More Differentiation Rules}
+Differentiation of the exponential function $f(x)=a^x$.
+\[(a^x)'=\lim_{h\rightarrow 0}\frac{a^{x+h}-a^x}{h}=\lim_{h\rightarrow 0}\frac{a^x\cdot a^h-a^x}{h}=\lim_{h\rightarrow 0}\frac{a^x(a^h-1)}{h}=a^x\cdot\underbrace{\lim_{h\rightarrow 0}\frac{a^h-1}{h}}_{c}=c\cdot a^x\]
+Is there a number $a$ so that $c=\lim_{h\rightarrow 0}\frac{a^h-1}{h}=1$? That would mean that there is a function that is equal to its own derivative.
+
+Assuming there is, then the following holds for a very small $h$
+\[\frac{a^h-1}{h}\approx1\quad\Rightarrow\quad a^h\approx1+h\quad\Rightarrow\quad a\approx(1+h)^{\frac{1}{h}}\]
+Replacing $n=\frac{1}{h}$ ($n$ gets very large, when $h$ is chosen to be very small), yields
+\[a\approx\left(1+\frac{1}{n}\right)^n\quad\Rightarrow\quad a=\lim_{n\rightarrow\infty}\left(1+\frac{1}{n}\right)^n=2.71828182845904523536\ldots\]
+When using computers, it is simpler to calculate limits with the variable going to infinity rather than it going to zero. That is why this substitution was done.
+
+This number is of great importance in calculus, it was therefore named after its discoverer Leonhard Euler
+\[e:=2.71828182845904523536\ldots\qquad\mbox{Euler's number}\]
+So we have
+\begin{satz}$\left( e^{x}\right)'=e^{x}$.
+\end{satz}
+Using this we can find the derivative of $a^x$ with an arbitrary base $a$.
+\begin{satz}$(a^x)'=\ln a\cdot a^x$.
+\end{satz}
+\begin{beweis}
+\begin{align*}
+\left(a^x\right)'=\left(e^{\ln a^x}\right)'=\left(e^{\ln a\cdot x}\right)'=\ln a \cdot e^{\ln a\cdot x}=\ln a \cdot a^x
+\end{align*}
+\end{beweis}
+
+\newpage
+
+\begin{satz}
+$(\ln x)'=\frac{1}{x}$ ($\ln x$ is the logarithm to the base $e$, so $\ln x=\log_ex$). 
+\end{satz}
+\begin{beweis}
+We use the fact that
+\begin{align*}
+e^{\ln x}=x.
+\end{align*}
+Now, we differentiate both sides. Using the chain rule, the left side yields
+\begin{align*}
+\left(e^{\ln x} \right)'=e^{\ln x}\cdot \left(\ln x\right)'=x\cdot(\ln x)'.
+\end{align*}
+The derivative of the right side is $1$. Altogether, we have
+\begin{align*}
+x\cdot (\ln x)'=1,
+\end{align*}
+which implies
+\begin{align*}
+(\ln x)'=\frac{1}{x}
+\end{align*}
+\end{beweis}
+
+\begin{satz}
+$(\log_a x)'=\frac{1}{\ln a\cdot x}$.
+\end{satz}
+
+\begin{beweis}
+\begin{align*}
+(\log_a x)'=\left(\frac{\ln x}{\ln a}\right)'=\frac{1}{\ln a}\cdot (\ln
+x)'=\frac{1}{\ln a\cdot x}
+\end{align*}
+\end{beweis}
+
+\begin{satz}$(x^a)'=ax^{a-1}$ holds true for all $a\in\mathbb{R}\backslash\{0\}$.
+\end{satz}
+\begin{beweis}
+\[(x^a)'=\left(e^{\ln x^a}\right)'=\left(e^{a\cdot\ln x}\right)'=e^{a\cdot\ln x}\cdot a\cdot\frac{1}{x}=x^a\cdot a\cdot\frac{1}{x}=a\frac{x^a}{x}=ax^{a-1}\]
+\end{beweis}
+
+\newpage
+
+\begin{satz}
+$(\sin x )'=\cos x$.
+\end{satz}
+The proof of this theorem is rather elaborate. You can find it in appendix \ref{sin}. 
+
+\begin{satz}
+$(\cos x)'=-\sin x$.
+\end{satz}
+\begin{beweis}
+Consider the formula
+\begin{align*}
+\sin^2 x+\cos^2 x=1. 
+\end{align*}
+differentiate both sides
+\begin{align*}
+2\sin x \cos x+2\cos x(\cos x)'=0.
+\end{align*}
+Now, we just have to solve for $(\cos x)'$, to get
+\begin{align*}
+(\cos x)'=-\sin x
+\end{align*}
+\end{beweis}
+
+\begin{satz}$(\tan x)'=\frac{1}{\cos^2x}$ or $(\tan x)'=1+\tan^2x$
+\end{satz}
+\begin{beweis}
+\[(\tan x)'=\left(\frac{\sin x}{\cos x}\right)'=\frac{\cos x\cdot\cos x-\sin x\cdot(-\sin x)}{\cos^2x}=\frac{\cos^2x+\sin^2x}{\cos^2x}\stackrel{(*)}{=}\frac{1}{\cos^2x}\]
+The step $(*)$ could have been transformed in another way
+\[(\tan x)'=\frac{\cos^2x+\sin^2x}{\cos^2x}=\frac{\cos^2x}{\cos^2x}+\frac{\sin^2x}{\cos^2x}=1+\tan^2x\]
+\end{beweis}
+
+With the help of all these rules we can now differentiate any function that is known to us!
+
+\newpage
+
+\section{Applied Maximum-Minimum Problems}
+The need to maximize and minimize functions often arises in science, engineering and commerce. A company developing a new product might want to maximize its profit. An ecologist might want the company to minimize its consumption of resources. In short, procedures for extremizing functions are amongst the most vital applications of mathematics.
+
+Such problems are always solved according to the following recipe:
+\begin{enumerate}
+\setlength{\itemsep}{-0.5ex}
+\item What exactly has to be optimized (maximized, minimized)? Determine the corresponding function $f$.
+\item If $f$ contains more than one variable: Identify relationships among them (side conditions).
+\item Substitute the side condition into the expression for $f$.
+\item Find the derivative of $f$ and equate with zero (an optimum always has slope 0).
+\item Solve for the variable left in $f'$ (often $x$).
+\item Calculate the remaining parameters and the optimum.
+\end{enumerate}
+
+\begin{beispiel}
+What number yields the smallest sum formed from that number and its square?
+\begin{enumerate}
+\setlength{\itemsep}{-0.5ex}
+\item Our number is called $x$, so the function to be minimized is $s(x)=x+x^2$.
+\item Our function only contains one variable, so no side condition is needed.
+\item Nothing is to be substituted.
+\item $s'(x)=1+2x=0$
+\item $x=-0.5$
+\item The number $-0.5$ yields the smallest sum $-0.5+(-0.5)^2=-0.25$. There are no other parameters.
+\end{enumerate}
+\end{beispiel}
+
+\begin{beispiel}
+Using 100 m of fence, we are to fence off the largest possible rectangle.
+\begin{enumerate}
+\setlength{\itemsep}{-0.5ex}
+\item We have to maximize the area of the rectangle $A=l\cdot b$.
+\item Our function contains two variables. We need a side condition to be able to express one of them through the other. The 100 m of fence form the circumference of the rectangle, $U=2l+2b=100$. From this we get $l=50-b$.
+\item $A(b)=(50-b)\cdot b=50b-b^2$
+\item $A'(b)=50-2b=0$
+\item $b=25$
+\item For the largest possible rectangle we get, $b=25$ m, $l=50-b=25$ m and $A=50b-b^2=625$ m$^2$. It is a square.
+\end{enumerate}
+\end{beispiel}
+
+\begin{beispiel}
+The largest possible isosceles triangle is to be inscribed into a circle.
+\begin{center}
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.5cm,y=1.5cm]
+\clip(-2.1,-2.1) rectangle (2.1,2.1);
+\draw(0,0) circle (2);
+\draw (0,2)-- (1.519,-1.299);
+\draw (1.519,-1.299)-- (-1.519,-1.299);
+\draw (-1.519,-1.299)-- (0,2);
+\draw [dash pattern=on 3pt off 3pt] (0,2)-- (0.,-1.299);
+\draw [dash pattern=on 3pt off 3pt] (0,0)-- (1.519,-1.299);
+\draw[color=black] (0,1) node[anchor=west] {$r$};
+\draw[color=black] (0,-1.299) node[anchor=north] {$b$};
+\draw[color=black] (-1,0.351) node {$s$};
+\draw[color=black] (1,0.351) node {$s$};
+\draw[color=black] (0,0) node[anchor=east] {$h$};
+\draw[color=black] (0.759,-0.649) node[anchor=south] {$r$};
+\draw[color=black] (0,-0.649) node[anchor=west] {$x$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+\item We have to maximize the area of the triangle $A=\frac{1}{2}bh$.
+\item We have $h=r+x$ and using Pythagoras' theorem $x=\sqrt{r^2-\left(\frac{b}{2}\right)^2}$, also\linebreak $h=r+\sqrt{r^2-\frac{b^2}{4}}$
+\item $A(b)=\frac{1}{2}b(r+\sqrt{r^2-\frac{b^2}{4}})=\frac{1}{2}br+\frac{1}{2}b\sqrt{r^2-\frac{b^2}{4}}$
+
+This function only makes sense on the interval $[0;2r]$. You can see the function with $r=1$ below.
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=3.0cm,y=3.0cm]
+\draw[->,color=black] (-0.5,0) -- (2.5,0);
+\foreach \x in {0.5,1,1.5,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.5) -- (0,1.5);
+\foreach \y in {0.5,1}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\clip(-0.5,-0.5) rectangle (2.5,1.5);
+\draw[smooth,samples=100,domain=0:2] plot(\x,{0.5*(\x)+0.5*(\x)*sqrt(1-(\x)^(2)/4)});
+\draw [dash pattern=on 3pt off 3pt] (1.732,0)-- (1.732,1.299);
+\draw [fill=black] (1.732,1.299) circle (1.5pt);
+\draw[color=black] (2.5,0) node[anchor=south east] {$b$};
+\draw[color=black] (0,1.5) node[anchor=north west] {$A(b)$};
+\draw[color=black] (1.732,0) node[anchor=north] {$\sqrt{3}$};
+\end{tikzpicture}
+\end{center}
+\item $A'(b)=\frac{1}{2}r+\frac{1}{2}\sqrt{r^2-\frac{b^2}{4}}+\frac{1}{2}b\frac{-\frac{b}{2}}{2\sqrt{r^2-\frac{b^2}{4}}}=\frac{1}{2}r+\frac{1}{2}\sqrt{r^2-\frac{b^2}{4}}-\frac{b^2}{8\sqrt{r^2-\frac{b^2}{4}}}=0$
+\item \begin{flalign*}
+& & \frac{1}{2}r+\frac{1}{2}\sqrt{r^2-\frac{b^2}{4}}-\frac{b^2}{8\sqrt{r^2-\frac{b^2}{4}}}&=0 & &|\cdot8\sqrt{r^2-\frac{b^2}{4}}& & \\
+& & 4r\sqrt{r^2-\frac{b^2}{4}}+4\left(r^2-\frac{b^2}{4}\right)-b^2&=0 & & & & \\
+& & 4r\sqrt{r^2-\frac{b^2}{4}}+4r^2-b^2-b^2 &= & & & & \\
+& & 4r\sqrt{r^2-\frac{b^2}{4}} &= 2b^2-4r^2 & & |\div2 & & \\
+& & 2r\sqrt{r^2-\frac{b^2}{4}} &= b^2-2r^2 & & |\mbox{square} & & \\
+& & 4r^2\left(r^2-\frac{b^2}{4}\right) &= b^4-4b^2r^2+4r^2 & & & & \\
+& & 4r^4-r^2b^2 &=b^4-4b^2r^2+4r^2 & & & & \\
+& & 3r^2b^2 &=b^4 & & & & \\
+& & 3r^2 &=b^2 & & & & \\
+& & b &=\sqrt{3}r & & & & 
+\end{flalign*}
+The position of the maximum is shown in the figure.
+\item For the largest possible triangle we have,
+\begin{align*}
+b &=\sqrt{3}r\\ h &=r+\sqrt{r^2-\frac{(\sqrt{3}r)^2}{4}}=r+\sqrt{\frac{r^2}{4}}=r+\frac{1}{2}r=\frac{3}{2}r\\
+A &=\frac{1}{2}\sqrt{3}r\frac{3}{2}r=\frac{3\sqrt{3}}{4}r^2\approx1.3r^2
+\end{align*}
+Additionally, we have $s=\sqrt{h^2+\left(\frac{b}{2}\right)^2}=\sqrt{\left(\frac{3}{2}r\right)^2+\left(\frac{\sqrt{3}r}{2}\right)^2}=\sqrt{\frac{9}{4}r^2+\frac{3}{4}r^2}=\sqrt{3}r$, the triangle is therefore equilateral.
+\end{enumerate}
+\end{beispiel}
+
+\newpage
+
+\appendix
+\section{Derivative of $\sin x$}\label{sin}
+For the derivation of the derivative of $\sin x$ we need the following two equations:
+\begin{align*}
+\sin\alpha-\sin\beta&=2\cos\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2}\\
+\lim_{h\rightarrow 0}\frac{\sin h}{h}&=1
+\end{align*}
+First, we prove:
+
+\begin{satz}\label{satzaddtheorem}
+$\sin\alpha-\sin\beta=2\cos\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2}$
+\end{satz}
+\begin{beweis}
+We use the following two trigonometric identities (see
+Fundamentum, p.\ 28):
+\begin{align*}
+\sin(\alpha+\beta )&=\sin \alpha\cos \beta+\cos\alpha\sin\beta ,\\
+\sin(\alpha-\beta )&=\sin \alpha\cos \beta-\cos\alpha\sin\beta.
+\end{align*}
+Adding the two equations yields
+\begin{align*}
+\sin(\alpha+\beta )+\sin(\alpha-\beta )=2\sin \alpha\cos \beta .
+\end{align*}
+Replacing $\alpha$ by $\frac{\alpha-\beta}{2}$ and $\beta$
+by $\frac{\alpha-\beta}{2}$ we, in fact, get
+\begin{align*}
+\sin\alpha-\sin\beta=2\cos\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2}
+\end{align*}
+\end{beweis}
+
+\newpage
+
+Now we prove:
+\begin{satz}\label{satzsindiv}
+$\lim_{h\rightarrow 0}\frac{\sin h}{h}=1$.
+\end{satz}
+\begin{beweis}
+Observe the following situation in the unit circle. 
+\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=5.0cm,y=5.0cm]
+\draw[->,color=black] (-0.1,0) -- (1.2,0);
+\draw[->,color=black] (0,-0.1) -- (0,1.2);
+\clip(-0.1,-0.1) rectangle (1.2,1.2);
+\draw [shift={(0,0)}] plot[domain=0:1.570,variable=\t]({cos(\t r)},{sin(\t r)});
+\draw [shift={(0,0)},fill=black,fill opacity=0.1]  (0,0) --  plot[domain=0:0.702,variable=\t]({cos(\t r)},{sin(\t r)}) -- cycle ;
+\draw (0,0)-- (1,0.845);
+\draw (1,0)-- (1,0.845);
+\draw (0.763,0)-- (0.763,0.645);
+\begin{scriptsize}
+\draw [fill=black] (0,0) circle (1.5pt);
+\draw[color=black] (0,0) node[anchor=north east] {$O$};
+\draw [fill=black] (1,0) circle (1.5pt);
+\draw[color=black] (1,0) node[anchor=north] {$C$};
+\draw [fill=black] (0.763,0.645) circle (1.5pt);
+\draw[color=black] (0.763,0.645) node[anchor=south] {$B$};
+\draw [fill=black] (1,0.845) circle (1.5pt);
+\draw[color=black] (1,0.845) node[anchor=south] {$D$};
+\draw [fill=black] (0.763,0) circle (1.5pt);
+\draw[color=black] (0.763,0) node[anchor=north] {$A$};
+\draw[color=black] (0.382,0) node[anchor=north] {$\cos h$};
+\draw[color=black] (0.382,0.323) node[anchor=south east] {$r=1$};
+\draw[color=black] (0.763,0.323) node[anchor=east] {$\sin h$};
+\draw[color=black] (0.9,0.5) node {$h$};
+\draw[color=black] (1,0.423) node[anchor=west] {$\tan h$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+For the angle $0\leq h\leq\frac{\pi}{2}$ the area of the grey circular sector ($A_{OCB}$) is always larger than the area of the triangle $OAB$ ($A_{OAB}$) but smaller than the area of the triangle $OCD$:
+\begin{align*}
+A_{OAB} \leq A_{OCB} \leq A_{OCD}.
+\end{align*}
+For the areas of the triangles we have
+\begin{align*}
+A_{OAB}&=\frac{\cos h\cdot\sin h}{2}, \\
+A_{OCD}&=\frac{1\cdot\tan h}{2}
+\end{align*}
+The area of the sector is
+\begin{align*}
+A_{OCB}=\pi r^2\frac{h}{2\pi r}=\frac{rh}{2} \stackrel{r=1}{\Longrightarrow} A_{OCB}=\frac{h}{2}.
+\end{align*}
+In summary, we obtain
+\begin{align*}
+\frac{\cos h\sin h}{2}\leq\frac{h}{2}\leq\frac{\tan h}{2} \left(
+  =\frac{\sin h}{2\cos h}\right).
+\end{align*}
+Multiplying this inequality by $2$ and dividing it by
+$\sin h$, we get
+\begin{align*}
+\cos h\leq \frac{h}{\sin h}\leq \frac{1}{\cos h}.
+\end{align*}
+Letting $h$ go to zero yields
+\begin{align*}
+1\leq\lim_{h\rightarrow 0}\frac{h}{\sin h}\leq 1,
+\end{align*}
+From which we eventually get
+\begin{align*}
+\lim_{h\rightarrow 0}\frac{h}{\sin h}=1 \mbox{ und }
+\lim_{h\rightarrow 0}\frac{\sin h}{h}=1
+\end{align*}
+\end{beweis}
+Now, we have everything needed to find the derivative of $\sin x$.
+\begin{satz}
+$(\sin x)'=\cos x$.
+\end{satz}
+\begin{beweis}
+According to the definition
+\begin{align*}
+(\sin x)'=\lim_{h\rightarrow 0}\frac{\sin (x+h)-\sin x}{h}.
+\end{align*}
+Using theorem \ref{satzaddtheorem} we can transform the numerator on the right side. We obtain
+\begin{align*}
+(\sin x)'&=\lim_{h\rightarrow 0}\frac{2\cos
+  \left(\frac{x +h+x}{2}\right)\sin \frac{x+h-x}{2}}{h} \\
+&=\lim_{h\rightarrow 0}\frac{2\cos
+  \left(\frac{2x +h}{2}\right)\sin \frac{h}{2}}{h} \\
+&=\lim_{h\rightarrow 0}\cos
+  \left(\frac{2x +h}{2}\right)\cdot\frac{2}{h}\cdot\sin \frac{h}{2} \\  
+&=\lim_{h\rightarrow 0}\cos
+  \left(\frac{2x +h}{2}\right)\cdot \lim_{h\rightarrow 0}\frac{\sin \frac{h}{2}}{\frac{h}{2}}
+\end{align*}
+With the variable $\bar{h}:=\frac{h}{2}$, which goes to zero as $h$ does, we get
+\begin{align*}
+(\sin x)'&=\cos x \cdot \underbrace{\lim_{\bar{h}\rightarrow
+    0}\frac{\sin \bar{h}}{\bar{h}}}_{=1 \mbox{(theorem
+    \ref{satzsindiv})}} \\
+&=\cos x .
+\end{align*}
+\end{beweis}
+
+
+
+\end{document}
