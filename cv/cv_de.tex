@@ -1,0 +1,210 @@
+\documentclass{article}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{multicol}
+\setlength{\columnsep}{2cm}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage{tgbonum}
+\titleformat{\section}
+{\huge\bfseries\camelcase}
+{}
+{0em}
+{}[\titlerule]
+
+\titleformat{\subsection}
+{\Large\bfseries\camelcase}
+{\hspace{-.25in}}
+{0em}
+{}
+
+\titleformat{\subsubsection}
+{\bfseries}
+{}
+{0em}
+{}
+
+\titlespacing{\subsubsection}
+{0em}
+{.26em}
+{.26em}
+
+
+\renewcommand{\maketitle}{
+    \begin{center}
+    {\huge\bfseries
+    \theauthor}
+    \end{center}
+}
+
+
+
+\begin{document}
+\fontfamily{phv}\selectfont
+
+
+\title{Curriculum Vitae}
+\author{Manuel Fl\"uckiger}
+
+\maketitle
+\section{Personalien}
+\begin{itemize}[parsep = 0.05cm]
+    \item[] 13.07.2003 in Utzenstorf
+    \item[] Amselweg 5, 3427 Utzenstorf
+    \item[] 076 576 17 49
+    \item[]\href{mailto:manuel.flueckiger.mf@gmail.com}{manuel.flueckiger.mf@gmail.com}
+    %\item[] \href{https://www.linkedin.com/in/manuel-fl%C3%BCckiger-43551b280/}{LinkedIn} 
+\end{itemize}
+
+
+
+\section{Technische F\"ahigkeiten}
+\begin{multicols}{2}
+\subsection{Anwendungen}
+\subsubsection{Produktive}
+\begin{tabular}{| m{6em} | m{12em} |}
+    \hline
+    \textbf{Level} &  \textbf{Anwendung} \\
+    \hline
+    gut & Microsoft Word\\
+    & Microsoft PowerPoint\\
+    & Microsoft Excel\\
+    \hline
+    grundlegend & Odoo\\
+    \hline
+\end{tabular}
+
+\subsubsection{Kreative}
+\begin{tabular}{| m{6em} | m{12em} |}
+    \hline
+    \textbf{Level} &  \textbf{Anwendung} \\
+    \hline
+    gut & Affinity Photo\\
+    & Affinity Designer\\
+    & Affinity Publisher\\
+    & Adobe Photoshop\\
+    & Pinnacle Studio\\
+    \hline
+    grundlegend & Audacity\\
+        & FFmpeg\\
+    \hline
+\end{tabular}
+\subsection{Sprachen}
+
+\subsubsection{Programmier}
+\begin{tabular}{| m{6em} | m{12em} |}
+    \hline
+    \textbf{Level} &  \textbf{Sprache} \\
+    \hline
+    fortgeschritten & Java \\
+    \hline
+    gut & Python\\
+    & JavaScript\\
+    \hline
+    grundlegend &  C\\
+    & ASM \\
+    \hline
+\end{tabular}
+\subsubsection{Markup}
+\begin{tabular}{| m{6em} | m{12em} |}
+    \hline
+    \textbf{Level} &  \textbf{Sprache} \\
+    \hline
+    gut & HTML \\
+    & CSS \\
+    \hline
+    grundlegend &  LaTex \\
+    \hline
+\end{tabular}
+\subsubsection{Query}
+\begin{tabular}{| m{6em} | m{12em} |}
+    \hline
+    \textbf{Level} &  \textbf{Sprache} \\
+    \hline
+    fortgeschritten & MySQL\\
+    & PostgreSQL\\
+    \hline
+\end{tabular}
+\end{multicols}
+
+\section{Berufserfahrung}
+\begin{itemize}[leftmargin=3cm, labelsep = 0.5cm ]
+    \item[seit 16.6.2023] \textbf{Full-Stack Entwickler}\newline Theologische Fakult\"at der Universit\"at Bern - Bern\newline
+    Erstellen einer Webanwendung zur Verwaltung von Interviews, die von der theologischen Fakult\"at der Universit\"at Bern durchgef\"uhrt und analysiert werden.
+    Einrichten einer VM auf meinem privaten Server, um das Projekt zu hosten. Habe Nodejs, Express, MySQL und Ngnix f\"ur das Backend verwendet.
+    Gelernt, wie man Passw\"orter hasht, Benutzersitzungen verwaltet und Anfragen an einen Webserver bearbeitet.
+    \item[8.2022 - 3.2023] \textbf{Angestellter Scanning, DMS Team}\newline FIVE Informatik AG - Sch\"onb\"uhl \newline
+    Hilfe bei der Daten\"ubergabe, Vorbereitung der Dokumente zum Scannen, Scannen mit Hochleistungsscannern, 
+    \"Uberpr\"ufung der Vollst\"andigkeit, Vernichtung und Entsorgung der gescannten Daten.
+    \item[8.2010 - 6.2018] \textbf{Web-Entwickler}\newline Eva J\"ackle - Kirchberg \newline 
+    Mein Maturaprojekt. Erlernte HTML, CSS, MySQL und PHP. Habe die bestehende Seite in programmiererfreundlichen Code umgeschrieben,
+    und schrieb die Benutzeroberfl\"ache f\"ur Frau J\"ackle, damit sie den Inhalt der Seite bearbeiten kann,
+    ohne HTML-Dateien bearbeiten zu m\"ussen.  \\
+    \item[8.2010 - 6.2018] \textbf{Schnupperlehre}\newline FIVE informatik AG - Sch\"onb\"uhl \newline
+    Erste Erfahrungen mit Python, HTML und PHP.\\ 
+\end{itemize}
+
+\section{Aus-/Weiterbildung}
+\subsection{Akademischer Werdegang}
+\begin{itemize}[leftmargin=3cm, labelsep = 0.5cm ]
+    \item[seit 9.2022] \textbf{Universit\"at Bern} - BS in Informatik \newline
+    Nebenf\"acher: Mathematik, Informationssysteme, Psychologie. Voraussichtlicher Abschluss des Bachelorstudiums im Jahr 2026.  \\
+    \item[8.2018 - 6.2022] \textbf{Gymnasium  Burgdorf} - Hauptfach Biologie und Chemie  \newline
+    Nebenfach: Informatik,\newline Maturaarbeit in Informatik\\
+    \item[8.2010 - 6.2018] \textbf{Schule untere Emme} \newline
+    2 Jahre Sekundarstufe I, 6 Jahre Grundschule 
+\end{itemize}
+\subsection{Sprachen}
+\begin{itemize}[leftmargin=3cm, labelsep = 0.5cm ]
+    \item[Schweizerdeutsch]
+    \begin{tabular}{| m{5em} | m{12em}}
+        Sprechen& Fl\"ussig (Muttersprache)\\
+        \hline
+        Schreiben  & Fehlerfrei\\
+      \end{tabular}\newline
+    \item[Deutsch]
+    \begin{tabular}{| m{5em} | m{12em}}
+        Sprechen & Fl\"ussig\\
+        \hline
+        Schreiben & Sehr Gut\\
+    \end{tabular}
+    \item[Englisch]
+    \begin{tabular}{| m{5em} | m{12em}}
+        Sprechen & Fl\"ussig\\
+        \hline
+        Schreiben & Sehr Gut\\
+    \end{tabular}
+    \item[Französisch]
+    \begin{tabular}{| m{5em} | m{12em}}
+        Sprechen & Anf\"anger\\
+        \hline
+        Schreiben & Anf\"anger\\
+    \end{tabular}
+    \item[Norwegisch]
+    \begin{tabular}{| m{5em} | m{12em}}
+        Sprechen & Anf\"anger\\
+        \hline
+        Schreiben & Anf\"anger\\
+    \end{tabular}
+\end{itemize}
+
+\section{Hobbies}
+\begin{itemize}
+    \item In meiner Freizeit besch\"aftige ich mich gerne mit Technologie. 
+    Dazu geh\"ort das Hosten von virtuellen Maschinen auf meinem Server (mit ESXi),
+     das Herumt\"ufteln mit Raspberry Pi's, 
+    und das Bauen von Computer f\"ur Freunde und Familie.
+    \item Ich spiele Volleyball im VU (Volley Utzenstorf) und an der Universit\"at Bern.
+    \item Ich tausche mich gerne mit Leuten aus aller Welt aus z.B. 
+    Norwegen, Schottland, England, T\"urkei oder \"Osterreich.
+\end{itemize}
+
+\section{Soziale T\"atigkeiten}
+\begin{itemize}
+    \item Fr\"uhlingslager-Hilfsleiter der Kirchgemeinde Utzenstorf in den Jahren 2016/17/18
+    \item Verschiedene Hilfsleiterpositionen bei Kirchgemeindeaktivit\"aten wie Velotouren oder Schlitteln
+\end{itemize}
+\end{document}

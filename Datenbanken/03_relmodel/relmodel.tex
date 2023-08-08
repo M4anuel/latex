@@ -1,0 +1,277 @@
+\documentclass[../DatenbankenFS23.tex]{subfiles}
+
+\begin{document}
+\section{Das Relationenmodell}
+\begin{problem}
+    Wir nehmen an, wir wollen die Daten zu einer von Menge von Autos in
+    unserer Datenbank halten.
+    Für jedes Auto soll dessen \textbf{Marke} und \textbf{Farbe} abgespeichert werden.
+\end{problem}
+\subsection{Attribute \& Domäne}
+    Wir können jedes Auto als Paar $(Marke, Farbe)$ darstellen.
+    Eine Menge von Autos entspricht somit einer Menge von solchen Paaren.
+    Das heisst wir können eine Menge von Autos durch eine 2-stellige Relation
+    repräsentieren.
+    \[Autos := \{(Opel, silber), (VW, rot), (Audi, schwarz)\} .\]
+    Wir können diese Relation als Tabelle mit zwei Spalten darstellen:
+    \newline
+    \begin{figure}[ht]
+        \centering
+            $\begin{matrix}
+                Autos & \\
+                \hline
+                Marke & Farbe \\
+                \hline
+                Opel & silber \\
+                VW & rot \\
+                Audi & schwarz \\
+                \hline
+            \end{matrix}$
+    \end{figure} \newline
+    wobei 
+    \begin{itemize}
+        \item[] \textbf{Attribut} Name der Spalte $(Marke, Farbe)$
+        \item[] \textbf{Domäne} Mögliche Werte, die ein Attribut annehmen kann
+    \end{itemize}
+
+\subsection{Null Werte}
+    $Null$ wird verwendet, wenn der Wert eines Attributs unbekannt ist,
+    \begin{itemize}
+        \item[] weil wir den Wert nicht kennen oder
+        \item[] oder, weil das Attribut keinen Wert besitzt.
+    \end{itemize}
+
+\subsection*{Konvention}
+\begin{itemize}
+    \item[] $Null$ gehört zu jeder Domäne.
+    \item[] in der Tabellenform schreiben wir häufig − anstelle von $Null$.
+\end{itemize}    
+
+\begin{bemerkung}
+    \textbf{Semantik von Null} \newline
+    Da wir $Null$ verwenden, um auszudrücken, dass der Wert eines Attributs
+    unbekannt ist, erhält Null eine spezielle Semantik bezüglich der Gleichheit:
+    \[Es\ gilt\ \textbf{nicht},\ dass\ Null = Null.\ (1)\]
+    Wenn wir zwei unbekannte Werte vergleichen, so wissen wir eben nicht, ob
+    sie gleich sind. Deshalb verwenden wir eine Semantik für die $(1)$ der Fall ist.
+    \newline
+\end{bemerkung}
+
+\begin{defn}[Schwache Gleichheitsrelation]
+    An einigen Stellen werden wir zwei $Null$ Werte als gleichwertig betrachten
+    müssen. Dazu führen wir folgende schwache Gleichheitsrelation zwischen
+    zwei atomaren Objekten $a$ und $b$ ein:
+    \[a \simeq b\ g.d.w.\ a = b\ oder\ (a\ ist\ Null\ und\ b\ ist\ Null).\]
+    Für zwei n-Tupel definieren wir analog:
+    \[ (a_1, \dots , a_n) \simeq (b_1, \dots , bn)\ g.d.w.\ a_i \simeq b_i\ f\ddot{u}r\ alle\ 1 \leq i \leq n.\]
+\end{defn}
+\begin{beispiel}
+    Seien $a$, $b$, und $c$ paarweise verschiedene Objekte, die verschieden von $Null$ sind.
+
+    \begin{itemize}
+        \item $a \simeq a$
+        \item $a \not\simeq a$
+        \item $a \not\simeq Null$
+        \item $Null \simeq Null$
+        \item $(a, b) \simeq (a, b)$
+        \item $(a, Null, c) \simeq (a, Null, c)$
+        \item $(a, Null, c) \not\simeq (a, b, c)$
+    \end{itemize}
+\end{beispiel}
+
+\subsection{Relationsschema \& Relationale Datenbank}
+Relationenschemata (oder einfach nur Schemata) spezifizieren die bei
+Relationen verwendeten Attribute und Domänen. Es handelt sich dabei um
+Sequenzen der Form
+\[(A_1 : D_1, \dots , A_n : D_n) ,\]
+wobei $A_1, \dots , A_n$ Attribute mit den jeweiligen Domänen $D1, \dots , Dn$ sind.
+
+\begin{beispiel}
+    $(Marke : text, Baujahr : integer, Farbe : color_enum, Fahrer : text)$
+\end{beispiel}
+
+
+\subsection*{Konvention}
+\begin{itemize}
+    \item Wir schreiben manchmal 
+    \[(A_1, \dots , A_n)\ anstelle\ von\ (A_1 : D_1, \dots , A_n : D_n),\]
+    wenn sich die Domänen unmittelbar aus dem Kontext ergeben oder
+    unwichtig sind.
+    \item Wir sagen $R$ ist eine Relation über $A_1, \dots , A_n$, wenn $R$ eine Relation
+    über den dazugehörenden Domänen $D_1, \dots , D_n$ ist.
+    \item Wir sagen dann auch $R$ ist eine Instanz des Schemas $(A_1, \dots , A_n)$.
+\end{itemize}
+
+\begin{bemerkung}
+    Als \emph{relationales Datenbank-Schema} (oder kurz \emph{DB-Schema}) bezeichnen wir
+    die Menge aller verwendeten Relationenschemata.
+\end{bemerkung}
+\begin{defn}[Relationale Datenbank]
+    Als \emph{relationale Datenbank} (oder kurz \emph{relationale DB}) bezeichnen wir das
+    verwendete relationale Datenbank-Schema zusammen mit den momentanen
+    Werten der Relationen. \newline
+    Eine relationale Datenbank besteht somit aus
+    \begin{itemize}
+        \item einem DB-Schema und
+        \item den aktuellen Instanzen aller Schemata des DB-Schemas.
+    \end{itemize}
+    Wir sprechen in diesem Zusammenhang auch von einer \emph{Instanz} eines
+    DB-Schemas und meinen damit die Menge der aktellen Instanzen aller
+    Schemata des DB-Schemas. 
+\end{defn}
+
+\begin{defn}[Projektion auf Attribute]
+    Es seien $A_1, \dots , A_n$ Attribute,
+    \[S = (A_1, \dots , A_n)\]
+    ein Relationenschema und $R$ eine Instanz von $S$.
+    
+    \begin{itemize}
+        \item 
+         Ist $t$ ein $n$-Tupel, das zu $R$ gehört, so schreiben wir $t[A_i]$ für den Wert
+        von $t$ bei Attribut $A_i$. Für $(a_1, \dots , a_i, \dots , a_n) \in R$ heisst das
+        $(a_1, \dots , a_i , \dots , a_n)[A_i] = a_u$.    
+        \item Ist $K = (A_{i_1}, \dots , A_{i_m})$ eine Sequenz von Attributen, so definieren wir
+        für ein $n$-Tupel $(a_1, \dots , a_i, \dots , a_n) \in R  $
+        $(a_1, \dots , a_i, \dots , a_n)[K] := (a_{i_1}, \dots , a_{i_m})$.
+    \end{itemize}
+\end{defn}
+
+\begin{beispiel}
+    Betrachten wir die Relation\newline
+        $\begin{matrix}
+            \textbf{Autos}\\
+            \hline
+            \textbf{Marke} & \textbf{Farbe} & \textbf{Baujahr} & \textbf{Vorname} & \textbf{Nachname}\\
+            \hline
+            Opel & silber & 2010 & Tom & Studer\\
+            Opel & schwarz & 2010 & Eva & Studer\\
+            VW & rot & 2014 & Eva Studer\\
+            Audi & schwarz & 2014 & Eva Meier\\
+            \hline
+        \end{matrix}$
+            \newline\newline
+    Es sei nun
+\[t := (Opel, schwarz, 2010, Eva, Studer) .\]
+Damit gilt
+\[t[(Marke, Farbe)] = (Opel, schwarz)\]
+und
+\[t[(Nachname, Baujahr)] = (Studer, 2010) .\]
+\end{beispiel}
+
+\begin{bemerkung}
+    Für $s, t \in R$ bedeutet $s[K] = t[K]$, dass die Werte von $s$ und $t$ in allen
+    Attributen aus $K$ übereinstimmen.
+\end{bemerkung}
+
+\subsection{Schlüssel}
+\begin{problem}
+    Wie können wir in einer Instanz $R$ von $S$ die einzelnen Elemente unterscheiden?
+\end{problem}
+Dazu wählen wir einen sogenannten \emph{Primärschlüssel}. Dies ist eine Sequenz
+von Attributen
+\[K = (A_{i_1}, \dots , A_{i_m}) .\]
+Dann verlangen wir für alle Instanzen $R$ von $S$ und alle $s, t \in R$, dass
+$s[K] = t[K] \Rightarrow s \simeq t .$
+
+\subsection*{Konvention}
+Wir geben den Primärschlüssel an, indem wir beim Relationenschema
+diejenigen Attribute unterstreichen, welche zum gewählten Primärschlüssel
+gehören.
+
+\begin{beispiel}
+    Betrachten wir die Relation\newline
+    $\begin{matrix}
+        \textbf{Autos}\\
+        \hline
+        \textbf{Marke} & \textbf{Farbe} & \textbf{Baujahr} & \textbf{Vorname} & \textbf{Nachname}\\
+        \hline
+        Opel & silber & 2010 & Tom & Studer\\
+        Opel & schwarz & 2010 & Eva & Studer\\
+        VW & rot & 2014 & Eva  & Studer\\
+        Audi & schwarz & 2014 & Eva  & Meier\\
+        \hline
+    \end{matrix}$\newline\newline
+    Es sind bspw. die beiden folgenden Primärschlüssel möglich:
+    \[(Marke, Farbe)\ und\ (Baujahr, Vorname, Nachname) . (3)\]
+    Falls wir $(Marke, Farbe)$ als Primärschlüssel wählen, so geben wir das
+    Schema wie folgt an:
+    \[(\underline{Marke}, \underline{Farbe}, Baujahr, Vorname, Nachname) .\]
+\end{beispiel}
+
+\subsection*{Sprechende Schlüssel}
+In einer echten Datenbankanwendung sind wahrscheinlich beide möglichen
+Primärschlüssel aus (3) ungeeignet.
+Es ist nämlich gut möglich, dass wir später dieser Relation weitere Autos
+hinzufügen möchten. Da kann es dann sein, dass ein zweiter roter VW
+eingefügt werden soll oder ein weiteres Auto mit Baujahr 2010 und dem
+Fahrer Tom Studer.\newline
+In der Praxis wird oft ein zusätzliches Attribut, z.B. $AutoId$, hinzugefügt,
+welches als Primärschlüssel dient.
+Dieses Attribut hat nur den Zweck, die verschiedenen Elemente der
+Relation eindeutig zu bestimmen. Es beschreibt aber keine echte
+Eigenschaft von Autos. Wir nennen einen solchen Primärschlüssel einen
+\emph{nicht-sprechenden} Schlüssel.\newline
+Ein \emph{sprechender} Schlüssel hingegen hat eine logische Beziehung zu einem
+oder mehreren Attributen des Schemas.\newline
+Es ist gute Praxis \emph{keine} sprechenden Schlüssel zu verwenden, da diese die
+Tendenz haben zu zerbrechen. \newline
+Das heisst, früher oder später wird eine Situation auftreten, in der ein
+neues Tupel eingefügt werden soll, dessen sprechender Schlüssel bereits ein
+Tupel in der Relation bezeichnet. Oder es kann sein, dass das System der
+Schlüsselgenerierung komplett geändert wird. Beispiele dazu sind:
+\begin{itemize}
+    \item das System der AHV-Nummern (eindeutige Personennummer der
+    Alters- und Hinterlassenenversicherung) in der Schweiz, welches 2008
+    geändert wurde,
+    \item die Internationale Standardbuchnummer (ISBN), für die 2005 ein
+    revidierter Standard eingeführt wurde.
+\end{itemize}
+
+\begin{problem}
+    \begin{center}
+    $\begin{matrix}
+        \textbf{Autos}\\
+        \hline
+        \textbf{Marke} & \textbf{Farbe} & \textbf{Baujahr} & \textbf{Vorname} & \textbf{Nachname}\\
+        \hline
+        Opel & silber & 2010 & Tom & Studer\\
+        Opel & schwarz & 2010 & Eva & Studer\\
+        VW & rot & 2014 & Eva  & Studer\\
+        Audi & schwarz & 2014 & Eva  & Meier\\
+        \hline
+    \end{matrix}$\newline
+\end{center}
+    In dieser Tabelle sind die Daten zu Eva Studer doppelt abgespeichert.
+\end{problem}
+\subsection*{Besser: zwei Zabellen}
+\begin{figure}[ht]
+    \centering
+    $\begin{matrix}
+        \textbf{Autos}\\
+        \hline
+        \underline{\textbf{Marke}} & \underline{\textbf{Farbe}} & \textbf{Baujahr} & \textbf{FahrerId}\\
+        \hline
+        Opel & silber & 2010 & 1\\
+        Opel & schwarz & 2010 & 2\\
+        VW & rot & 2014 & 2\\
+        Audi & schwarz & 2014 & 3\\
+        \hline
+    \end{matrix}$
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    $\begin{matrix}
+        \textbf{Personen}\\
+        \hline
+        \underline{\textbf{PersId}} & \textbf{Vorname} & \textbf{Nachname}\\
+        \hline
+        1 & Tom & Studer\\
+        2 & Eva & Studer\\
+        3 & Eva  & Meier\\
+        \hline
+    \end{matrix}$
+\end{figure} \newline
+    FahrerId \emph{referenziert} die Tabelle Personen \newline
+    FahrerId ist ein \emph{Fremdschlüssel} für Personen
+FOLIE 25
+\end{document}

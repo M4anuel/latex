@@ -1,15 +1,14 @@
 \documentclass[../DatenbankenFS23.tex]{subfiles}
 
 \begin{document}
-\section{Mengenlehre}
-\begin{defn}[Objekte in der Mengenlehre]
+\section{Die Mengenlehre}
+\subsection{Objekte in der Mengenlehre}
 Objekte sind entweder
 \begin{itemize}
     \item atomare Objekte, d.h. unteilbare Objekte ohne interne Struktur oder 
     \item n-Tupel der Form $(a_1, a_2, \dots , a_n)$, wobei $a_1$ bis $a_n$ Objekte sind $(n\geq 1)$.
 \end{itemize}
 Die Komponenten eines Tupels sind geordnet.
-\end{defn}
 \subsection*{Konvention}
 Wir benutzen Kleinbuchstaben $a, b, c, \dots$ um Objekte zu bezeichnen.
 \subsection*{Konvention}
@@ -54,7 +53,7 @@ Komponenten gilt.
    \end{itemize}
 \end{beispiel}
 
-\begin{defn}[Mengen]
+\subsection{Mengen}
 Eine Menge ist eine ungeordnete Kollektion von Objekten. Falls das
 Objekt $a$ zu einer Menge $M$ geh\"ort, sagen wir $a$ ist ein Element von $M$
 und schreiben $a \in M$. \newline
@@ -67,9 +66,6 @@ $\{b, b, a, c, d\}$ und $\{a, b, c, d, d, d\}$\newline
 beschreiben dieselbe Menge.\newline
 Wir verwenden Grossbuchstaben $A, B, C, \dots$ um Mengen zu bezeichnen.
 
-
-
-\end{defn}
 \begin{wichtig}
 \textbf{Annahme: Die Klasse der Objekte und die Klasse der Mengen sind disjunkt.}
 Dies bedeutet, dass Mengen keine Objekte sind. Somit kann eine Menge
@@ -80,6 +76,7 @@ damit wir uns nicht um
 Paradoxien der Mengenlehre
 k\"ummern m\"ussen.
 \end{wichtig}
+
 \begin{beispiel}
     Seien $a, b,$ und $c$ Objekte.
     \begin{itemize}
@@ -128,7 +125,7 @@ $A$ heisst \emph{echte Teilmenge} von $B$ (in Zeichen $A \subsetneq B$, falls
 
 \begin{wichtig}
     \textbf{Komprehension}\newline
-    \textbf{Annahme: F\"ur jedes Pr\"adikat $\varphi(x)$ gibt es eine Menge $A$, so dass f\"ur alle Objekte $x$gilt.}
+    \textbf{Annahme: F\"ur jedes Pr\"adikat $\varphi(x)$ gibt es eine Menge $A$, so dass f\"ur alle Objekte $x$ gilt.}
     \[x \in A\ g.d.w.\ \varphi(x) .\]
         
     Wir verwenden folgende Schreibweise, um eine durch Komprehension
@@ -235,7 +232,7 @@ $R \times S \times T$ zu schreiben.
 \textbf{Flaches Produkt vs. \"ubliche mathematische Definition} \newline
 \"ublicherweise wird in der mathematischen Mengenlehre das kartesische
 Produkt anders definiert, n\"amlich durch
-\[R \times S := \{(a, b) \mid a \in R und b \in S\} . (1)\]
+\[R \times S := \{(a, b) \mid a \in R\ und\ b \in S\} . (1)\]
 Damit ist $R \times S$ immer eine 2-stellige Relation. \newline
 Im Gegensatz zu unserem kartesischen Produkt erf\"ullt das Produkt aus (1)
 das Assoziativgesetzt nicht.

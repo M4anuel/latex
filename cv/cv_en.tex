@@ -1,0 +1,208 @@
+\documentclass{article}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{multicol}
+\setlength{\columnsep}{2cm}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage{tgbonum}
+\titleformat{\section}
+{\huge\bfseries\camelcase}
+{}
+{0em}
+{}[\titlerule]
+
+\titleformat{\subsection}
+{\Large\bfseries\camelcase}
+{\hspace{-.25in}}
+{0em}
+{}
+
+\titleformat{\subsubsection}
+{\bfseries}
+{}
+{0em}
+{}
+
+\titlespacing{\subsubsection}
+{0em}
+{.25em}
+{.25em}
+
+
+\renewcommand{\maketitle}{
+    \begin{center}
+    {\huge\bfseries
+    \theauthor}
+    \end{center}
+}
+
+
+
+\begin{document}
+\fontfamily{phv}\selectfont
+
+
+\title{Curriculum Vitae}
+\author{Manuel Fl\"uckiger}
+
+\maketitle
+\section{Personal details}
+\begin{itemize}[parsep = 0.05cm]
+    \item[] Amselweg 5, 3427 Utzenstorf
+    \item[] 076 576 17 49
+    \item[]\href{mailto:manuel.flueckiger.mf@gmail.com}{manuel.flueckiger.mf@gmail.com}
+    %\item[] \href{https://www.linkedin.com/in/manuel-fl%C3%BCckiger-43551b280/}{LinkedIn} 
+\end{itemize}
+
+
+
+\section{Technical Skills}
+\begin{multicols}{2}
+\subsection{Applications}
+\subsubsection{Productivity}
+\begin{tabular}{| m{5em} | m{12em} |}
+    \hline
+    \textbf{level} &  \textbf{Application} \\
+    \hline
+    good & Microsoft Word\\
+    & Microsoft PowerPoint\\
+    & Microsoft Excel\\
+    \hline
+    basic & Odoo\\
+    \hline
+\end{tabular}
+
+\subsubsection{Creative}
+\begin{tabular}{| m{5em} | m{12em} |}
+    \hline
+    \textbf{level} &  \textbf{Application} \\
+    \hline
+    good & Affinity Photo\\
+    & Affinity Designer\\
+    & Affinity Publisher\\
+    & Adobe Photoshop\\
+    & Pinnacle Studio\\
+    \hline
+    basic & Audacity\\
+        & FFmpeg\\
+    \hline
+\end{tabular}
+\subsection{Languages}
+
+\subsubsection{Programming}
+\begin{tabular}{| m{5em} | m{12em} |}
+    \hline
+    \textbf{level} &  \textbf{language} \\
+    \hline
+    advanced & Java \\
+    \hline
+    good & Python\\
+    & JavaScript\\
+    \hline
+    basic &  C\\
+    & ASM \\
+    \hline
+\end{tabular}
+\subsubsection{Markup}
+\begin{tabular}{| m{5em} | m{12em} |}
+    \hline
+    \textbf{level} &  \textbf{language} \\
+    \hline
+    good & HTML \\
+    & CSS \\
+    \hline
+    basic &  LaTex \\
+    \hline
+\end{tabular}
+\subsubsection{Query}
+\begin{tabular}{| m{5em} | m{12em} |}
+    \hline
+    \textbf{level} &  \textbf{language} \\
+    \hline
+    advanced & MySQL\\
+    & PostgreSQL\\
+    \hline
+\end{tabular}
+\end{multicols}
+
+\section{Job Experience}
+\begin{itemize}[leftmargin=3cm, labelsep = 0.5cm ]
+    \item[since 16.6.2023] \textbf{Full-Stack developer}\newline Theology Faculty of the University of Bern - Bern\newline
+    Creating a webapplication to manage interviews conducted by the theological faculty of the University of Bern.
+    Set up a VM on my private Server to host the project. Used Nodejs, Express, MySQL and Ngnix for the backend.
+    Learned how to hash passwords, manage user sessions and handle requests to a webserver.
+    \item[8.2022 - 3.2023] \textbf{Scanning employee, DMS Team}\newline FIVE Informatik AG - Sch\"onbühl \newline
+    Assisting with the delivery of data, preparing documents for scanning, scanning with high performance scanners, 
+    checking completeness, destruction and disposal of scanned data.
+    \item[8.2010 - 6.2018] \textbf{Web-developer}\newline Eva J\"ackle - Kirchberg \newline 
+    My Matura project. Learned HTML, CSS, MySQL and PHP. Rewrote the existing site into programmer friendly code,
+    adapted it to work on mobile, and wrote the user interface for Ms. J\"ackle to edit the content of the page without
+    having to edit HTML files.  \\
+    \item[8.2010 - 6.2018] \textbf{Trial apprenticeship}\newline FIVE informatik AG - Sch\"onbühl \newline
+    First experience with Python, HTML and PHP.\\ 
+\end{itemize}
+
+\section{Education}
+\subsection{Academic Career}
+\begin{itemize}[leftmargin=3cm, labelsep = 0.5cm ]
+    \item[since 9.2022] \textbf{University of Bern} - BS in Computer Science \newline
+    Minors: Mathematics, Information Systems, Psychology. Projected bachelor graduation in 2026.  \\
+    \item[8.2018 - 6.2022] \textbf{Gymnasium of Burgdorf} - Major subject: Biology and Chemistry  \newline
+     Subsidiary subjects: Computer Science, Matura thesis in Computer Science\\
+    \item[8.2010 - 6.2018] \textbf{Elementary School Schule untere Emme} \newline
+    2 years Secondary school I, 6 years primary school 
+\end{itemize}
+\subsection{Languages}
+\begin{itemize}[leftmargin=3cm, labelsep = 0.5cm ]
+    \item[Swissgerman]
+    \begin{tabular}{| m{4em} | m{12em}}
+        speaking& fluent (mother tongue)\\
+        \hline
+        writing  & error free\\
+      \end{tabular}\newline
+    \item[German]
+    \begin{tabular}{| m{4em} | m{12em}}
+        speaking & fluent\\
+        \hline
+        writing & proficient\\
+    \end{tabular}
+    \item[English]
+    \begin{tabular}{| m{4em} | m{12em}}
+        speaking & fluent\\
+        \hline
+        writing & proficient\\
+    \end{tabular}
+    \item[French]
+    \begin{tabular}{| m{4em} | m{12em}}
+        speaking & beginner to intermediate\\
+        \hline
+        writing & beginner\\
+    \end{tabular}
+    \item[Norwegian]
+    \begin{tabular}{| m{4em} | m{12em}}
+        speaking & beginner\\
+        \hline
+        writing & beginner\\
+    \end{tabular}
+\end{itemize}
+
+\section{Hobbies}
+\begin{itemize}
+    \item I enjoy exploring technology in my free time, 
+    including hosting virtual machines on my server (running ESXi), tinkering with Raspberry Pis, 
+    and building computers for friends and family.
+    \item I'm playing Volleyball in VBC Utzenstorf and at the University of Bern.
+    \item I like to engage in language exchange with people from e.g. 
+    Norway, Scotland, England, Turkey or Austria.
+\end{itemize}
+
+\section{Social Activities}
+\begin{itemize}
+    \item Spring camp assistant leader of the parish of Utzenstorf in the years of 2016/17/18
+    \item Various assistant leader positions in parish activities such as bike tours or sledding
+\end{itemize}
+\end{document}

@@ -53,6 +53,7 @@ ilines                            % Trennlinie linksbündig ausrichten
 	\def\@beispiel{Beispiel:}
 	\def\@aufgaben{Aufgaben.}
 	\def\@uebung{\"Ubung.}
+	\def\@problem{Problem.}
 \else
 	\def\@satz{Theorem}
 	\def\@bemerkung{Remark:}
@@ -60,6 +61,7 @@ ilines                            % Trennlinie linksbündig ausrichten
 	\def\@beispiel{Example:}
 	\def\@aufgaben{Exercises.}
 	\def\@uebung{Problem.}
+	\def\@problem{Problem.}
 \fi
 
 \relax
@@ -203,6 +205,16 @@ leftmargin = 0                 ,%
 rightmargin =  0               ,%
 frametitle=\@uebung            ,%
 ]{uebung}
+
+\newmdenv[                      %
+linecolor=black                ,%
+linewidth = 2                  ,%
+roundcorner = 10pt             ,%
+%shadow=true                   ,%
+leftmargin = 0                 ,%
+rightmargin =  0               ,%
+frametitle=\@problem           ,%
+]{problem}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
