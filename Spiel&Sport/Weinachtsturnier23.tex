@@ -1,0 +1,115 @@
+\documentclass[DIN, pagenumber=false, fontsize=11pt, parskip=half]{scrartcl}
+\usepackage{ngerman}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb }
+\usepackage{ulem}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{marvosym }
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{enumitem}
+% for matlab code
+% bw = blackwhite - optimized for print, otherwise source is colored
+\usepackage[framed,numbered,bw]{mcode}
+\let\ds\displaystyle
+% for other code
+%\usepackage{listings}
+
+\setlength{\parindent}{0em}
+
+% set section in CM
+\setkomafont{section}{\normalfont\bfseries\Large}
+\newcommand{\mytitle}[1]{{\noindent\Large\textbf{#1}}}
+\newcommand\overmat[2]{%
+  \makebox[0pt][l]{$\smash{\color{white}\overbrace{\phantom{%
+    \begin{matrix}#2\end{matrix}}}^{\text{\color{black}#1}}}$}#2}
+\newcommand\bovermat[2]{%
+  \makebox[0pt][l]{$\smash{\overbrace{\phantom{%
+    \begin{matrix}#2\end{matrix}}}^{\text{#1}}}$}#2}
+\newcommand\partialphantom{\vphantom{\frac{\partial e_{P,M}}{\partial w_{1,1}}}}
+
+
+%===================================
+\begin{document}
+
+\noindent\textbf{Weinachtsturnier Deredingen} \hfill \textbf{Team Gägä Gägä Gägä}\\
+\hfill
+\begin{flushright}
+\end{flushright}
+
+
+\mytitle{Matchblatt \hfill \today}
+\section*{Team}
+\subsection*{Anfahrt}
+28.12.23 um 15:10 beim Schulhaus in Utzenstorf, Gotthelfstrasse 15, 3427 Utzenstorf \\
+Ilena \& Alina bieten uns netterweise Fahrdienst an. 
+\subsection*{Spielende}
+\begin{multicols}{2}
+\begin{itemize}[noitemsep]
+    \item Anja 
+    \item Ilena
+    \item Jana
+    \item Linus
+    \item Manuel
+    \item No"elia
+    \item Tim
+\end{itemize}
+\end{multicols}
+\section*{Spiele}
+Gruppe A
+\section*{16:15 Halle 2: Gägä Gägä Gägä vs Milorians}
+\[
+    \begin{array}{cc}
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{ccc}
+& \text{Netz} & \\    
+\hline
+\text{Noelia} & \text{Manuel} & \text{Anja} \\
+\text{Ilena} & \text{Linus} & \text{Tim} \\
+\end{array} & \begin{array}{c}Bank: \\ \text{Jana}\end{array}
+\end{array}
+\]
+
+\section*{17:00 Halle 1: Gägä Gägä Gägä vs Mut zur Lücke}
+\[
+    \begin{array}{cc}
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{ccc}
+& \text{Netz} & \\    
+\hline
+\text{Tim} & \text{Manuel} & \text{Jana} \\
+\text{Anja} & \text{Linus} & \text{Ilena} \\
+\end{array} & \begin{array}{c}Bank: \\ \text{No"elia}\end{array}
+\end{array}
+\]
+\section*{18:00 Halle 2: Volleybären vs Gägä Gägä Gägä}
+\[
+    \begin{array}{cc}
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{ccc}
+& \text{Netz} & \\    
+\hline
+\text{Jana} & \text{Linus} & \text{Manuel} \\
+\text{ No"elia} & \text{Tim} & \text{Ilena} \\
+\end{array} & \begin{array}{c}Bank: \\ \text{Anja}\end{array}
+\end{array}
+\]
+\section*{18:45 Halle 1: Buchsi Plöischler vs Gägä Gägä Gägä}
+\[
+    \begin{array}{cc}
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{ccc}
+& \text{Netz} & \\    
+\hline
+\text{Tim} & \text{Linus} & \text{Anja } \\
+\text{Jana} & \text{Manuel} & \text{No"elia} \\
+\end{array} & \begin{array}{c}Bank: \\ \text{Ilena}\end{array}
+\end{array}
+\]
+\end{document}
